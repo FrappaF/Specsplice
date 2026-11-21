@@ -6,22 +6,22 @@ Try six input cases first to see what the rule accepts. [Open the Marketplace br
 
 ## Set up the example
 
-These steps use preview 0.1.0, published under the former name Ordito.
+These steps use Specsplice 0.2.0.
 
-1. Download the Linux x86-64, macOS Apple Silicon, or macOS Intel archive and follow the release's first-launch instructions. [Preview 0.1.0 downloads and checksums](https://github.com/FrappaF/Specsplice/releases/tag/v0.1.0)
+1. Download the Linux x86-64, macOS Apple Silicon, or macOS Intel archive and follow the release's first-launch instructions. [Specsplice 0.2.0 downloads and checksums](https://github.com/FrappaF/Specsplice/releases/tag/v0.2.0)
 2. Install Node.js 24.22.1 and select it in your terminal. `node --version` must print `v24.22.1`. Launch the preview from that terminal so its verification runner can use the same Node executable. [Node.js 24.22.1 downloads](https://nodejs.org/en/download/archive/v24.22.1)
-3. Extract the example ZIP to a writable location and keep the hidden `.ordito` folder. The project to open is `Ordito-Example-Projects/07-marketplace-workshop/modules/quantity/limit-solution`. [Example projects for preview 0.1.0](https://raw.githubusercontent.com/FrappaF/Specsplice/v0.1.0/ordito/docs/user-guide/example-projects.zip)
+3. Extract the example ZIP to a writable location and keep the hidden `.ordito` folder. The project to open is `Specsplice-Example-Projects/07-marketplace-workshop/modules/quantity/limit-solution`. [Example projects for Specsplice 0.2.0](https://raw.githubusercontent.com/FrappaF/Specsplice/v0.2.0/ordito/docs/user-guide/example-projects.zip)
 
-For the Linux archive, run this from the directory containing the extracted `Ordito` folder.
+For the Linux archive, run this from the directory containing the extracted `Specsplice` folder.
 
 ```sh
-ORDITO_NODE_EXECUTABLE="$(node -p 'process.execPath')" ./Ordito/ordito
+ORDITO_NODE_EXECUTABLE="$(node -p 'process.execPath')" ./Specsplice/specsplice
 ```
 
-For macOS, run this after moving `Ordito.app` to Applications and approving first launch if prompted.
+For macOS, run this after moving `Specsplice.app` to Applications and approving first launch if prompted.
 
 ```sh
-ORDITO_NODE_EXECUTABLE="$(node -p 'process.execPath')" /Applications/Ordito.app/Contents/MacOS/Ordito
+ORDITO_NODE_EXECUTABLE="$(node -p 'process.execPath')" /Applications/Specsplice.app/Contents/MacOS/Specsplice
 ```
 
 If the desktop app is already running, quit it before relaunching. The explicit path selects the correct runtime when several Node versions are installed.
@@ -38,9 +38,9 @@ If the desktop app is already running, quit it before relaunching. The explicit 
 
 The cases include both range boundaries. The rule rejects 0 and 11 and accepts 1 and 10. The text input `two` produces an input type error. Specsplice compares the emitted behavior with the expected results shipped in `.ordito/criteria.json` and reports **Zero AI Calls**.
 
-![Ordito 0.1.0 on Linux preparing a local proposal from the Marketplace quantity model and passing 12 derived and 12 independent cases with zero AI calls](images/marketplace-l12-walkthrough.gif)
+![Specsplice 0.2.0 on Linux preparing a local proposal from the Marketplace quantity model and passing 12 derived and 12 independent cases with zero AI calls](images/marketplace-l12-walkthrough.gif)
 
-The 29-second recording shows the quantity model, the review preparation, and the local verification result in the Linux preview released as Ordito 0.1.0.
+The 29-second recording shows the quantity model, the review preparation, and the local verification result in Specsplice 0.2.0 on Linux.
 
 Try the exercise with your own proposed boundary in a fresh copy of the project. The full L12 lesson shows how to edit the predicate and set the expected cases. [Full Marketplace L12 lesson](README.md#l12-implement-and-verify-the-quantity-limit)
 
