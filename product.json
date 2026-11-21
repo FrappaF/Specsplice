@@ -3,6 +3,7 @@
 	"nameLong": "Specsplice",
 	"legacyNameShort": ["Ordito", "A.D.E"],
 	"applicationName": "specsplice",
+	"portable": "ordito-portable-data",
 	"dataFolderName": ".ordito",
 	"sharedDataFolderName": ".ordito-shared",
 	"win32MutexName": "ordito",
