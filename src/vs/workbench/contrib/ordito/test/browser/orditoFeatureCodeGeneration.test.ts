@@ -16,7 +16,7 @@ import { IOrditoProjectService, type OrditoProjectService } from '../../browser/
 import { type IEditorGroup } from '../../../../services/editor/common/editorGroupsService.js';
 import { workbenchInstantiationService } from '../../../../test/browser/workbenchTestServices.js';
 
-suite('Ordito. AI code generation', () => {
+suite('Specsplice. AI code generation', () => {
 	const store = ensureNoDisposablesAreLeakedInTestSuite();
 	let root: HTMLElement;
 	setup(() => { root = dom.append(document.body, dom.$('section.ordito-shell')); });

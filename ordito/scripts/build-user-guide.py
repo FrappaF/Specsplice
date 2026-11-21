@@ -133,7 +133,7 @@ def build_html(guide_dir, root, headings, description, edition, revision):
 	}
 	for key, value in values.items():
 		template = template.replace(f'@@{key}@@', value)
-	(guide_dir / 'Ordito-User-Guide.html').write_text(template, encoding='utf-8')
+	(guide_dir / 'Specsplice-User-Guide.html').write_text(template, encoding='utf-8')
 
 
 def register_fonts(font_dir):
@@ -167,7 +167,7 @@ def inline(element):
 class GuideDocument(BaseDocTemplate):
 	def __init__(self, filename, edition, revision, title, description):
 		super().__init__(str(filename), pagesize=A4, leftMargin=50, rightMargin=50,
-			topMargin=48, bottomMargin=48, title=title, author='Ordito', subject=description)
+			topMargin=48, bottomMargin=48, title=title, author='Specsplice', subject=description)
 		self.edition = edition
 		self.revision = revision
 		frame = Frame(self.leftMargin, self.bottomMargin, self.width, self.height,
@@ -176,13 +176,13 @@ class GuideDocument(BaseDocTemplate):
 
 	def page_footer(self, canvas, doc):
 		canvas._doc.Catalog.Lang = PDFString('en')
-		canvas.setCreator('Ordito · ordito/scripts/build-user-guide.py')
+		canvas.setCreator('Specsplice · ordito/scripts/build-user-guide.py')
 		if doc.page == 1:
 			return
 		canvas.saveState()
 		canvas.setFont('GuideSans', 8)
 		canvas.setFillColor(MUTED)
-		canvas.drawString(50, 27, f'Ordito · User Guide · {self.edition}')
+		canvas.drawString(50, 27, f'Specsplice · User Guide · {self.edition}')
 		canvas.drawRightString(A4[0] - 50, 27, str(doc.page))
 		canvas.restoreState()
 
@@ -217,9 +217,9 @@ def build_pdf(guide_dir, root, headings, description, edition, revision, font_di
 		leading=12, textColor=INK, leftIndent=10, spaceBefore=6, spaceAfter=12))
 	styles.add(ParagraphStyle(name='GuideQuote', parent=styles['GuideBody'], leftIndent=16,
 		borderPadding=8, backColor=colors.HexColor('#f1f6f8')))
-	doc = GuideDocument(guide_dir / 'Ordito-User-Guide.pdf', edition, revision,
+	doc = GuideDocument(guide_dir / 'Specsplice-User-Guide.pdf', edition, revision,
 		plain(headings[0]), description)
-	story = [Spacer(1, 75), Paragraph('Ordito', styles['GuideH1']),
+	story = [Spacer(1, 75), Paragraph('Specsplice', styles['GuideH1']),
 		Paragraph('User Guide', styles['GuideH1']),
 		Paragraph('Order Shop tour<br/>Build Marketplace from scratch<br/>Atlas of 16 diagrams', styles['GuideH3']),
 		Spacer(1, 28), Paragraph(f'{html.escape(edition)} edition', styles['GuideBody']),
@@ -332,14 +332,14 @@ def build_examples(guide_dir):
 			hidden == ['.ordito'] and parts[-2] == '.ordito' and path.name in project_files
 		):
 			files.append(path)
-	write_archive(guide_dir / 'example-projects.zip', source, files, 'Ordito-Example-Projects/')
+	write_archive(guide_dir / 'example-projects.zip', source, files, 'Specsplice-Example-Projects/')
 	print(f'Examples verified: {len(files)} files.')
 
 
 def build_kit(guide_dir):
-	files = [guide_dir / name for name in ['README.md', 'Ordito-User-Guide.html', 'Ordito-User-Guide.pdf', 'example-projects.zip']]
+	files = [guide_dir / name for name in ['README.md', 'Specsplice-User-Guide.html', 'Specsplice-User-Guide.pdf', 'example-projects.zip']]
 	files.extend(sorted((guide_dir / 'images').glob('*.png')))
-	write_archive(guide_dir / 'Ordito-User-Kit.zip', guide_dir, files, 'Ordito-User-Guide/')
+	write_archive(guide_dir / 'Specsplice-User-Kit.zip', guide_dir, files, 'Specsplice-User-Guide/')
 	print(f'Kit verified: {len(files)} files.')
 
 
@@ -358,11 +358,11 @@ def main():
 		build_examples(args.guide_dir)
 	if not args.kit_only:
 		root, headings = read_source(args.guide_dir)
-		description = f'Ordito User Guide. Software revision · {args.revision}. {args.edition} edition.'
+		description = f'Specsplice User Guide. Software revision · {args.revision}. {args.edition} edition.'
 		# HTML embeds images, so build PDF first while its input still has local image paths.
 		build_pdf(args.guide_dir, root, headings, description, args.edition, args.revision, args.font_dir)
 		build_html(args.guide_dir, root, headings, description, args.edition, args.revision)
-		for name in ['Ordito-User-Guide.html', 'Ordito-User-Guide.pdf']:
+		for name in ['Specsplice-User-Guide.html', 'Specsplice-User-Guide.pdf']:
 			path = args.guide_dir / name
 			print(f'{name}: {path.stat().st_size} bytes; SHA-256 {hashlib.sha256(path.read_bytes()).hexdigest()}')
 	else:

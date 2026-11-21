@@ -24,7 +24,7 @@ export function createAccessibilityScenarios(harness: SmokeHarness) {
 		await window.keyboard.press('Escape');
 		assert.equal(await selected.evaluate(element => element === document.activeElement), true);
 		await window.keyboard.press(openHelp);
-		await reading.getByText('Ordito Accessibility Help', { exact: true }).waitFor();
+		await reading.getByText('Specsplice Accessibility Help', { exact: true }).waitFor();
 		await window.keyboard.press('Escape');
 		assert.equal(await selected.evaluate(element => element === document.activeElement), true);
 		await runCommand(window, 'Open Accessible View');
@@ -83,7 +83,7 @@ export function createAccessibilityScenarios(harness: SmokeHarness) {
 		await sidebar.getByRole('button', { name: 'Checkout Structure', exact: true }).click();
 		await shell.getByRole('region', { name: 'Diagram: Checkout Structure', exact: true }).waitFor();
 		assert.equal(await readFile(modelFile, 'utf8'), baseline);
-		console.log('PASS: Ordito reading and help from canvas/sidebar, both payment conditions, live external updates, invalid-state recovery, focus restoration, verbosity and custom keybinding.');
+		console.log('PASS: Specsplice reading and help from canvas/sidebar, both payment conditions, live external updates, invalid-state recovery, focus restoration, verbosity and custom keybinding.');
 	}
 
 	async function checkVisualUX() {
@@ -161,7 +161,7 @@ export function createAccessibilityScenarios(harness: SmokeHarness) {
 		assert.equal(await contents.getAttribute('aria-selected'), 'true');
 		await revealOrditoButton(window, 'Rename Diagram');
 		const selectedTab = await options.getByRole('tab', { selected: true }).textContent();
-		await runCommand(window, 'Ordito: Rename Diagram');
+		await runCommand(window, 'Specsplice: Rename Diagram');
 		const rename = window.locator('dialog.ordito-form-dialog:visible');
 		await rename.getByLabel('Name', { exact: true }).fill('Keyboard diagram');
 		await rename.getByRole('button', { name: 'Save Changes', exact: true }).press('Enter');
@@ -227,11 +227,11 @@ export function createAccessibilityScenarios(harness: SmokeHarness) {
 		await window.keyboard.press(process.platform === 'linux' ? 'Alt+Shift+F1' : 'Alt+F1');
 		const terminalHelp = window.locator('.accessible-view:visible');
 		await terminalHelp.getByText('The Focus Accessible Terminal View command', { exact: false }).waitFor();
-		assert.equal(await terminalHelp.getByText('Ordito Accessibility Help', { exact: true }).count(), 0, 'Ordito providers do not intercept help in technical tools');
+		assert.equal(await terminalHelp.getByText('Specsplice Accessibility Help', { exact: true }).count(), 0, 'Specsplice providers do not intercept help in technical tools');
 		await window.keyboard.press('Escape');
 		await window.keyboard.press(`${modifier}+Alt+d`);
 		await window.locator('.ordito-sidebar').waitFor();
-		await runCommand(window, 'Ordito: Return to Model');
+		await runCommand(window, 'Specsplice: Return to Model');
 		await openProperties(window);
 		await shell.locator('.ordito-properties').getByRole('heading', { name: selection ?? '', exact: true }).waitFor();
 		console.log('PASS: integrated terminal executes a command and returns to the same model selection.');
@@ -300,7 +300,7 @@ export function createAccessibilityScenarios(harness: SmokeHarness) {
 		console.log('Followup: relation editing and layout checked.');
 		const folder = path.join(directory, 'new project');
 		await mkdir(folder);
-		await runCommand(window, 'Ordito: Create Project');
+		await runCommand(window, 'Specsplice: Create Project');
 		await enterValue(window, 'Name', 'Test Project');
 		const enteredWorkspace = window.waitForEvent('domcontentloaded', { timeout: 90000 });
 		await chooseFolder(window, folder);
@@ -308,7 +308,7 @@ export function createAccessibilityScenarios(harness: SmokeHarness) {
 		await shell.getByRole('heading', { name: 'Test Project', exact: true }).waitFor({ timeout: 90000 });
 		await clickOrditoButton(window, 'Files');
 		await window.locator('.explorer-viewlet').getByText('new project', { exact: true }).first().waitFor();
-		await runCommand(window, 'Ordito: Return to Model');
+		await runCommand(window, 'Specsplice: Return to Model');
 		await clickOrditoButton(window, 'Terminal');
 		const terminal = window.locator('.terminal .xterm-helper-textarea');
 		await terminal.waitFor({ state: 'attached' });

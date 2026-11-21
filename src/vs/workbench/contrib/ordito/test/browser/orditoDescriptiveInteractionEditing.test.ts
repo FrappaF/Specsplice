@@ -11,7 +11,7 @@ import { type ModelView, type SemanticModelV5 } from '../../common/modelTypes.js
 import { applyVisualEdit, type VisualEdit } from '../../common/visualEditing.js';
 import { ScriptedDialogs } from './orditoBlueprintEditing.test.js';
 
-suite('Ordito descriptive scenario editing', () => {
+suite('Specsplice descriptive scenario editing', () => {
 	ensureNoDisposablesAreLeakedInTestSuite();
 	let root: HTMLElement;
 	setup(() => { root = document.body.appendChild(document.createElement('div')); });

@@ -14,7 +14,7 @@ import { TestEditorInput } from '../../../../test/browser/workbenchTestServices.
 import { URI } from '../../../../../base/common/uri.js';
 import { OrditoInput } from '../../browser/orditoInput.js';
 
-suite('Ordito diagram layout ownership', () => {
+suite('Specsplice diagram layout ownership', () => {
 	const store = ensureNoDisposablesAreLeakedInTestSuite();
 	function fixture(split = false, panelVisible = true, sidebarVisible = true) {
 		const active = store.add(new Emitter<void>()), visible = store.add(new Emitter()), partChanged = store.add(new Emitter<IPartVisibilityChangeEvent>());

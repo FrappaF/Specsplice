@@ -14,7 +14,7 @@ import { applyVisualEdit } from '../../common/visualEditing.js';
 import { type VisualEdit } from '../../common/visualEditTypes.js';
 import { validateSemanticModel } from '../../common/modelValidation.js';
 
-suite('Ordito project diagram creation', () => {
+suite('Specsplice project diagram creation', () => {
 	ensureNoDisposablesAreLeakedInTestSuite();
 	let parent: HTMLElement;
 	setup(() => { parent = document.body.appendChild(document.createElement('div')); });

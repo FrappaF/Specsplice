@@ -15,9 +15,9 @@ const codeUpdateResultSchema = {
 	type: 'object', additionalProperties: false, required: ['outcome', 'text'],
 	properties: { outcome: { type: 'string', enum: ['implemented', 'already-aligned', 'needs-input'] }, text: { type: 'string' } }
 };
-const codeUpdateInstruction = `Implement only the saved Ordito model changes below in the current project's existing codebase. This is a single code update request. Before and after values describe the author's intent, not claims about the current source. View and source hints help locate the affected contracts; they are not independent change requests. Use them and inspect only the relevant implementation, callers and tests. The delta is the model context for this update. Do not load the full Ordito model.
+const codeUpdateInstruction = `Implement only the saved Specsplice model changes below in the current project's existing codebase. This is a single code update request. Before and after values describe the author's intent, not claims about the current source. View and source hints help locate the affected contracts; they are not independent change requests. Use them and inspect only the relevant implementation, callers and tests. The delta is the model context for this update. Do not load the full Specsplice model.
 
-Implement the smallest changes needed to satisfy the delta, following the project's existing conventions. Preserve unrelated behavior, files and local edits. Removing an element from a view alone does not authorize deleting the shared definition or its implementation. Do not write to .ordito or other Ordito model files. Leave any source edits local for review. Do not commit, push, deploy or perform destructive migrations.
+Implement the smallest changes needed to satisfy the delta, following the project's existing conventions. Preserve unrelated behavior, files and local edits. Removing an element from a view alone does not authorize deleting the shared definition or its implementation. Do not write to .ordito or other Specsplice model files. Leave any source edits local for review. Do not commit, push, deploy or perform destructive migrations.
 
 Run targeted tests for the affected behavior when available. Report files changed, tests actually run and their results, and remaining limitations. Use outcome implemented for a complete implementation, already-aligned when the affected behavior already matches or the changes require no code, and needs-input if intent is ambiguous or work remains incomplete. Ask a concrete question with needs-input and identify any partial edits. For already-aligned, explain the no-op without editing the source. Summarize the result and verification in text.`;
 
@@ -51,15 +51,15 @@ function validateCodeUpdateResult(value: unknown): CodeUpdateResult {
 	return { outcome: value.outcome, text: value.text };
 }
 
-/** Each call is ephemeral; the modal supplies its in-memory transcript and Ordito supplies project tools. */
+/** Each call is ephemeral; the modal supplies its in-memory transcript and Specsplice supplies project tools. */
 export async function runDiagramChat(root: string, configValue: object, messages: { role: 'user' | 'assistant'; text: string }[], mcp?: { command: string; args: string[] }, signal?: AbortSignal, runner = runProcess, durationMs?: number, progress?: Progress, context?: object, checkpoint: boolean | DiagramCheckpoint['phase'] = false, reasoningEffort: DiagramCheckpointReasoningEffort = defaultDiagramCheckpointReasoningEffort): Promise<{ text: string }> {
 	const config = readProviderConfig(configValue);
 	if (!config.maxCalls) { throw new Error('AI requests are disabled. Enable requests in AI Settings.'); }
 	if (!messages.length || messages.length > 60 || messages.some(message => !['user', 'assistant'].includes(message.role) || typeof message.text !== 'string')) { throw new Error('Invalid assistant conversation'); }
-	if (checkpoint && (!mcp || messages.length !== 1 || messages[0].role !== 'user')) { throw new Error('A diagram checkpoint requires one task request and Ordito tools.'); }
+	if (checkpoint && (!mcp || messages.length !== 1 || messages[0].role !== 'user')) { throw new Error('A diagram checkpoint requires one task request and Specsplice tools.'); }
 	const specialized = specializedDiagramCheckpointInstruction(typeof checkpoint === 'string' ? checkpoint : undefined);
 	const prompt = specialized ? specialized + (context ? '\nOrdito checkpoint:\n' + JSON.stringify(context) : '')
-		: (mcp ? diagramSessionInstruction : 'Help the user with this project and its Ordito model. Read the current model before changing it. Preserve semantic IDs and valid model references. Only change files when the user asks for a change. For diagram-only requests, inspect relevant source and validate the Ordito diagrams; do not run application test suites, linters or builds unless requested.') + (checkpoint ? '\n\n' + diagramCheckpointInstruction : '') + (context ? '\nSaved project state (resume this plan; repair its blockers):\n' + JSON.stringify(context) : '') + (checkpoint ? '\nTask request:\n' : '\nConversation:\n') + JSON.stringify(messages);
+		: (mcp ? diagramSessionInstruction : 'Help the user with this project and its Specsplice model. Read the current model before changing it. Preserve semantic IDs and valid model references. Only change files when the user asks for a change. For diagram-only requests, inspect relevant source and validate the Specsplice diagrams; do not run application test suites, linters or builds unless requested.') + (checkpoint ? '\n\n' + diagramCheckpointInstruction : '') + (context ? '\nSaved project state (resume this plan; repair its blockers):\n' + JSON.stringify(context) : '') + (checkpoint ? '\nTask request:\n' : '\nConversation:\n') + JSON.stringify(messages);
 	if (Buffer.byteLength(prompt) > config.maxContextBytes) { throw new Error('This conversation exceeds the context budget. Close the assistant and open a new conversation; prepared diagrams are retained.'); }
 	const text = await runCliTurn(root, config, prompt, { mcp, signal, runner, durationMs, progress, checkpoint: !!checkpoint, specialized: !!specialized, reasoningEffort });
 	return { text: checkpoint ? text.slice(0, 4096) : text };
@@ -153,7 +153,7 @@ async function runCliTurn(root: string, config: ProviderConfig, prompt: string, 
 				throw new Error(`The code update stopped (exit ${result.code}). Check the account and selected model in AI Settings, then review any local edits before retrying.`);
 			}
 			if (/unauthorized|unauthenticated|not logged in|authentication.*(required|failed)|\b401\b/i.test(failure)) { throw new Error('The provider did not authorize this request. Refresh the CLI account in AI Settings and resume from the saved checkpoint.'); }
-			if (/mcp.{0,100}(fail|error|timed out)|(fail|error).{0,100}mcp|registerHooks|ERR_MODULE_NOT_FOUND/is.test(failure)) { throw new Error('The Ordito project tools could not start. Rebuild Ordito and start it with Node 24.22.1, then retry. Prepared drafts are retained.'); }
+			if (/mcp.{0,100}(fail|error|timed out)|(fail|error).{0,100}mcp|registerHooks|ERR_MODULE_NOT_FOUND/is.test(failure)) { throw new Error('The Specsplice project tools could not start. Rebuild Specsplice and start it with Node 24.22.1, then retry. Prepared drafts are retained.'); }
 			if (/rate.?limit|quota|\b429\b/i.test(failure)) { throw new Error('The assistant reached the provider quota or rate limit. Check the account limits and retry later. Prepared drafts are retained.'); }
 			throw new Error(`The assistant stopped (exit ${result.code}). Check the account and selected model in AI Settings. Prepared drafts are retained.`);
 		}

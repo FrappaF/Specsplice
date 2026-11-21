@@ -11,7 +11,7 @@ const { runDiagramChat } = await import('../diagramChat.ts');
 const { runProcess } = await import('../process.ts');
 
 /** Real CLI and real MCP transport; the model endpoint is a local deterministic SSE fixture. */
-test('installed Codex calls the Ordito server and streams its response before exiting', { skip: !process.env.ORDITO_CODEX_TEST_EXECUTABLE }, async t => {
+test('installed Codex calls the Specsplice server and streams its response before exiting', { skip: !process.env.ORDITO_CODEX_TEST_EXECUTABLE }, async t => {
 	const directory = await mkdtemp(join(tmpdir(), 'ordito-codex-transport-'));
 	const root = join(directory, 'project'), codexHome = join(directory, 'provider');
 	await mkdir(root); await mkdir(codexHome); await writeFile(join(root, 'todo.py'), 'def list_todos():\n    return []\n');
@@ -33,13 +33,13 @@ test('installed Codex calls the Ordito server and streams its response before ex
 	});
 	await new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve));
 	t.after(async () => { server.closeAllConnections(); await new Promise<void>(resolve => server.close(() => resolve())); await rm(directory, { recursive: true, force: true }); });
-	await writeFile(join(codexHome, 'config.toml'), `cli_auth_credentials_store = "file"\nmodel_provider = "ordito_fixture"\nmodel = "ordito-fixture"\n[model_providers.ordito_fixture]\nname = "Ordito Local Fixture"\nbase_url = "http://127.0.0.1:${(server.address() as AddressInfo).port}/v1"\nwire_api = "responses"\nrequires_openai_auth = false\n`);
+	await writeFile(join(codexHome, 'config.toml'), `cli_auth_credentials_store = "file"\nmodel_provider = "ordito_fixture"\nmodel = "ordito-fixture"\n[model_providers.ordito_fixture]\nname = "Specsplice Local Fixture"\nbase_url = "http://127.0.0.1:${(server.address() as AddressInfo).port}/v1"\nwire_api = "responses"\nrequires_openai_auth = false\n`);
 	const engine = createCodeEngine();
 	const call = async (request: object) => JSON.parse(await engine.execute(JSON.stringify(request)));
 	const context = await call({ operation: 'import', root, syntaxOnly: true });
 	const opened = await call({ operation: 'exploration', snapshot: context.snapshot, request: JSON.stringify({ action: 'open', workflow: 'project' }) });
 	const config = { version: 1, provider: 'codex', connection: 'cli', executable: process.env.ORDITO_CODEX_TEST_EXECUTABLE!, model: 'ordito-fixture', timeoutMs: 30000, maxContextBytes: 262144, maxCalls: 1 };
-	const result = await runDiagramChat(root, config, [{ role: 'user', text: 'Inspect the project once using Ordito, then report success.' }], opened.data.mcp, undefined, (executable, args, cwd, options) => {
+	const result = await runDiagramChat(root, config, [{ role: 'user', text: 'Inspect the project once using Specsplice, then report success.' }], opened.data.mcp, undefined, (executable, args, cwd, options) => {
 		const env: NodeJS.ProcessEnv = { ...options?.env, CODEX_HOME: codexHome };
 		for (const name of ['OPENAI_API_KEY', 'CODEX_API_KEY', 'OPENAI_BASE_URL']) { delete env[name]; }
 		return runProcess(executable, args, cwd, { ...options, env });

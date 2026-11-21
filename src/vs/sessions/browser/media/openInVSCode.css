@@ -43,6 +43,10 @@
 	background-image: url('../../../workbench/browser/media/code-icon.svg');
 }
 
+.monaco-workbench:not(.web) .open-in-vscode-titlebar-widget > .open-in-vscode-titlebar-widget-icon {
+	background-image: url('../../../workbench/browser/media/specsplice-icon.png');
+}
+
 .monaco-enable-motion .monaco-workbench .open-in-vscode-titlebar-widget > .open-in-vscode-titlebar-widget-icon,
 .monaco-workbench.monaco-enable-motion .open-in-vscode-titlebar-widget > .open-in-vscode-titlebar-widget-icon {
 	transition: filter 160ms ease;

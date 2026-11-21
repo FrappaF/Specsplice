@@ -51,7 +51,7 @@ function canConnectNodes(view: ModelView, elements: ReadonlyMap<string, Semantic
 		&& (view.kind !== 'state' || elements.get(source.parentId ?? '')?.kind === 'resource'));
 }
 
-/** Draws the diagram surface and coordinates node/connection actions for the Ordito editor. */
+/** Draws the diagram surface and coordinates node/connection actions for the Specsplice editor. */
 export class OrditoCanvasSurface {
 	showRelationshipLabels: boolean | undefined;
 

@@ -4,7 +4,7 @@ ORDITO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "$ORDITO_ROOT"
 ORDITO_NODE_VERSION="$(cat .nvmrc)"
 if [[ "$(node --version)" != "v$ORDITO_NODE_VERSION" ]]; then
-	echo "Select Node $ORDITO_NODE_VERSION from .nvmrc before starting Ordito." >&2
+	echo "Select Node $ORDITO_NODE_VERSION from .nvmrc before starting Specsplice." >&2
 	exit 1
 fi
 

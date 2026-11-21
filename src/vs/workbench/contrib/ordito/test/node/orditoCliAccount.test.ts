@@ -6,7 +6,7 @@ import { isWindows } from '../../../../../base/common/platform.js';
 import { ensureNoDisposablesAreLeakedInTestSuite } from '../../../../../base/test/common/utils.js';
 import { checkCliAccount, cliEnvironment } from '../../node/orditoCliAccount.js';
 
-(isWindows ? suite.skip : suite)('Ordito original CLI account state', () => {
+(isWindows ? suite.skip : suite)('Specsplice original CLI account state', () => {
 	ensureNoDisposablesAreLeakedInTestSuite();
 	let directory: string;
 	let executable: string;

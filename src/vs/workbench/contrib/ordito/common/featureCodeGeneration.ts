@@ -5,7 +5,7 @@ export interface FeatureCodeProfile {
 	framework: string | null;
 }
 
-/** Profiles describe what Ordito can scaffold and verify in isolation. */
+/** Profiles describe what Specsplice can scaffold and verify in isolation. */
 export const featureCodeProfiles: readonly FeatureCodeProfile[] = [
 	{ id: 'node.esm', language: 'JavaScript', runtime: 'Node.js 24.22.1', framework: null }
 ];

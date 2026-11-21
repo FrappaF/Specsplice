@@ -299,7 +299,7 @@ async function verificationNode(directory: string, signal?: AbortSignal): Promis
 	} catch {
 		signal?.throwIfAborted();
 	}
-	throw new Error(`Feature verification requires Node ${nodeVersion}. Set ORDITO_NODE_EXECUTABLE before starting Ordito.`);
+	throw new Error(`Feature verification requires Node ${nodeVersion}. Set ORDITO_NODE_EXECUTABLE before starting Specsplice.`);
 }
 
 /** Verify only admitted candidate files, with independent expected values and a bounded Node child. */

@@ -1,4 +1,4 @@
-name: Ordito Diagram-Driven AI validation
+name: Specsplice Diagram-Driven AI validation
 on:
   workflow_dispatch:
   push:

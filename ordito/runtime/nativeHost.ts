@@ -50,7 +50,7 @@ function context(snapshot: string, state: CodeImport, model = state.model, model
 
 async function diagramMcp(root: string, sessionId: string, invocation?: { checkpoint: DiagramCheckpoint; turnId: string }): Promise<{ command: string; args: string[] }> {
 	const mcpPath = fileURLToPath(new URL(import.meta.url.endsWith('/orditoCodeEngine.js') ? './orditoDiagramMcp.js' : '../ai/diagram-mcp.mjs', import.meta.url));
-	if (!(await stat(mcpPath).catch(() => undefined))?.isFile()) { throw new Error(`Diagram tools are missing at ${mcpPath}. Rebuild Ordito and restart before continuing exploration.`); }
+	if (!(await stat(mcpPath).catch(() => undefined))?.isFile()) { throw new Error(`Diagram tools are missing at ${mcpPath}. Rebuild Specsplice and restart before continuing exploration.`); }
 	return { command: process.env.ORDITO_NODE_EXECUTABLE || 'node', args: [mcpPath, root, sessionId, ...(invocation ? [JSON.stringify(invocation)] : [])] };
 }
 function previewResponse(token: string, preview: Preview): CodePreview {

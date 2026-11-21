@@ -7,7 +7,7 @@ import { confirmOrditoDeletion, deletionDetails, deletionSummary } from '../../b
 import { checkoutModel } from '../../common/checkoutModel.js';
 import { getDeletionPreview } from '../../common/deletionPreview.js';
 
-suite('Ordito deletion confirmation', () => {
+suite('Specsplice deletion confirmation', () => {
 	const store = ensureNoDisposablesAreLeakedInTestSuite();
 	const preview = () => getDeletionPreview(checkoutModel, 'customer');
 

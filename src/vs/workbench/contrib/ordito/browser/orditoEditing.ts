@@ -112,7 +112,7 @@ class EditingUI implements OrditoEditingContext {
 			case 'relationError':
 			case 'deleteRelation':
 			case 'layout': return runOrditoDiagramCommand(this, command, id);
-			default: { const exhaustive: never = command; throw new Error('Unsupported Ordito command: ' + exhaustive); }
+			default: { const exhaustive: never = command; throw new Error('Unsupported Specsplice command: ' + exhaustive); }
 		}
 	}
 

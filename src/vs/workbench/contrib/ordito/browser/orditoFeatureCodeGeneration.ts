@@ -110,7 +110,7 @@ export class OrditoFeatureCodeGeneration extends Disposable {
 				if (!profile) { return; }
 				const selected = await wizard.pick(choices, {
 					title: localize('ordito.featureCode.chooseFeatures', "Select Features"),
-					prompt: localize('ordito.featureCode.chooseFeaturesHint', "Choose at least one feature. Ordito prepares each in order and reuses the shared code already staged."),
+					prompt: localize('ordito.featureCode.chooseFeaturesHint', "Choose at least one feature. Specsplice prepares each in order and reuses the shared code already staged."),
 					canPickMany: true,
 					requireSelection: true
 				});
@@ -137,7 +137,7 @@ export class OrditoFeatureCodeGeneration extends Disposable {
 				return { profileId: profile.id, featureIds, intent: intent.trim() || undefined, ...(casesText.trim() ? { cases: parseFeatureCodeCases(casesText) } : {}) };
 			}, {
 				heading: localize('ordito.featureCode.reviewSetup', "Review Code Generation"),
-				help: localize('ordito.featureCode.reviewSetupHint', "Ordito prepares these features in a staging area. You review the files, run verification and apply the changes from Code."),
+				help: localize('ordito.featureCode.reviewSetupHint', "Specsplice prepares these features in a staging area. You review the files, run verification and apply the changes from Code."),
 				confirm: localize('ordito.featureCode.prepare', "Prepare Code Changes")
 			});
 			if (!request) { return; }

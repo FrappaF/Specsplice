@@ -6,7 +6,7 @@ import { applyVisualEdit } from '../../common/visualEditing.js';
 import { type SemanticModelV4 } from '../../common/modelTypes.js';
 import { blueprintFixture } from '../common/blueprintFixture.js';
 
-suite('Ordito blueprint wizard', () => {
+suite('Specsplice blueprint wizard', () => {
 	const store = ensureNoDisposablesAreLeakedInTestSuite();
 	let parent: HTMLElement;
 	let model: SemanticModelV4;

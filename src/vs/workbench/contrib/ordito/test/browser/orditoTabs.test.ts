@@ -4,7 +4,7 @@ import * as dom from '../../../../../base/browser/dom.js';
 import { ensureNoDisposablesAreLeakedInTestSuite } from '../../../../../base/test/common/utils.js';
 import { OrditoControls } from '../../browser/orditoControls.js';
 
-suite('Ordito reusable tabs', () => {
+suite('Specsplice reusable tabs', () => {
 	const store = ensureNoDisposablesAreLeakedInTestSuite();
 	let root: HTMLElement;
 	setup(() => { root = document.body.appendChild(document.createElement('section')); root.className = 'ordito-shell'; root.tabIndex = -1; });

@@ -32,7 +32,7 @@ export interface OrditoReadingState {
 
 /** Describe visible semantic identities rather than SVG geometry or inferred runtime behavior. */
 export function describeOrditoDiagram(state: OrditoReadingState): string {
-	const title = localize('ordito.reading.title', "Ordito Visual Workbench");
+	const title = localize('ordito.reading.title', "Specsplice Visual Workbench");
 	if (state.loading) { return [title, localize('ordito.reading.loading', "Loading model. No current diagram is available.")].join('\n'); }
 	if (state.error) { return [title, state.error, localize('ordito.reading.recovery', "Use Retry or Open Model to recover.")].join('\n'); }
 	if (state.hasDiagramErrors ?? state.hasStructuralErrors) { return [title, localize('ordito.reading.draft', "Draft Needs Correction. Saving and Undo remain available. Correct the model specification before using its diagrams."), ...state.diagnostics].join('\n'); }
@@ -176,7 +176,7 @@ export function describeOrditoDiagram(state: OrditoReadingState): string {
 export function describeOrditoHelp(state: OrditoReadingState): string {
 	const interaction = state.activeView && getProjectedInteraction(state.model, state.activeView);
 	const scenario = state.activeView && getEditableScenario(state.model, state.activeView);
-	return [localize('ordito.help.title', "Ordito Accessibility Help"),
+	return [localize('ordito.help.title', "Specsplice Accessibility Help"),
 		localize('ordito.help.groups', "System and feature groups in the sidebar expand or collapse with Enter or Space on their summary. Their state is saved separately for each project document. Related Diagrams links to diagrams containing a feature's descendants without changing the diagram's owner. Choosing an element keeps the sidebar controls in place."),
 		localize('ordito.help.map', "System Map is a layered atlas of actors, areas, features and elements, including objects not placed in diagrams. Click an object to add a cumulative filter; its separate arrow opens a lower level. Each filter has its own remove button. Filters remain active when changing levels or pages. Search finds objects throughout the system. Inspect opens element details, and diagram buttons open their views. Relationships expands to show original directed relationships, conditions and source and target buttons. The system breadcrumb opens the map. Read System Map reads the complete semantic model; Back and Forward include the map."),
 		localize('ordito.help.semanticNavigation', "Search System filters elements and diagrams by type and searches names, ancestry and diagram names. Unplaced elements open Element Details. The Semantic Path opens ancestor details; Back and Forward restore navigation within the current project. Diagrams Containing This Element changes perspective while preserving the selected identity."),
@@ -200,7 +200,7 @@ export function describeOrditoHelp(state: OrditoReadingState): string {
 			? localize('ordito.help.editing', "Arrow keys move the focused element. Shift increases the step. Focus the diagram background to pan with arrow keys. Add Element creates an element; Connect Selection creates a compatible relationship.")
 			: localize('ordito.help.readonly', "Editing is unavailable in the read-only example or a read-only file. Open a writable project to edit. Focus the diagram background to pan with arrow keys."),
 		localize('ordito.help.options', "More Actions contains editing and Diagram Options. Project Actions contains Reload Project, Save Project Copy and Diagram Navigation, which reopens the sidebar. AI Settings is separate from project tasks. Spread Out arranges the diagram with more space; Fit Diagram adapts it to the available area. Select an element and open Details and Actions for its shared contract and secondary operations."),
-		localize('ordito.help.commands', "Open the Command Palette with <keybinding:workbench.action.showCommands> for all Ordito commands. Save with <keybinding:workbench.action.files.save>, undo with <keybinding:undo>, and redo with <keybinding:redo>."),
+		localize('ordito.help.commands', "Open the Command Palette with <keybinding:workbench.action.showCommands> for all Specsplice commands. Save with <keybinding:workbench.action.files.save>, undo with <keybinding:undo>, and redo with <keybinding:redo>."),
 		localize('ordito.help.recovery', "Save Project Copy preserves the original file and visual context. Reload Project asks before discarding unsaved changes. Save errors remain visible; an invalid model hides the previous diagram until it is repaired."),
 		localize('ordito.help.tools', "Files, Terminal, Debug and Git open technical tools. Return to Model (<keybinding:ordito.showDiagram>) returns to the same diagram, map or element details and selection."),
 		localize('ordito.help.limits', "The model describes design intent. Conditions do not execute code. Import Codebase first analyzes source evidence; Build Diagrams with AI interprets it using the chosen model. Update Code proposes code changes for review. Chat with Codex opens the connected account conversation; Update Diagrams refreshes the model after source changes. AI output requires review.")].join('\n\n');

@@ -85,7 +85,7 @@ export async function benchmarkModels(candidates: BenchmarkCandidate[], signal?:
 				const root = join(directory, item.id); await mkdir(root);
 				await writeFile(join(root, '.gitignore'), '.ordito/\n');
 				await writeFile(join(root, item.id + '.mjs'), item.source);
-				for (const args of [['init', '-q'], ['add', '.'], ['-c', 'user.name=Ordito Benchmark', '-c', 'user.email=benchmark@example.invalid', '-c', 'commit.gpgsign=false', 'commit', '-qm', 'Benchmark baseline']]) {
+				for (const args of [['init', '-q'], ['add', '.'], ['-c', 'user.name=Specsplice Benchmark', '-c', 'user.email=benchmark@example.invalid', '-c', 'commit.gpgsign=false', 'commit', '-qm', 'Benchmark baseline']]) {
 					if ((await runProcess('git', ['-c', 'core.hooksPath=', ...args], root, { signal })).code) { throw new Error('Benchmark Git setup failed'); }
 				}
 				const state = await importCode(root, 'benchmark-' + item.id, { signal });

@@ -11,7 +11,7 @@ class ContractInput extends mock<IQuickInputService>() {
 	override input = sinon.stub().resolves(undefined);
 }
 
-suite('Ordito behavioral contract dialogs', () => {
+suite('Specsplice behavioral contract dialogs', () => {
 	ensureNoDisposablesAreLeakedInTestSuite();
 
 	test('cancelling at each field step never commits a partial contract', async () => {

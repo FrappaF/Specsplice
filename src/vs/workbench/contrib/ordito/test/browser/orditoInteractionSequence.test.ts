@@ -9,7 +9,7 @@ import '../../browser/media/ordito.css';
 import { renderOrditoSequence } from '../../browser/orditoSequence.js';
 import { renderOrditoDescriptiveActivity } from '../../browser/orditoDescriptiveActivity.js';
 
-suite('Ordito sequence renderer', () => {
+suite('Specsplice sequence renderer', () => {
 	const disposables = ensureNoDisposablesAreLeakedInTestSuite(); let root: HTMLElement;
 	setup(() => { root = dom.append(dom.append(dom.append(document.body, dom.$('section.ordito-shell')), dom.$('div.ordito-canvas')), dom.$('div.ordito-canvas-content.ordito-sequence')); }); teardown(() => root.closest('.ordito-shell')!.remove());
 	test('nested frames and operands render in semantic order with measured, focusable labels', () => {

@@ -1,7 +1,7 @@
 {
 	"$schema": "https://json-schema.org/draft/2020-12/schema",
 	"$id": "urn:ordito:model:3",
-	"title": "Ordito semantic model v3",
+	"title": "Specsplice semantic model v3",
 	"type": "object",
 	"properties": {
 		"version": {

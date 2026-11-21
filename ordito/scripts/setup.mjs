@@ -20,7 +20,7 @@ The desktop is started separately with ordito/scripts/dev.sh (scripts\\code.bat 
 	}
 	const required = readFileSync(new URL('../../.nvmrc', import.meta.url), 'utf8').trim();
 	if (process.versions.node !== required) {
-		throw new Error(`Ordito requires Node ${required}; currently using ${process.versions.node}. Run nvm install and nvm use from the repository root, then retry.`);
+		throw new Error(`Specsplice requires Node ${required}; currently using ${process.versions.node}. Run nvm install and nvm use from the repository root, then retry.`);
 	}
 	const npmCli = process.env.npm_execpath;
 	if (!npmCli) { throw new Error('Run this script with npm run ordito:setup.'); }
@@ -31,7 +31,7 @@ The desktop is started separately with ordito/scripts/dev.sh (scripts\\code.bat 
 	];
 	if (!args.includes('--install-only')) {
 		steps.push(
-			{ label: 'Build desktop client and Ordito engine', args: [npmCli, 'run', 'build-fast', '--', '--client-only'] },
+			{ label: 'Build desktop client and Specsplice engine', args: [npmCli, 'run', 'build-fast', '--', '--client-only'] },
 			{ label: 'Build bundled extensions and media', args: [npmCli, 'run', 'gulp', 'transpile-extensions', 'compile-extension-media'] },
 			{ label: 'Build Copilot extension', args: [npmCli, 'run', 'compile-copilot'] },
 			{ label: 'Prepare Electron', args: [npmCli, 'run', 'electron'] }

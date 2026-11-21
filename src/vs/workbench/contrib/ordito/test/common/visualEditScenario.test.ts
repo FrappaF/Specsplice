@@ -56,7 +56,7 @@ function apply(model: SemanticModelV5, ...edits: VisualEdit[]): SemanticModelV5 
 
 const known = (value: string) => ({ state: 'known' as const, value });
 
-suite('Ordito editable descriptive scenarios', () => {
+suite('Specsplice editable descriptive scenarios', () => {
 	ensureNoDisposablesAreLeakedInTestSuite();
 
 	test('create and reuse participants across linked projections without copying or changing other diagrams', () => {

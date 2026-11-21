@@ -106,7 +106,7 @@ async function repository(root: string): Promise<string> {
 	try { await lstat(join(root, '.git')); } catch (error) {
 		if (!(error instanceof Error && 'code' in error && error.code === 'ENOENT')) { throw error; }
 		await git(root, ['init', '-q']);
-		await git(root, ['-c', 'user.name=Ordito', '-c', 'user.email=ordito@localhost', '-c', 'commit.gpgsign=false', 'commit', '--allow-empty', '-qm', 'Initialize diagram-driven project']);
+		await git(root, ['-c', 'user.name=Specsplice', '-c', 'user.email=ordito@localhost', '-c', 'commit.gpgsign=false', 'commit', '--allow-empty', '-qm', 'Initialize diagram-driven project']);
 	}
 	if (await git(root, ['rev-parse', '--show-toplevel']) !== root) { throw new Error('Open the Git repository root'); }
 	return git(root, ['rev-parse', 'HEAD']);
@@ -239,7 +239,7 @@ export async function prepareStructuralProject(root: string, direction: 'forward
 			const importPath = posix.relative(posix.dirname(file), artifact.file);
 			const predicate = nextModel.foundation.predicates?.find(predicate => predicate.id === artifact.predicateId);
 			const derived = independent.cases.filter(entry => entry.predicateId === artifact.predicateId).map(entry => { let expected: PredicateCase['expected']; try { expected = evaluateModelPredicate(nextModel, predicate!, entry.input); } catch (error) { expected = predicateFailure(error); } return { ...entry, expected }; });
-			const content = artifact.messagingId ? messagingHarness(nextModel, artifact.messagingId, independent.messaging ?? [], importPath, false) : artifact.stateMachineId ? await stateHarness(nextModel, artifact.stateMachineId, independent.states ?? [], importPath, false) : artifact.interactionId ? await interactionHarness(nextModel, artifact.interactionId, independent.interactions ?? [], importPath, false) : `// Ordito generated checks; independent project criteria are verified separately.\nimport test from 'node:test';import assert from 'node:assert/strict';import check from '${importPath}';\nfor(const c of ${JSON.stringify(derived)}){test(c.id,()=>{if(c.expected==='typeError'){assert.throws(()=>check(c.input),/input type mismatch/);}else if(typeof c.expected==='string'){assert.throws(()=>check(c.input),error=>error.message===c.expected);}else{assert.equal(check(c.input),c.expected);}}); }\n`;
+			const content = artifact.messagingId ? messagingHarness(nextModel, artifact.messagingId, independent.messaging ?? [], importPath, false) : artifact.stateMachineId ? await stateHarness(nextModel, artifact.stateMachineId, independent.states ?? [], importPath, false) : artifact.interactionId ? await interactionHarness(nextModel, artifact.interactionId, independent.interactions ?? [], importPath, false) : `// Specsplice generated checks; independent project criteria are verified separately.\nimport test from 'node:test';import assert from 'node:assert/strict';import check from '${importPath}';\nfor(const c of ${JSON.stringify(derived)}){test(c.id,()=>{if(c.expected==='typeError'){assert.throws(()=>check(c.input),/input type mismatch/);}else if(typeof c.expected==='string'){assert.throws(()=>check(c.input),error=>error.message===c.expected);}else{assert.equal(check(c.input),c.expected);}}); }\n`;
 			const old = previous.find(item => item.predicateId === artifact.predicateId);
 			const oldTest = old ? 'test/' + old.file.slice(4, -4) + '.test.mjs' : null;
 			generatedTests[file] = content;

@@ -5,7 +5,7 @@ import { orditoErrorNotification, describeOrditoError } from '../../browser/ordi
 import { type ModelDiagnostic, type SemanticModel } from '../../common/modelTypes.js';
 import { InvalidSemanticModelError } from '../../common/modelValidation.js';
 
-suite('Ordito error explanations', () => {
+suite('Specsplice error explanations', () => {
 	ensureNoDisposablesAreLeakedInTestSuite();
 	const model: SemanticModel = { version: 3, id: 'shop', name: 'Shop', semantics: { elements: [{ id: 'cart', name: 'Customer Cart', kind: 'resource' }], relations: [] }, views: [], codeMappings: [], verifications: [] };
 
@@ -74,7 +74,7 @@ suite('Ordito error explanations', () => {
 		const unexpected = describeOrditoError(new Error('Provider Offline'), 'ai');
 		assert.deepStrictEqual({ validation, unexpected }, {
 			validation: { title: 'Check the Entered Values', cause: 'Enter a name.', resolution: 'Correct the highlighted fields and try saving again.', details: 'Enter a name.' },
-			unexpected: { title: 'Could Not Complete the AI Request', cause: 'The operation failed, but Ordito could not determine the cause.', resolution: 'Review the current project and retry the operation. If it fails again, copy Technical Details to report the problem.', details: 'Provider Offline' }
+			unexpected: { title: 'Could Not Complete the AI Request', cause: 'The operation failed, but Specsplice could not determine the cause.', resolution: 'Review the current project and retry the operation. If it fails again, copy Technical Details to report the problem.', details: 'Provider Offline' }
 		});
 	});
 

@@ -14,7 +14,7 @@ import { OrditoProjectService } from '../../browser/orditoProjectService.js';
 import { OrditoStartup } from '../../browser/orditoStartup.js';
 import { checkoutModel } from '../../common/checkoutModel.js';
 
-suite('Ordito startup', () => {
+suite('Specsplice startup', () => {
 	const store = ensureNoDisposablesAreLeakedInTestSuite();
 
 	function restoredModel(): OrditoInput {
@@ -44,11 +44,13 @@ suite('Ordito startup', () => {
 			override get error() { return undefined; }
 			override get loading() { return false; }
 		}()));
-		assert.strictEqual(input.getName(), 'Ordito Home');
+		assert.strictEqual(input.getName(), 'Specsplice Home');
+		input.restoreName('Ordito Home');
+		assert.strictEqual(input.getName(), 'Specsplice Home');
 		input.restoreName('Create Diagrams: architecture');
 		assert.strictEqual(input.getName(), 'Create Diagrams: architecture');
 		restoring = false;
-		assert.strictEqual(input.getName(), 'Ordito Home');
+		assert.strictEqual(input.getName(), 'Specsplice Home');
 	});
 
 	test('opens Home in a fresh window and preserves an active restored model', () => {

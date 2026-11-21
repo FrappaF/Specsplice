@@ -7,7 +7,7 @@ import { applyVisualEdit } from '../../common/visualEditing.js';
 import { interpretModelInteraction, validateModelInteraction } from '../../common/modelInteractions.js';
 import { describeOrditoDiagram } from '../../browser/orditoAccessibleContent.js';
 
-suite('Ordito executable interaction editing', () => {
+suite('Specsplice executable interaction editing', () => {
 	test('an explicit interaction destination opens its existing hierarchy without unrelated contract choices', async () => {
 		const model = structuredClone(interactionFixture), dialogs = new ScriptedDialogs(['Validate and Save Interaction']);
 		const edits = await editOrditoInteraction(dialogs, model, 'interaction.checkout'); dialogs.assertComplete();

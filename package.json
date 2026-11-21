@@ -1,5 +1,5 @@
 {
-  "name": "ordito-dev",
+  "name": "specsplice-dev",
   "version": "1.145.0",
   "distro": "38ed30f01031ca05f59fb111be203efae74036c2",
   "author": {
@@ -304,10 +304,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/FrappaF/Ordito.git"
+    "url": "https://github.com/FrappaF/Specsplice.git"
   },
   "bugs": {
-    "url": "https://github.com/FrappaF/Ordito/issues"
+    "url": "https://github.com/FrappaF/Specsplice/issues"
   },
   "optionalDependencies": {
     "windows-foreground-love": "0.6.1"

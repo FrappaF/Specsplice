@@ -29,7 +29,7 @@ import { OrditoAiStructural } from './orditoAiStructural.js';
 import { OrditoAiImplementation } from './orditoAiImplementation.js';
 import { OrditoAiFeatureCode } from './orditoAiFeatureCode.js';
 
-/** Coordinates independent Ordito AI workflows through one native service boundary. */
+/** Coordinates independent Specsplice AI workflows through one native service boundary. */
 export class OrditoAiService extends Disposable implements IOrditoAiService {
 	declare readonly _serviceBrand: undefined;
 
@@ -119,17 +119,17 @@ export class OrditoAiService extends Disposable implements IOrditoAiService {
 		const diagramJob = options.kind === 'diagram', local = options.kind === 'local', interactive = local && options.interactive, review = options.review;
 		if (!local && this.configuration.getValue<boolean>('chat.disableAIFeatures') === true) { this.info(localize('ordito.ai.disabled', "AI Features Are Disabled in Settings.")); return; }
 		const operation = this.operations.acquire('ai');
-		if (this.busy || !operation) { operation?.dispose(); this.notifications.info(localize('ordito.ai.busy', "An Ordito operation is already running. Wait for it to finish or cancel it before starting another.")); return; }
+		if (this.busy || !operation) { operation?.dispose(); this.notifications.info(localize('ordito.ai.busy', "A Specsplice operation is already running. Wait for it to finish or cancel it before starting another.")); return; }
 		if (diagramJob) { this.diagrams.beginGeneration(); }
 		this.busy = true; this.report(interactive ? localize('ordito.local.editing', "Editing Local Values") : local ? localize('ordito.states.simulation.preparing', "Preparing Local Operation") : localize('ordito.ai.starting', "Preparing AI Operation"));
 		const cancelled = () => local ? localize('ordito.states.simulation.cancelled', "Local Operation Cancelled") : diagramJob ? localize('ordito.ai.diagramCancelled', "Diagram Generation Paused · Completed Steps Can Be Resumed") : localize('ordito.ai.cancelled', "AI Operation Cancelled. Review Any Existing Worktree Before Continuing.");
 		const cancellation = new CancellationTokenSource();
 		try {
-			if (!local && !await this.trust.requestWorkspaceTrust({ message: localize('ordito.ai.trust', "Ordito runs the original AI CLI and reviewed project tests on this computer.") })) { this.info(localize('ordito.ai.untrusted', "AI Operation Cancelled · Workspace Trust Was Not Granted.")); return; }
+			if (!local && !await this.trust.requestWorkspaceTrust({ message: localize('ordito.ai.trust', "Specsplice runs the original AI CLI and reviewed project tests on this computer.") })) { this.info(localize('ordito.ai.untrusted', "AI Operation Cancelled · Workspace Trust Was Not Granted.")); return; }
 			if (options.inline) {
 				await task(cancellation.token);
 			} else {
-				await this.progress.withProgress({ location: interactive ? ProgressLocation.Window : ProgressLocation.Notification, title: local ? localize('ordito.states.simulation.progress', "Ordito Local Operation") : localize('ordito.ai.progress', "Ordito AI"), cancellable: true }, async progress => {
+				await this.progress.withProgress({ location: interactive ? ProgressLocation.Window : ProgressLocation.Notification, title: local ? localize('ordito.states.simulation.progress', "Specsplice Local Operation") : localize('ordito.ai.progress', "Specsplice AI"), cancellable: true }, async progress => {
 					this.operationProgress = progress;
 					if (this.activityStatus) { progress.report({ message: this.activityStatus }); }
 					try { await task(cancellation.token); } finally { this.operationProgress = undefined; }
@@ -138,7 +138,7 @@ export class OrditoAiService extends Disposable implements IOrditoAiService {
 			if (cancellation.token.isCancellationRequested) { this.info(cancelled()); }
 		}
 		catch (error) {
-			const message = cancellation.token.isCancellationRequested ? cancelled() : local ? localize('ordito.local.error', "Ordito Local Operation: {0}", error instanceof Error ? error.message : String(error)) : localize('ordito.ai.error', "Ordito AI: {0}", error instanceof Error ? error.message : String(error));
+			const message = cancellation.token.isCancellationRequested ? cancelled() : local ? localize('ordito.local.error', "Specsplice Local Operation: {0}", error instanceof Error ? error.message : String(error)) : localize('ordito.ai.error', "Specsplice AI: {0}", error instanceof Error ? error.message : String(error));
 			this.report(message); if (cancellation.token.isCancellationRequested) { if (!diagramJob) { this.notifications.info(message); } } else if (review && this.diagrams.diagramReview === review && review.problem) { /* The active review owns this recoverable error. */ } else if (diagramJob) { this.diagrams.failGeneration(error); } else { this.notifications.error(orditoErrorNotification(error, local ? 'validation' : 'ai', this.project.model)); }
 		}
 		finally { cancellation.dispose(); operation.dispose(); this.busy = false; this.diagrams.finishOperation(); this.changes.fire(); }
@@ -294,12 +294,12 @@ export class OrditoAiService extends Disposable implements IOrditoAiService {
 registerSingleton(IOrditoAiService, OrditoAiService, InstantiationType.Delayed);
 
 registerAction2(class extends Action2 {
-	constructor() { super({ id: 'ordito.ai.reconcile', title: localize2('ordito.ai.reconcileCommand', "Ordito: Propose Bidirectional Reconciliation"), f1: false }); }
+	constructor() { super({ id: 'ordito.ai.reconcile', title: localize2('ordito.ai.reconcileCommand', "Specsplice: Propose Bidirectional Reconciliation"), f1: false }); }
 	override run(accessor: ServicesAccessor, preview: CodePreview, resolutions?: CodeResolution[], direction?: 'model' | 'code'): Promise<CodePreview | undefined> { return accessor.get(IOrditoAiService).reconcile(preview, resolutions, direction); }
 });
 
 registerAction2(class extends Action2 {
-	constructor() { super({ id: 'ordito.ai.updateCodebase', title: localize2('ordito.ai.updateCodebaseCommand', "Ordito: Update Codebase from Diagrams"), f1: true }); }
+	constructor() { super({ id: 'ordito.ai.updateCodebase', title: localize2('ordito.ai.updateCodebaseCommand', "Specsplice: Update Codebase from Diagrams"), f1: true }); }
 	override async run(accessor: ServicesAccessor): Promise<void> {
 		const project = accessor.get(IOrditoProjectService), ai = accessor.get(IOrditoAiService), editors = accessor.get(IEditorService), notifications = accessor.get(INotificationService);
 		try {
@@ -311,36 +311,36 @@ registerAction2(class extends Action2 {
 });
 
 for (const [id, title, method] of [
-	['ordito.ai.connect', localize2('ordito.ai.connectCommand', "Ordito: Connect Claude Code or Codex"), 'connect'],
-	['ordito.ai.cli', localize2('ordito.ai.cliCommand', "Ordito: Open AI CLI"), 'openCli'],
-	['ordito.ai.reviewDiagramProposal', localize2('ordito.explore.reviewCommand', "Ordito: Review Diagram Draft"), 'reviewDiagramProposal'],
-	['ordito.ai.configureDiagramBudget', localize2('ordito.explore.budgetCommand', "Ordito: Configure Exploration Budget"), 'configureDiagramBudget'],
-	['ordito.ai.configureRequestBudget', localize2('ordito.ai.requestBudgetCommand', "Ordito: Configure AI Request Budget"), 'configureRequestBudget'],
+	['ordito.ai.connect', localize2('ordito.ai.connectCommand', "Specsplice: Connect Claude Code or Codex"), 'connect'],
+	['ordito.ai.cli', localize2('ordito.ai.cliCommand', "Specsplice: Open AI CLI"), 'openCli'],
+	['ordito.ai.reviewDiagramProposal', localize2('ordito.explore.reviewCommand', "Specsplice: Review Diagram Draft"), 'reviewDiagramProposal'],
+	['ordito.ai.configureDiagramBudget', localize2('ordito.explore.budgetCommand', "Specsplice: Configure Exploration Budget"), 'configureDiagramBudget'],
+	['ordito.ai.configureRequestBudget', localize2('ordito.ai.requestBudgetCommand', "Specsplice: Configure AI Request Budget"), 'configureRequestBudget'],
 	['ordito.ai.chooseDiagramModel', localize2('ordito.ai.diagramModelCommand', "Choose Diagram Model"), 'chooseDiagramModel'],
-	['ordito.ai.returnToDiagrams', localize2('ordito.ai.returnToDiagramsCommand', "Ordito: Back to Diagrams"), 'returnToDiagrams'],
-	['ordito.ai.chat', localize2('ordito.ai.chatCommand', "Ordito: Chat with Codex"), 'chat'],
-	['ordito.ai.buildDiagrams', localize2('ordito.ai.buildDiagramsCommand', "Ordito: Build Semantic Diagrams"), 'buildDiagrams'],
-	['ordito.ai.resumeDiagrams', localize2('ordito.ai.resumeDiagramsCommand', "Ordito: Resume Diagram Generation"), 'resumeDiagrams'],
-	['ordito.ai.updateDiagrams', localize2('ordito.ai.updateDiagramsCommand', "Ordito: Update Diagrams from Codebase"), 'updateDiagrams'],
-	['ordito.ai.implement', localize2('ordito.ai.implementCommand', "Ordito: Implement Feature"), 'implement'],
-	['ordito.ai.interpret', localize2('ordito.ai.interpretCommand', "Ordito: Interpret Unresolved Evidence"), 'interpret'],
-	['ordito.ai.review', localize2('ordito.ai.reviewCommand', "Ordito: Review Implementation"), 'review'],
-	['ordito.ai.verify', localize2('ordito.ai.verifyCommand', "Ordito: Verify Implementation"), 'verify'],
-	['ordito.ai.apply', localize2('ordito.ai.applyCommand', "Ordito: Apply Verified Implementation"), 'apply'],
-	['ordito.ai.undo', localize2('ordito.ai.undoCommand', "Ordito: Undo Implementation"), 'undo'],
-	['ordito.ai.resume', localize2('ordito.ai.resumeCommand', "Ordito: Resume Implementation"), 'resume'],
-	['ordito.ai.recover', localize2('ordito.ai.recoverCommand', "Ordito: Recover Interrupted Implementation"), 'recover'],
-	['ordito.ai.configureContinuity', localize2('ordito.continuity.command', "Ordito: Start or Stop Continuous Preparation"), 'configureContinuity'],
-	['ordito.ai.structuralTechnicalReview', localize2('ordito.pure.technical.command', "Ordito: Inspect Technical Review"), 'structuralTechnicalReview'],
-	['ordito.ai.structuralReverse', localize2('ordito.pure.reverse.command', "Ordito: Reverse Model Behavior from Code"), 'structuralReverse'],
-	['ordito.ai.structuralResume', localize2('ordito.pure.resume.command', "Ordito: Resume Model Behavior Review"), 'structuralResume'],
-	['ordito.ai.structuralRecover', localize2('ordito.pure.recover.command', "Ordito: Recover Model Behavior Publication"), 'structuralRecover'],
-	['ordito.ai.simulateStates', localize2('ordito.states.simulation.command', "Ordito: Simulate State Machine"), 'simulateStates'],
-	['ordito.ai.editPureCriteria', localize2('ordito.pure.criteria.command', "Ordito: Edit Independent Business Expectations"), 'editPureCriteria'],
-	['ordito.ai.movePureSource', localize2('ordito.pure.move.command', "Ordito: Move Model Behavior Source"), 'movePureSource'],
-	['ordito.ai.benchmark', localize2('ordito.ai.benchmarkCommand', "Ordito: Compare AI Models"), 'benchmark'],
-	['ordito.ai.benchmarkReconciliation', localize2('ordito.ai.benchmarkReconciliationCommand', "Ordito: Compare Reconciliation Models"), 'benchmarkReconciliation'],
-	['ordito.ai.exportBenchmark', localize2('ordito.ai.exportBenchmarkCommand', "Ordito: Export Model Benchmark Results"), 'exportBenchmark']
+	['ordito.ai.returnToDiagrams', localize2('ordito.ai.returnToDiagramsCommand', "Specsplice: Back to Diagrams"), 'returnToDiagrams'],
+	['ordito.ai.chat', localize2('ordito.ai.chatCommand', "Specsplice: Chat with Codex"), 'chat'],
+	['ordito.ai.buildDiagrams', localize2('ordito.ai.buildDiagramsCommand', "Specsplice: Build Semantic Diagrams"), 'buildDiagrams'],
+	['ordito.ai.resumeDiagrams', localize2('ordito.ai.resumeDiagramsCommand', "Specsplice: Resume Diagram Generation"), 'resumeDiagrams'],
+	['ordito.ai.updateDiagrams', localize2('ordito.ai.updateDiagramsCommand', "Specsplice: Update Diagrams from Codebase"), 'updateDiagrams'],
+	['ordito.ai.implement', localize2('ordito.ai.implementCommand', "Specsplice: Implement Feature"), 'implement'],
+	['ordito.ai.interpret', localize2('ordito.ai.interpretCommand', "Specsplice: Interpret Unresolved Evidence"), 'interpret'],
+	['ordito.ai.review', localize2('ordito.ai.reviewCommand', "Specsplice: Review Implementation"), 'review'],
+	['ordito.ai.verify', localize2('ordito.ai.verifyCommand', "Specsplice: Verify Implementation"), 'verify'],
+	['ordito.ai.apply', localize2('ordito.ai.applyCommand', "Specsplice: Apply Verified Implementation"), 'apply'],
+	['ordito.ai.undo', localize2('ordito.ai.undoCommand', "Specsplice: Undo Implementation"), 'undo'],
+	['ordito.ai.resume', localize2('ordito.ai.resumeCommand', "Specsplice: Resume Implementation"), 'resume'],
+	['ordito.ai.recover', localize2('ordito.ai.recoverCommand', "Specsplice: Recover Interrupted Implementation"), 'recover'],
+	['ordito.ai.configureContinuity', localize2('ordito.continuity.command', "Specsplice: Start or Stop Continuous Preparation"), 'configureContinuity'],
+	['ordito.ai.structuralTechnicalReview', localize2('ordito.pure.technical.command', "Specsplice: Inspect Technical Review"), 'structuralTechnicalReview'],
+	['ordito.ai.structuralReverse', localize2('ordito.pure.reverse.command', "Specsplice: Reverse Model Behavior from Code"), 'structuralReverse'],
+	['ordito.ai.structuralResume', localize2('ordito.pure.resume.command', "Specsplice: Resume Model Behavior Review"), 'structuralResume'],
+	['ordito.ai.structuralRecover', localize2('ordito.pure.recover.command', "Specsplice: Recover Model Behavior Publication"), 'structuralRecover'],
+	['ordito.ai.simulateStates', localize2('ordito.states.simulation.command', "Specsplice: Simulate State Machine"), 'simulateStates'],
+	['ordito.ai.editPureCriteria', localize2('ordito.pure.criteria.command', "Specsplice: Edit Independent Business Expectations"), 'editPureCriteria'],
+	['ordito.ai.movePureSource', localize2('ordito.pure.move.command', "Specsplice: Move Model Behavior Source"), 'movePureSource'],
+	['ordito.ai.benchmark', localize2('ordito.ai.benchmarkCommand', "Specsplice: Compare AI Models"), 'benchmark'],
+	['ordito.ai.benchmarkReconciliation', localize2('ordito.ai.benchmarkReconciliationCommand', "Specsplice: Compare Reconciliation Models"), 'benchmarkReconciliation'],
+	['ordito.ai.exportBenchmark', localize2('ordito.ai.exportBenchmarkCommand', "Specsplice: Export Model Benchmark Results"), 'exportBenchmark']
 ] as const) {
 	registerAction2(class extends Action2 {
 		constructor() { super({ id, title, f1: true }); }

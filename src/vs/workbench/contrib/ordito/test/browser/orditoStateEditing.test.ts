@@ -8,7 +8,7 @@ import { validateModelStateMachine } from '../../common/modelStates.js';
 import { orditoStateRows, describeOrditoStateSimulation } from '../../browser/orditoStateContent.js';
 import { describeOrditoDiagram } from '../../browser/orditoAccessibleContent.js';
 
-suite('Ordito executable state editing', () => {
+suite('Specsplice executable state editing', () => {
 	test('canceling a nested transition leaves all definitions untouched', async () => { const m = structuredClone(stateFixture), before = structuredClone(m), dialogs = new ScriptedDialogs(['Checkout', 'Add or Edit Transition', 'Draft → Paid', 'Draft', undefined]); assert.strictEqual(await editOrditoStateMachine(dialogs, m), undefined); dialogs.assertComplete(); assert.deepStrictEqual(m, before); });
 	test('native transition edit preserves stable IDs, uses explicit policy and one undo transaction', async () => {
 		const dialogs = new ScriptedDialogs(['Checkout', 'Add or Edit Transition', 'Draft → Paid', 'Draft', 'Paid', 'pay', 'External · Cancel Do, Exit, Effect, Entry, Start Do', '5', 'Typed Guard', 'Choose Result and Save', 'comparison', ['action.charge'], 'Validate and Save State Machine']);

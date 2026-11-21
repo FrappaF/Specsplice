@@ -50,7 +50,7 @@ const args = process.argv.slice(2);
 const value = flag => args[args.indexOf(flag) + 1];
 const prompt = fs.readFileSync(0, 'utf8');
 assert.equal(process.cwd(), ${JSON.stringify(root)});
-assert.match(prompt, /^Implement only the saved Ordito model changes/);
+assert.match(prompt, /^Implement only the saved Specsplice model changes/);
 assert.doesNotMatch(prompt, /Conversation:|model[.]ordito[.]json|Read the current model before changing it/);
 assert.deepEqual(JSON.parse(prompt.split('Saved model changes:\\n')[1]), ${JSON.stringify(context)});
 const result = { outcome: 'already-aligned', text: 'The source already uses EUR.' };

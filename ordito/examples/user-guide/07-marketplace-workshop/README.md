@@ -18,4 +18,4 @@ Follow Part II of the guide, from L1 through L21. Open the project root listed f
 
 Each module is a standalone exercise in the marketplace domain. The solution contains all 18 views of the store design. The milestones show the model as it was saved at the end of the corresponding lessons, with the same object identities and empty views where you have yet to add details.
 
-Edit the model with Ordito forms. The deployment, network and data schema document design choices. Work on a copy and keep the original package to repeat the workshop.
+Edit the model with Specsplice forms. The deployment, network and data schema document design choices. Work on a copy and keep the original package to repeat the workshop.

@@ -14,7 +14,7 @@ const { diagramAuditToolDefinitions, diagramToolDefinitions, diagramSessionInstr
 export async function createDiagramMcpServer(root, sessionId, options = {}) {
 	root = await realpath(root);
 	const pointer = await active(root);
-	if (!pointer) { throw new Error('Import this project in Ordito before starting its MCP server.'); }
+	if (!pointer) { throw new Error('Import this project in Specsplice before starting its MCP server.'); }
 	const snapshot = await projectMetadataPath(root, 'imports', pointer);
 	const { checkpoint, turnId, ...openOptions } = options;
 	const opened = await executeDiagramExploration(snapshot, { action: 'open', ...(sessionId ? { sessionId } : { workflow: 'project', featureWorkflow: true }), ...openOptions });

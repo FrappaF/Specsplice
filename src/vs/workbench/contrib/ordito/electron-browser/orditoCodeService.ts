@@ -77,7 +77,7 @@ export class OrditoCodeService extends Disposable implements IOrditoCodeService 
 		void this.refresh();
 	}
 	private getChannel(): Promise<IChannel> {
-		return this.channel ??= this.workers.createWorker({ moduleId: 'vs/workbench/contrib/ordito/node/orditoCodeWorkerMain', type: 'ordito-code', name: localize('ordito.code.worker', "Ordito Code Analysis") }).then(async worker => {
+		return this.channel ??= this.workers.createWorker({ moduleId: 'vs/workbench/contrib/ordito/node/orditoCodeWorkerMain', type: 'ordito-code', name: localize('ordito.code.worker', "Specsplice Code Analysis") }).then(async worker => {
 			this._register(worker);
 			void worker.onDidTerminate.then(() => { this.channel = undefined; });
 			const channel = worker.client.getChannel(orditoCodeChannel);
@@ -86,7 +86,7 @@ export class OrditoCodeService extends Disposable implements IOrditoCodeService 
 				if (protocol?.version !== orditoCodeProtocolVersion || !Array.isArray(protocol.operations) || !['exploration', 'diagramPrepare', 'diagramStep', 'diagramApprovePlan', 'codeUpdate'].every(operation => protocol.operations.includes(operation))) { throw new Error('Incompatible code bridge protocol'); }
 			} catch {
 				worker.dispose();
-				throw new Error(localize('ordito.code.incompatibleEngine', "The Ordito analysis engine is out of date or incompatible with this interface. For a development build, run npm run build-fast -- --client-only in the Ordito repository, then fully quit and reopen Ordito. For an installed application, update or reinstall the complete application."));
+				throw new Error(localize('ordito.code.incompatibleEngine', "The Specsplice analysis engine is out of date or incompatible with this interface. For a development build, run npm run build-fast -- --client-only in the Specsplice repository, then fully quit and reopen Specsplice. For an installed application, update or reinstall the complete application."));
 			}
 			this.progressSubscription.value = channel.listen<CodeAiProgress>('aiProgress')(event => this.aiProgress.fire(event));
 			return channel;
@@ -123,7 +123,7 @@ export class OrditoCodeService extends Disposable implements IOrditoCodeService 
 	}
 	private async run(title: string, task: (token: CancellationToken) => Promise<void>): Promise<boolean> {
 		const operation = this.operations.acquire('code');
-		if (!operation) { this.notifications.info(localize('ordito.code.busy', "Another Ordito operation is running. Wait for it to finish or cancel it before running Sync.")); return false; }
+		if (!operation) { this.notifications.info(localize('ordito.code.busy', "Another Specsplice operation is running. Wait for it to finish or cancel it before running Sync.")); return false; }
 		this.status = title; this.changes.fire();
 		const cancellation = new CancellationTokenSource();
 		try {
@@ -220,7 +220,7 @@ export class OrditoCodeService extends Disposable implements IOrditoCodeService 
 		if (this.project.model.version === 5 && this.context && direction !== 'model' && this.configuration.getValue<boolean>('ordito.diagramImport.incremental') !== false) { await this.commands.executeCommand(this.context.diagramState === 'diagrams' ? 'ordito.ai.updateDiagrams' : 'ordito.ai.resumeDiagrams'); return; }
 		if ((this.project.model.version === 4 || this.project.model.version === 5)) { this.notifications.info(localize('ordito.code.v4Profile', "Legacy Sync Is Unavailable for This Model Format. Use Architecture Exploration for Imported Diagrams, or Prepare Model to Code Review for Executable Project Specifications. You Can Continue Editing and Saving the Draft.")); return; }
 		await this.refreshing;
-		if (this.busy) { this.notifications.info(localize('ordito.code.syncBusy', "Wait for the active Ordito operation to finish before preparing Sync.")); return; }
+		if (this.busy) { this.notifications.info(localize('ordito.code.syncBusy', "Wait for the active Specsplice operation to finish before preparing Sync.")); return; }
 		if (!this.context) {
 			this.status = localize('ordito.code.noLinkedProject', "No Codebase Is Linked. Import the Project Folder Before Running Sync.");
 			this.notifications.info(this.status); this.changes.fire();
@@ -239,7 +239,7 @@ export class OrditoCodeService extends Disposable implements IOrditoCodeService 
 	}
 	private async reviewSync(renames: CodeRename[] = [], scope = this.context?.scope, resolutions: CodeResolution[] = [], reviewed?: CodePreview, direction?: 'model' | 'code'): Promise<void> {
 		const current = this.context;
-		if (!current || this.busy) { this.notifications.info(localize('ordito.code.syncBusy', "Wait for the active Ordito operation to finish before preparing Sync.")); return; }
+		if (!current || this.busy) { this.notifications.info(localize('ordito.code.syncBusy', "Wait for the active Specsplice operation to finish before preparing Sync.")); return; }
 		if (current.diagramState === 'index' || isSourceEvidenceModel(this.project.model) || !this.project.model.views.some(view => view.nodes.length > 0)) {
 			await this.commands.executeCommand('ordito.ai.buildDiagrams');
 			return;
@@ -483,7 +483,7 @@ for (const [id, title, method] of [
 	['ordito.configureCodeScope', localize2('ordito.code.command.scope', "Configure Import Scope"), 'configure']
 ] as const) {
 	registerAction2(class extends Action2 {
-		constructor() { super({ id, title, category: localize2('ordito.code.category', "Ordito"), f1: true }); }
+		constructor() { super({ id, title, category: localize2('ordito.code.category', "Specsplice"), f1: true }); }
 		override async run(accessor: ServicesAccessor): Promise<void> {
 			try { await accessor.get(IOrditoCodeService)[method](); }
 			catch (error) { if (!isCancellationError(error)) { accessor.get(INotificationService).error(orditoErrorNotification(error, 'code', accessor.get(IOrditoProjectService).model)); } }

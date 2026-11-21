@@ -17,7 +17,7 @@ import { applyVisualEdit } from '../../common/visualEditing.js';
 import { type VisualEdit } from '../../common/visualEditTypes.js';
 import { blueprintFixture } from '../common/blueprintFixture.js';
 
-suite('Ordito blueprint diagram controls', () => {
+suite('Specsplice blueprint diagram controls', () => {
 	const store = ensureNoDisposablesAreLeakedInTestSuite();
 	let root: HTMLElement;
 	setup(() => { root = dom.append(document.body, dom.$('section')); });

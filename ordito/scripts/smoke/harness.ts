@@ -129,7 +129,7 @@ export async function createSmokeHarness(platform = process.platform) {
 			}
 			await new Promise(resolve => setTimeout(resolve, 250));
 		}
-		throw new Error('No restored Ordito workbench became visible');
+		throw new Error('No restored Specsplice workbench became visible');
 	}
 
 	async function reportFailure(error: unknown) {

@@ -119,7 +119,7 @@ const historySchema = object({ revision: nonempty, status: decisionStatus, scope
 /** The same schema is exported, validated locally and included in the initial AI grammar. */
 function createSemanticModelV4Schema(legacy: Schema): Schema {
 	const schema = structuredClone(legacy);
-	schema.$id = 'urn:ordito:model:4'; schema.title = 'Ordito semantic model v4';
+	schema.$id = 'urn:ordito:model:4'; schema.title = 'Specsplice semantic model v4';
 	schema.properties!.version = { type: 'integer', const: 4 };
 	const element = schema.properties!.semantics.properties!.elements.items!;
 	element.properties!.runtimeKind = { type: 'string', enum: ['application', 'service', 'spa', 'mobile', 'store', 'messaging'] };
@@ -199,7 +199,7 @@ function modelSchema(version: 2 | 3): Schema {
 	return {
 		$schema: 'https://json-schema.org/draft/2020-12/schema',
 		$id: `urn:ordito:model:${version}`,
-		title: `Ordito semantic model v${version}`,
+		title: `Specsplice semantic model v${version}`,
 		...object({
 			version: { type: 'integer', const: version }, id: identifier, name: nonempty,
 			semantics: object({
@@ -236,7 +236,7 @@ export const semanticModelV4Schema = createSemanticModelV4Schema(semanticModelV3
 /** V5 is additive: old executable contracts retain exactly their V4 grammar. */
 export const semanticModelV5Schema = (() => {
 	const schema = structuredClone(semanticModelV4Schema);
-	schema.$id = 'urn:ordito:model:5'; schema.title = 'Ordito semantic model v5'; schema.properties!.version.const = 5;
+	schema.$id = 'urn:ordito:model:5'; schema.title = 'Specsplice semantic model v5'; schema.properties!.version.const = 5;
 	const foundation = schema.properties!.foundation.properties!;
 	foundation.evidence = array(object({ id: identifier, revision: nonempty, file: nonempty, start: { type: 'integer', minimum: 0 }, end: { type: 'integer', minimum: 0 }, encoding: { type: 'string', const: 'utf-16' }, producer: nonempty, producerVersion: nonempty, nature: { type: 'string', enum: ['syntax', 'reference', 'text', 'documentation', 'runtime'] }, factIds: array(identifier) }));
 	foundation.assertions.items!.properties!.evidenceIds = array(identifier);

@@ -13,7 +13,7 @@ import { type SemanticModel } from '../../common/modelTypes.js';
 import { type IEditorGroup } from '../../../../services/editor/common/editorGroupsService.js';
 import { workbenchInstantiationService } from '../../../../test/browser/workbenchTestServices.js';
 
-suite('Ordito. codebase update from saved diagrams', () => {
+suite('Specsplice. codebase update from saved diagrams', () => {
 	const store = ensureNoDisposablesAreLeakedInTestSuite();
 	let root: HTMLElement;
 	setup(() => { root = dom.append(document.body, dom.$('div')); });

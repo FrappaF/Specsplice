@@ -6,7 +6,7 @@ import { OrditoAiDialog } from '../../browser/orditoAiDialogView.js';
 import { type OrditoAiMessage } from '../../browser/orditoAiDialog.js';
 import { OrditoControls } from '../../browser/orditoControls.js';
 
-suite('Ordito transient assistant dialog', () => {
+suite('Specsplice transient assistant dialog', () => {
 	const store = ensureNoDisposablesAreLeakedInTestSuite();
 	let root: HTMLElement;
 	setup(() => { root = dom.append(document.body, dom.$('section')); });

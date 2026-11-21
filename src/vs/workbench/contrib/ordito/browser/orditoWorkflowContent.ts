@@ -30,7 +30,7 @@ interface OrditoWorkflowContentHost {
 	showReview(): void;
 }
 
-/** Renders AI workflow, settings and secondary tools for the Ordito editor. */
+/** Renders AI workflow, settings and secondary tools for the Specsplice editor. */
 export class OrditoWorkflowContent {
 	private group(parent: HTMLElement, title: string, description?: string): HTMLElement {
 		const section = dom.append(parent, dom.$('section.ordito-action-group'));
@@ -151,7 +151,7 @@ export class OrditoWorkflowContent {
 
 	renderCodeActions(parent: HTMLElement, settings: () => void, reviewActions?: (container: HTMLElement) => void, generation?: { ui: OrditoFeatureCodeGeneration; review(): void }): void {
 		const busy = this.ai.busy || this.code.busy;
-		const reason = this.project.loading || this.project.error ? localize('ordito.code.waitForProject', "Open a valid project before using code actions.") : busy ? localize('ordito.operationWait', "Wait for the Active Ordito Operation to Finish.") : !this.project.editable ? localize('ordito.generation.readonly', "Open a writable project to prepare code changes.") : this.project.hasStructuralErrors ? localize('ordito.code.correctModel', "Correct the draft specification in Project Settings first.") : undefined;
+		const reason = this.project.loading || this.project.error ? localize('ordito.code.waitForProject', "Open a valid project before using code actions.") : busy ? localize('ordito.operationWait', "Wait for the Active Specsplice Operation to Finish.") : !this.project.editable ? localize('ordito.generation.readonly', "Open a writable project to prepare code changes.") : this.project.hasStructuralErrors ? localize('ordito.code.correctModel', "Correct the draft specification in Project Settings first.") : undefined;
 		const aiDisabled = this.configurationService.getValue<boolean>('chat.disableAIFeatures') === true;
 		const aiReason = reason ?? (aiDisabled ? localize('ordito.ai.disabled', "AI Features Are Disabled in Settings.") : !this.ai.available ? localize('ordito.code.aiUnavailable', "Connect an AI provider in AI Settings to prepare code changes.") : undefined);
 		const structuralReason = reason ?? (!this.ai.available || !this.code.available ? localize('ordito.generation.unavailable', "Local code generation and verification are unavailable in this environment.") : !this.project.projectRoot ? localize('ordito.codeUpdate.saveFirst', "Open or Save a Project Before Updating Its Codebase.") : this.project.model.version !== 4 && this.project.model.version !== 5 ? localize('ordito.code.executableModel', "This action requires a project with executable behavior. Configure the model in Project Settings.") : undefined);
@@ -195,7 +195,7 @@ export class OrditoWorkflowContent {
 			worktree,
 			review: this.ai.structuralReview ? { label: localize('ordito.ai.reviewButton', "Review Changes"), run: () => this.host.showReview() } : undefined,
 			sources: this.code.context ? [
-				action(localize('ordito.code.inspectButton', "Code Evidence"), () => this.code.inspect(), this.code.busy ? localize('ordito.operationWait', "Wait for the Active Ordito Operation to Finish.") : undefined),
+				action(localize('ordito.code.inspectButton', "Code Evidence"), () => this.code.inspect(), this.code.busy ? localize('ordito.operationWait', "Wait for the Active Specsplice Operation to Finish.") : undefined),
 				action(localize('ordito.shortcuts.update', "Update Diagrams from Codebase"), () => this.commandService.executeCommand('ordito.ai.updateDiagrams'), aiReason)
 			] : undefined,
 			recovery, settings, reviewActions

@@ -32,9 +32,9 @@ export class OrditoAiDialog extends Disposable {
 	constructor(parent: HTMLElement, private readonly options: OrditoAiDialogOptions) {
 		super();
 		this.element = dom.append(parent, dom.$<HTMLDialogElement>('dialog.ordito-ai-dialog'));
-		this.element.setAttribute('aria-label', localize('ordito.ai.dialog.title', "Ordito Assistant"));
+		this.element.setAttribute('aria-label', localize('ordito.ai.dialog.title', "Specsplice Assistant"));
 		const header = dom.append(this.element, dom.$('header.ordito-ai-dialog-header'));
-		dom.append(header, dom.$('h2')).textContent = localize('ordito.ai.dialog.title', "Ordito Assistant");
+		dom.append(header, dom.$('h2')).textContent = localize('ordito.ai.dialog.title', "Specsplice Assistant");
 		const close = dom.append(header, dom.$<HTMLButtonElement>('button'));
 		close.type = 'button'; close.textContent = localize('ordito.ai.dialog.close', "Close");
 		this._register(dom.addDisposableListener(close, 'click', () => { void this.close(); }));

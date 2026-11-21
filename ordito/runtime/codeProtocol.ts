@@ -38,7 +38,7 @@ export const codeBridgeProtocol: CodeBridgeProtocol = { version: orditoCodeProto
 function invalidRequest(request: unknown): Error {
 	const operation = request && typeof request === 'object' && Object.hasOwn(request, 'operation') ? (request as { operation?: unknown }).operation : undefined;
 	const validator = requestValidators.find(item => item.operations.includes(operation as string));
-	if (!validator) { return new Error('Invalid code bridge request: missing or unsupported operation. Rebuild Ordito and restart the application if it was updated.'); }
+	if (!validator) { return new Error('Invalid code bridge request: missing or unsupported operation. Rebuild Specsplice and restart the application if it was updated.'); }
 	validator.validate(request);
 	// Schema diagnostics contain field names and constraints, never source/configuration values.
 	return new Error(`Invalid code bridge request (${operation}): ${ajv.errorsText(validator.validate.errors, { dataVar: 'request' }).slice(0, 500)}`);

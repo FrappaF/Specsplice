@@ -1,4 +1,4 @@
-name: Ordito desktop
+name: Specsplice desktop
 on:
   push:
     branches: [main]
@@ -61,7 +61,7 @@ jobs:
         run: node build/npm/preinstall.ts
       - run: npm ci
       - run: npm run ordito:test
-      - name: Check Ordito TypeScript
+      - name: Check Specsplice TypeScript
         env:
           NODE_OPTIONS: --max-old-space-size=4096
         run: npm run ordito:check
@@ -69,13 +69,13 @@ jobs:
         run: npm run build-fast -- --client-only
       - name: Test packaged diagram tools and draft preview
         run: node --test ordito/ai/test/packaged-diagrams.integration.mjs
-      - name: Smoke Ordito packaged AI workflow with a simulated CLI
+      - name: Smoke Specsplice packaged AI workflow with a simulated CLI
         run: node ordito/scripts/smoke-ai.mjs
-      - name: Test Ordito AI controller with injected services
+      - name: Test Specsplice AI controller with injected services
         run: node ordito/scripts/test-ai-service.ts
-      - name: Test Ordito CLI executable lookup and account status
+      - name: Test Specsplice CLI executable lookup and account status
         run: node test/unit/node/index.js --run src/vs/workbench/contrib/ordito/test/node/orditoCliExecutable.test.ts --run src/vs/workbench/contrib/ordito/test/node/orditoCliAccount.test.ts
-      - name: Test Ordito project lifecycle
+      - name: Test Specsplice project lifecycle
         run: node test/unit/node/index.js --run src/vs/workbench/contrib/ordito/test/browser/orditoProjectService.test.ts --run src/vs/workbench/contrib/ordito/test/browser/workingCopyRecovery.test.ts --run src/vs/workbench/contrib/ordito/test/browser/orditoAccessibleContent.test.ts --run src/vs/workbench/contrib/ordito/test/browser/orditoBehaviorEditing.test.ts --run src/vs/workbench/contrib/ordito/test/browser/orditoStartup.test.ts
       - name: Typecheck production sources
         run: node node_modules/@typescript/native/bin/tsc --project ordito/tsconfig.production.json --pretty false
@@ -88,16 +88,16 @@ jobs:
         with:
           arch: ${{ runner.arch == 'ARM64' && 'arm64' || 'x64' }}
           save-cache: 'true'
-      - name: Native Ordito AI orchestration tests on Linux
+      - name: Native Specsplice AI orchestration tests on Linux
         if: runner.os == 'Linux'
         run: xvfb-run -a ./scripts/test.sh --no-sandbox --run src/vs/workbench/contrib/ordito/test/electron-browser/orditoAiService.test.ts --run src/vs/workbench/contrib/ordito/test/electron-browser/orditoCodeService.test.ts
-      - name: Native Ordito AI orchestration tests on macOS
+      - name: Native Specsplice AI orchestration tests on macOS
         if: runner.os == 'macOS'
         run: ./scripts/test.sh --run src/vs/workbench/contrib/ordito/test/electron-browser/orditoAiService.test.ts --run src/vs/workbench/contrib/ordito/test/electron-browser/orditoCodeService.test.ts
-      - name: Native Ordito AI workflow with simulated CLI on Linux
+      - name: Native Specsplice AI workflow with simulated CLI on Linux
         if: runner.os == 'Linux'
         run: xvfb-run -a node ordito/scripts/smoke-desktop.mjs --ai-only
-      - name: Native Ordito AI workflow with simulated CLI on macOS
+      - name: Native Specsplice AI workflow with simulated CLI on macOS
         if: runner.os == 'macOS'
         run: node ordito/scripts/smoke-desktop.mjs --ai-only
       - name: Native manual-feedback regression on Linux

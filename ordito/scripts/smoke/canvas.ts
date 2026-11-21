@@ -129,8 +129,8 @@ export function createCanvasScenarios(harness: SmokeHarness) {
 		model.views.push({ id: 'sequence', kind: 'sequence', name: 'Game Sequence', nodes: model.views[0].nodes.slice(1, 3), relationIds: ['sequence-call'] });
 		await writeFile(modelFile, JSON.stringify(model));
 		let window = await launch(), shell = window.locator('.ordito-shell');
-		await runCommand(window, 'Ordito: Open Model');
-		await window.locator('.quick-input-widget').getByText('Open Ordito Model', { exact: true }).waitFor();
+		await runCommand(window, 'Specsplice: Open Model');
+		await window.locator('.quick-input-widget').getByText('Open Specsplice Model', { exact: true }).waitFor();
 		const input = window.locator('.quick-input-widget input:visible');
 		await input.fill(path.dirname(modelFile) + path.sep);
 		await window.locator('.quick-input-widget').getByText(path.basename(modelFile), { exact: true }).dblclick();
@@ -277,7 +277,7 @@ export function createCanvasScenarios(harness: SmokeHarness) {
 		const schema = model.views.find((view: ModelView) => view.kind === 'databaseSchema');
 		await chooseOrditoDiagram(window, schema.name);
 		await window.locator('.ordito-node[aria-label="tasks"]').click();
-		await runCommand(window, 'Ordito: Edit Attributes and Technology');
+		await runCommand(window, 'Specsplice: Edit Attributes and Technology');
 		const notation = window.locator('dialog.ordito-form-dialog');
 		await notation.getByRole('heading', { name: 'Attributes and Technology · tasks', exact: true }).waitFor();
 		await notation.getByRole('button', { name: 'Add Attribute', exact: true }).click();

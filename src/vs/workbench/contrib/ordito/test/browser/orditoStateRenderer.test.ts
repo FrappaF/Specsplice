@@ -6,7 +6,7 @@ import { renderOrditoState } from '../../browser/orditoState.js';
 import { orditoStateRows } from '../../browser/orditoStateContent.js';
 import { stateFixture } from '../common/stateFixture.js';
 
-suite('Ordito executable state renderer', () => {
+suite('Specsplice executable state renderer', () => {
 	const disposables = ensureNoDisposablesAreLeakedInTestSuite(); let root: HTMLElement;
 	setup(() => { root = dom.append(document.body, dom.$('section')); }); teardown(() => root.remove());
 	test('native state table preserves semantic order, keyboard focus and model', () => { const model = structuredClone(stateFixture), before = structuredClone(model), selected: string[] = []; renderOrditoState(root, model, model.views[0], disposables.add(new OrditoControls()), () => {}, id => selected.push(id)); const rows = [...root.querySelectorAll<HTMLElement>('[data-state-id]')]; assert.deepStrictEqual(rows.map(row => row.dataset.stateId), orditoStateRows(model, 'checkout.lifecycle').map(row => row.id)); const button = root.querySelector<HTMLButtonElement>('[data-state-id="Draft"] button')!; button.focus(); assert.strictEqual(document.activeElement, button); button.click(); assert.deepStrictEqual(selected, ['Draft']); assert.deepStrictEqual(model, before); });

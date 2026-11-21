@@ -9,7 +9,7 @@ import { OrditoProjectService } from '../../browser/orditoProjectService.js';
 import { checkoutModel } from '../../common/checkoutModel.js';
 import { type VisualEdit } from '../../common/visualEditTypes.js';
 
-suite('Ordito canvas controller', () => {
+suite('Specsplice canvas controller', () => {
 	const disposables = ensureNoDisposablesAreLeakedInTestSuite();
 	let root: HTMLElement;
 	setup(() => { root = dom.append(document.body, dom.$('section')); });

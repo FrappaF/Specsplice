@@ -21,7 +21,7 @@ import { type ModelView, type SemanticModel, viewKinds } from '../../common/mode
 import { blueprintFixture } from '../common/blueprintFixture.js';
 import { interactionFixture } from '../common/interactionFixture.js';
 
-suite('Ordito canvas action menus', () => {
+suite('Specsplice canvas action menus', () => {
 	const store = ensureNoDisposablesAreLeakedInTestSuite();
 	let root: HTMLElement;
 	setup(() => { root = dom.append(document.body, dom.$('section.ordito-shell')); });

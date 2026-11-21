@@ -447,8 +447,8 @@ export class OrditoProjectService extends Disposable {
 
 	async chooseModel(): Promise<void> {
 		const resources = await this.fileDialogService.showOpenDialog({
-			title: localize('ordito.choose', "Open Ordito Model"), canSelectFiles: true, canSelectFolders: false, canSelectMany: false,
-			filters: [{ name: localize('ordito.modelFilter', "Ordito Model"), extensions: ['json'] }]
+			title: localize('ordito.choose', "Open Specsplice Model"), canSelectFiles: true, canSelectFolders: false, canSelectMany: false,
+			filters: [{ name: localize('ordito.modelFilter', "Specsplice Model"), extensions: ['json'] }]
 		});
 		if (resources?.[0] && await this.prepareToReplace()) {
 			this.restoring = undefined;
@@ -693,8 +693,8 @@ export class OrditoProjectService extends Disposable {
 		const directory = await resolveOrditoMetadataDirectory(this.fileService, folder);
 		const resource = URI.joinPath(directory, 'model.json');
 		if (await this.fileService.exists(resource) || await this.fileService.exists(URI.joinPath(directory, 'code-project.json'))) {
-			if (!this.dialogs) { throw new Error(localize('ordito.existingProject.error', "This folder already contains an Ordito project. Use Open Project or choose another folder.")); }
-			if (!(await this.dialogs.confirm({ message: localize('ordito.existingProject', "This Folder Already Contains an Ordito Project."), detail: localize('ordito.existingProject.detail', "Open the existing project or cancel and choose another folder. Its model will be preserved."), primaryButton: localize('ordito.existingProject.open', "Open Project") })).confirmed) { return false; }
+			if (!this.dialogs) { throw new Error(localize('ordito.existingProject.error', "This folder already contains a Specsplice project. Use Open Project or choose another folder.")); }
+			if (!(await this.dialogs.confirm({ message: localize('ordito.existingProject', "This Folder Already Contains a Specsplice Project."), detail: localize('ordito.existingProject.detail', "Open the existing project or cancel and choose another folder. Its model will be preserved."), primaryButton: localize('ordito.existingProject.open', "Open Project") })).confirmed) { return false; }
 			await this.openProject(folder);
 			return !this.error;
 		}

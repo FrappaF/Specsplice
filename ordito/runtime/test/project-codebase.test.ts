@@ -31,7 +31,7 @@ test('linking the open project inventories its code and preserves its complete e
 	assert.equal(context.files.find(file => file.path === 'app.rb')?.revision, snapshot.state.files.find(file => file.file === 'app.rb')?.revision);
 	assert.deepEqual({ root: context.sourceRoot, projectId: snapshot.state.projectId, model: snapshot.model, commonModel: snapshot.commonModel, source: context.files.some(file => file.path === 'app.rb'), original: await readFile(join(f.root, '.ordito', 'model.json'), 'utf8') }, { root: f.root, projectId: checkoutModel.id, model: checkoutModel, commonModel: checkoutModel, source: true, original: f.original });
 	const opened = JSON.parse(await createCodeEngine().execute(JSON.stringify({ operation: 'exploration', snapshot: context.snapshot, request: JSON.stringify({ action: 'open', workflow: 'project' }) })));
-	assert.ok(opened.sessionId && opened.data.mcp, 'the linked project exposes the Ordito diagram tools');
+	assert.ok(opened.sessionId && opened.data.mcp, 'the linked project exposes the Specsplice diagram tools');
 	const pointer = await readFile(join(f.root, '.ordito', 'code-project.json'), 'utf8');
 	await assert.rejects(f.call({ operation: 'import', root: f.root, modelFile: '.ordito/model.json', syntaxOnly: true }), /already has an import/);
 	assert.equal(await readFile(join(f.root, '.ordito', 'code-project.json'), 'utf8'), pointer);
@@ -66,7 +66,7 @@ test('legacy project folders and snapshot filenames remain usable without splitt
 	await assert.rejects(access(join(f.root, '.ordito')), /ENOENT/);
 });
 
-test('a newly created Ordito project keeps its identity and foundation when its first source inventory is attached', async t => {
+test('a newly created Specsplice project keeps its identity and foundation when its first source inventory is attached', async t => {
 	const model: SemanticModel = { version: 4, id: 'rails-project', name: 'Rails Shop', foundation: emptyFoundation(), semantics: { elements: [], relations: [] }, views: [], codeMappings: [], verifications: [] };
 	const f = await fixture(t, model);
 	const context = await f.call({ operation: 'import', root: f.root, modelFile: '.ordito/model.json' });

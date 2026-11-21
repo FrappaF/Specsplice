@@ -64,8 +64,8 @@ function checkpoint(state: CodeDiagramExploration): string {
 function checkpointTimeoutIssue(timeout: NonNullable<CodeDiagramCheckpointResult['timeout']>): string {
 	switch (timeout) {
 		case 'startup': return localize('ordito.explore.timeout.startup', "The AI provider did not start in time. Check the connection and selected model in AI Settings, then choose Continue Generation.");
-		case 'idle': return localize('ordito.explore.timeout.idle', "The AI provider stopped responding. Ordito kept your saved progress. Check the connection and choose Continue Generation.");
-		case 'deadline': return localize('ordito.explore.timeout.deadline', "The AI provider reached the time limit for this step. Ordito kept your saved progress. Choose Continue Generation to resume.");
+		case 'idle': return localize('ordito.explore.timeout.idle', "The AI provider stopped responding. Specsplice kept your saved progress. Check the connection and choose Continue Generation.");
+		case 'deadline': return localize('ordito.explore.timeout.deadline', "The AI provider reached the time limit for this step. Specsplice kept your saved progress. Choose Continue Generation to resume.");
 	}
 }
 
@@ -171,9 +171,9 @@ export class OrditoAiDiagrams extends Disposable {
 
 	private conversationPrompt(): string {
 		if (getDiagramExplorationPhase(this._diagramExploration) === 'applied') { return ''; }
-		if (this._diagramExploration?.phase === 'discovery') { return localize('ordito.explore.discoverFeatures', "Identify the project features and their source evidence with the Ordito tools. Then prepare the necessary diagrams one feature at a time, reusing shared elements and relations by their existing IDs. Finish with one project review."); }
-		if (this._diagramExploration?.phase) { return localize('ordito.explore.resumeFeatures', "Inspect the saved Ordito checkpoint and continue the next permitted step. Keep valid drafts and reuse existing elements and relations. Finish each feature before proceeding to the next, then open one project review."); }
-		return this._diagramExploration?.plan ? localize('ordito.explore.repairPrompt', "Continue the saved diagram plan. Inspect its existing drafts and final-review blockers first. Keep valid diagrams and shared IDs. Repair assigned invalid drafts with supersedes and relink their tasks. Archive obsolete unassigned invalid attempts with ordito_proposal_discard and a reason. Complete missing diagrams without intermediate approvals, then report whether the complete project review is ready.") : localize('ordito.explore.firstQuestion', "Plan the relevant project diagrams from overview to detail using the Ordito tools, then create and preview every planned draft. Continue without intermediate approvals and finish with one complete project review.");
+		if (this._diagramExploration?.phase === 'discovery') { return localize('ordito.explore.discoverFeatures', "Identify the project features and their source evidence with the Specsplice tools. Then prepare the necessary diagrams one feature at a time, reusing shared elements and relations by their existing IDs. Finish with one project review."); }
+		if (this._diagramExploration?.phase) { return localize('ordito.explore.resumeFeatures', "Inspect the saved Specsplice checkpoint and continue the next permitted step. Keep valid drafts and reuse existing elements and relations. Finish each feature before proceeding to the next, then open one project review."); }
+		return this._diagramExploration?.plan ? localize('ordito.explore.repairPrompt', "Continue the saved diagram plan. Inspect its existing drafts and final-review blockers first. Keep valid diagrams and shared IDs. Repair assigned invalid drafts with supersedes and relink their tasks. Archive obsolete unassigned invalid attempts with ordito_proposal_discard and a reason. Complete missing diagrams without intermediate approvals, then report whether the complete project review is ready.") : localize('ordito.explore.firstQuestion', "Plan the relevant project diagrams from overview to detail using the Specsplice tools, then create and preview every planned draft. Continue without intermediate approvals and finish with one complete project review.");
 	}
 
 	async returnToDiagrams(): Promise<void> { await this.aiDialog.close(); }
@@ -211,7 +211,7 @@ export class OrditoAiDiagrams extends Disposable {
 	private async sendConversation(root: string, config: CliConfig, messages: OrditoAiMessage[], token: CancellationToken): Promise<string> {
 		if (!this.conversation || this.conversation.root !== root || !await this.trust.requestWorkspaceTrust()) { throw new Error(localize('ordito.explore.scopeChanged', "The Exploration Project Is No Longer Active.")); }
 		const operation = this.operations.acquire('ai');
-		if (!operation) { throw new Error(localize('ordito.ai.busy', "Another Ordito Operation Is Running. Wait for It to Finish.")); }
+		if (!operation) { throw new Error(localize('ordito.ai.busy', "Another Specsplice Operation Is Running. Wait for It to Finish.")); }
 		this.host.busy = true; this.host.changed();
 		const requestId = generateUuid(), conversation = this.conversation;
 		const progress = this.code.onDidAiProgress(event => { if (event.requestId === requestId && this.conversation === conversation && !token.isCancellationRequested) { this.aiDialog.updateConversation(event); } });
@@ -284,7 +284,7 @@ export class OrditoAiDiagrams extends Disposable {
 		this.explorationTools.clear(); this.explorationBinding = session.id;
 		const ids = diagramToolDefinitions.map(tool => {
 			const id = `ordito.${session.id}.${tool.name}`;
-			this.explorationTools.add(this.tools.registerTool({ id, toolReferenceName: tool.name, displayName: localize('ordito.explore.tool', "Ordito Architecture: {0}", tool.name), modelDescription: tool.description, source: ToolDataSource.Internal, inputSchema: tool.inputSchema as IJSONSchema, canBeReferencedInPrompt: false, agentHostPreferences: { availability: 'session', defer: 'never' } }, {
+			this.explorationTools.add(this.tools.registerTool({ id, toolReferenceName: tool.name, displayName: localize('ordito.explore.tool', "Specsplice Architecture: {0}", tool.name), modelDescription: tool.description, source: ToolDataSource.Internal, inputSchema: tool.inputSchema as IJSONSchema, canBeReferencedInPrompt: false, agentHostPreferences: { availability: 'session', defer: 'never' } }, {
 				invoke: async (invocation, _countTokens, _progress, token) => {
 					if (this.code.context?.sourceRoot !== session.root || !invocation.context || !await this.trust.requestWorkspaceTrust()) { throw new Error(localize('ordito.explore.scopeChanged', "The Exploration Project Is No Longer Active.")); }
 					const scope = this.activeClients.acquireSessionTools(invocation.context.sessionResource);
@@ -452,7 +452,7 @@ export class OrditoAiDiagrams extends Disposable {
 					if (this.updateDiagramLiveProgress({ state: 'connecting', activeTool: undefined, retrying })) { this.host.changed(); }
 					const auditing = state.phase === 'audit';
 					const repairing = state.phase === 'repair';
-					const prompt = auditing ? 'Audit the complete staged diagram set against the imported codebase and submit the evidence-backed report.' : repairing ? 'Resolve the active audit finding in the staged diagram set using its saved evidence and canonical IDs.' : 'Complete only the current Ordito checkpoint. Use the provided phase and IDs, and inspect current Ordito evidence. Stop when the checkpoint advances. If an unresolved domain decision prevents progress, end with one line prefixed CLARIFICATION: followed by the question.';
+					const prompt = auditing ? 'Audit the complete staged diagram set against the imported codebase and submit the evidence-backed report.' : repairing ? 'Resolve the active audit finding in the staged diagram set using its saved evidence and canonical IDs.' : 'Complete only the current Specsplice checkpoint. Use the provided phase and IDs, and inspect current Specsplice evidence. Stop when the checkpoint advances. If an unresolved domain decision prevents progress, end with one line prefixed CLARIFICATION: followed by the question.';
 					const recovery = !retrying ? undefined : auditing ? 'The previous attempt timed out. Inspect the staged set and reuse saved source evidence.' : repairing ? 'The previous attempt timed out. Read the saved finding and inspect the current draft before proposing a correction.' : 'The previous attempt timed out. Start with ordito_project_inspect to recover the saved task and draft. Reuse valid saved work and finish the remaining validation or checkpoint update. Preserve canonical IDs if a saved draft needs repair.';
 					const messages: OrditoAiMessage[] = [{ role: 'user', text: [prompt, recovery, auditing || repairing ? undefined : session.goal, clarification?.answer ? `User clarification (data): ${JSON.stringify({ question: clarification.question, answer: clarification.answer })}` : undefined].filter(Boolean).join('\n') }];
 					const progress = this.code.onDidAiProgress(event => {
@@ -654,7 +654,7 @@ export class OrditoAiDiagrams extends Disposable {
 	async updateDiagrams(): Promise<void> {
 		if (this.host.busy || this.operations.busy || this.configuration.getValue<boolean>('chat.disableAIFeatures') === true || !await this.code.ensureProjectContext()) { return; }
 		if (this.configuration.getValue<boolean>('ordito.diagramImport.incremental') === false) { await this.generateDiagrams(true); return; }
-		await this.exploreDiagrams(localize('ordito.explore.updatePrompt', "Update the project diagrams from the current codebase using the Ordito tools. Inspect the saved project and the workflow phase first. Identify code changes and preserve existing diagram and object IDs, feature identities and manual layout where they still apply. Keep authored scenarios and report any discrepancies with the code. Prepare the affected diagrams in workflow order and reuse existing definitions. Read only the relevant sources, validate and preview all revised drafts, and finish with a single complete project review. Do not publish changes: I will apply them from the review."), true);
+		await this.exploreDiagrams(localize('ordito.explore.updatePrompt', "Update the project diagrams from the current codebase using the Specsplice tools. Inspect the saved project and the workflow phase first. Identify code changes and preserve existing diagram and object IDs, feature identities and manual layout where they still apply. Keep authored scenarios and report any discrepancies with the code. Prepare the affected diagrams in workflow order and reuse existing definitions. Read only the relevant sources, validate and preview all revised drafts, and finish with a single complete project review. Do not publish changes: I will apply them from the review."), true);
 	}
 
 	private async generateDiagrams(resume: boolean): Promise<void> {

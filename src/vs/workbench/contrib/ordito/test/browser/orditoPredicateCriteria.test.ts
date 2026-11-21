@@ -4,7 +4,7 @@ import { createPureProject } from '../../common/modelProject.js';
 import { editOrditoPredicateCriteria } from '../../browser/orditoPredicateCriteria.js';
 import { ScriptedDialogs } from './orditoBlueprintEditing.test.js';
 
-suite('Ordito visual predicate cases', () => {
+suite('Specsplice visual predicate cases', () => {
 	ensureNoDisposablesAreLeakedInTestSuite();
 	function fixture() { let id = 0; const data = createPureProject('QA', () => `qa.${++id}`); return { ...data, operation: data.model.foundation.blueprint!.operations[0] }; }
 	test('authors boundary inputs and expected outcomes independently, retaining their criterion binding', async () => {

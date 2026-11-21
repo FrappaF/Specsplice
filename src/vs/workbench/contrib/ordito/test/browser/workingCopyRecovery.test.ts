@@ -19,7 +19,7 @@ class RecoveryTracker extends WorkingCopyBackupTracker {
 	restoreWith(handler: IWorkingCopyEditorHandler): Promise<void> { return this.restoreBackups(handler); }
 }
 
-suite('Ordito working copy recovery', () => {
+suite('Specsplice working copy recovery', () => {
 	const store = ensureNoDisposablesAreLeakedInTestSuite();
 	test('a generic backup handler reuses the specialized editor association', async () => {
 		const identifier = { resource: URI.parse('test:/project/.ordito/model.json'), typeId: '' };

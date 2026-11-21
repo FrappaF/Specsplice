@@ -1,1 +1,1 @@
-{"version":"0.2.0","configurations":[{"name":"Avvia Ordito","type":"extensionHost","request":"launch","args":["--extensionDevelopmentPath=${workspaceFolder}"],"outFiles":[]}]}
+{"version":"0.2.0","configurations":[{"name":"Avvia Specsplice","type":"extensionHost","request":"launch","args":["--extensionDevelopmentPath=${workspaceFolder}"],"outFiles":[]}]}

@@ -2,7 +2,7 @@ import assert from 'assert';
 import { ensureNoDisposablesAreLeakedInTestSuite } from '../../../../../base/test/common/utils.js';
 import { OrditoFormDialog } from '../../browser/orditoFormDialog.js';
 
-suite('Ordito form dialog', () => {
+suite('Specsplice form dialog', () => {
 	const store = ensureNoDisposablesAreLeakedInTestSuite();
 	let parent: HTMLElement;
 	setup(() => { parent = document.body.appendChild(document.createElement('div')); });

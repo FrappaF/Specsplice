@@ -61,11 +61,11 @@ export function createBehaviorScenarios(harness: SmokeHarness) {
 		const diagrams = shell.locator('.ordito-impact-group').filter({ has: window.getByRole('heading', { name: 'Diagrams to Review: 3', exact: true }) });
 		await diagrams.getByRole('button', { name: 'Payment Outcome', exact: true }).click();
 		await shell.getByRole('region', { name: 'Diagram: Payment Outcome', exact: true }).waitFor();
-		await runCommand(window, 'Ordito: Go Back');
+		await runCommand(window, 'Specsplice: Go Back');
 		await shell.getByRole('heading', { level: 1, name: 'Change Impact: Payment', exact: true }).waitFor();
 		await clickOrditoButton(window, 'Element Details');
 		await shell.getByRole('heading', { level: 1, name: 'Payment', exact: true }).waitFor();
-		await runCommand(window, 'Ordito: Show Change Impact');
+		await runCommand(window, 'Specsplice: Show Change Impact');
 		await shell.getByRole('heading', { level: 1, name: 'Change Impact: Payment', exact: true }).waitFor();
 		await clickOrditoButton(window, 'Rename Element');
 		await enterValue(window, 'Name', 'Payment Contract');
@@ -119,7 +119,7 @@ export function createBehaviorScenarios(harness: SmokeHarness) {
 		let window = await launch();
 		let shell = window.locator('.ordito-shell');
 		await openModelFile(window, modelFile);
-		await runCommand(window, 'Ordito: Add Diagram');
+		await runCommand(window, 'Specsplice: Add Diagram');
 		await completeDiagramForm(window, { feature: 'Confirm Purchase', kind: 'State Diagram', resource: 'Order', name: 'Order Lifecycle' });
 		await shell.getByRole('region', { name: 'Diagram: Order Lifecycle', exact: true }).waitFor();
 		await revealOrditoText(window, '0 of 3 declared states visible · 0 visible transitions');
@@ -127,7 +127,7 @@ export function createBehaviorScenarios(harness: SmokeHarness) {
 		await clickOrditoButton(window, 'Add Existing Transition');
 		await pickValue(window, 'Add Existing Transition', 'Pending → Confirmed: payment succeeds');
 		assert.equal(await shell.locator('.ordito-node').count(), 3);
-		await runCommand(window, 'Ordito: Include Resource Lifecycle');
+		await runCommand(window, 'Specsplice: Include Resource Lifecycle');
 		await revealOrditoText(window, '3 of 3 declared states visible · 2 visible transitions');
 		await clickOrditoButton(window, 'Add State');
 		await enterValue(window, 'Name', 'Cancelled');
@@ -216,7 +216,7 @@ export function createBehaviorScenarios(harness: SmokeHarness) {
 		await window.locator('.quick-input-widget .monaco-list-row').getByText('Cancelled', { exact: true }).waitFor();
 		await window.keyboard.press('Enter');
 		await shell.locator('.ordito-node').getByText('Cancelled', { exact: true }).waitFor();
-		await runCommand(window, 'Ordito: Add Diagram');
+		await runCommand(window, 'Specsplice: Add Diagram');
 		await completeDiagramForm(window, { feature: 'Confirm Purchase', kind: 'State Diagram', newResource: 'Shipment', name: 'Shipment Lifecycle' });
 		await shell.getByRole('region', { name: 'Diagram: Shipment Lifecycle', exact: true }).waitFor();
 		await shell.locator('.ordito-node').getByText('Shipment', { exact: true }).waitFor();
@@ -235,7 +235,7 @@ export function createBehaviorScenarios(harness: SmokeHarness) {
 		let window = await launch();
 		let shell = window.locator('.ordito-shell');
 		await openModelFile(window, modelFile);
-		await runCommand(window, 'Ordito: Add Diagram');
+		await runCommand(window, 'Specsplice: Add Diagram');
 		await completeDiagramForm(window, { feature: 'Confirm Purchase', kind: 'Sequence Diagram', name: 'Purchase Sequence' });
 		await shell.getByRole('region', { name: 'Diagram: Purchase Sequence', exact: true }).waitFor();
 		await revealOrditoText(window, 'This diagram has no elements.');

@@ -5,7 +5,7 @@ import { codeUpdateContent, createModelCodeUpdateContext, describeModelCodeChang
 import { emptyFoundation } from '../../common/modelFoundation.js';
 import { type SemanticModelV4 } from '../../common/modelTypes.js';
 
-suite('Ordito saved model implementation context', () => {
+suite('Specsplice saved model implementation context', () => {
 	ensureNoDisposablesAreLeakedInTestSuite();
 	test('layout metadata is ignored while authored view intent remains meaningful', () => {
 		const before = structuredClone(checkoutModel), after = structuredClone(before);

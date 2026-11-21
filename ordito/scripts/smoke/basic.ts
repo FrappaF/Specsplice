@@ -36,7 +36,7 @@ export function createBasicScenarios(harness: SmokeHarness) {
 			await window.keyboard.press('Escape');
 			await window.locator('.quick-input-widget').waitFor({ state: 'hidden' });
 			await window.screenshot({ path: path.join(evidence, 'ai-collaboration.png') });
-			await runCommand(window, 'Ordito: Return to Model');
+			await runCommand(window, 'Specsplice: Return to Model');
 			await window.locator('.quick-input-widget').waitFor({ state: 'hidden' });
 			await shell.getByRole('region', { name: 'Diagram: Checkout Structure', exact: true }).waitFor();
 			console.log('PASS: native AI controls and provider chooser render without inference; implementation, tests, apply and undo require an imported project or reviewed session.');
@@ -59,7 +59,7 @@ export function createBasicScenarios(harness: SmokeHarness) {
 			await shell.getByRole('table', { name: 'Transition Table: Order', exact: true }).getByText('payment not authorized', { exact: true }).waitFor();
 			await clickOrditoButton(window, 'Files');
 			await window.locator('.explorer-viewlet').waitFor();
-			await runCommand(window, 'Ordito: Return to Model');
+			await runCommand(window, 'Specsplice: Return to Model');
 			await shell.getByRole('region', { name: 'Diagram: Payment Outcome', exact: true }).waitFor();
 			assert.deepEqual([await shell.locator('.ordito-canvas').isVisible(), await declined.getAttribute('aria-pressed')], [true, 'true'], 'Return to Model restores the canvas and selection before reopening navigation');
 			await openDiagramNavigation(window);
@@ -68,7 +68,7 @@ export function createBasicScenarios(harness: SmokeHarness) {
 			for (const [name, selector] of [['Debug', '.debug-viewlet'], ['Git', '.scm-viewlet']]) {
 				await clickOrditoButton(window, name);
 				await window.locator(selector).waitFor();
-				await runCommand(window, 'Ordito: Return to Model');
+				await runCommand(window, 'Specsplice: Return to Model');
 				await shell.getByRole('region', { name: 'Diagram: Payment Outcome', exact: true }).waitFor();
 				assert.deepEqual([await shell.locator('.ordito-canvas').isVisible(), await declined.getAttribute('aria-pressed')], [true, 'true'], `${name}: Return to Model restores the canvas and selection before reopening navigation`);
 				await openDiagramNavigation(window);
@@ -95,7 +95,7 @@ export function createBasicScenarios(harness: SmokeHarness) {
 			await window.screenshot({ path: path.join(evidence, 'home.png') });
 			const modifier = process.platform === 'darwin' ? 'Meta' : 'Control';
 			await window.keyboard.press(`${modifier}+Shift+P`);
-			await window.locator('.quick-input-widget input').fill('>Ordito: Open Home');
+			await window.locator('.quick-input-widget input').fill('>Specsplice: Open Home');
 			await window.keyboard.press('Enter');
 			await shell.locator('.ordito-project-home').waitFor();
 			await openModelFile(window, modelFile);

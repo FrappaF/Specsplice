@@ -1,6 +1,6 @@
 # Review change impact from the model
 
-This walkthrough uses declarations from the Ordito examples. You can follow it with the model alone.
+This walkthrough uses declarations from the Specsplice examples. You can follow it with the model alone.
 
 ## Payment contract in the built-in example
 

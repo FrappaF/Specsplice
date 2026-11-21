@@ -128,7 +128,7 @@ Registry.as<IViewsRegistry>(ViewExtensions.ViewsRegistry).registerViews([{
 }], orditoContainer);
 
 Registry.as<IEditorPaneRegistry>(EditorExtensions.EditorPane).registerEditorPane(
-	EditorPaneDescriptor.create(OrditoEditor, OrditoEditor.ID, localize('ordito.editor', "Ordito")), [new SyncDescriptor(OrditoInput)]
+	EditorPaneDescriptor.create(OrditoEditor, OrditoEditor.ID, localize('ordito.editor', "Specsplice")), [new SyncDescriptor(OrditoInput)]
 );
 
 class OrditoSerializer implements IEditorSerializer {
@@ -138,7 +138,7 @@ class OrditoSerializer implements IEditorSerializer {
 		const input = instantiationService.createInstance(OrditoInput);
 		try {
 			const saved = JSON.parse(serialized);
-			if (typeof saved?.name === 'string' && saved.name.trim() && saved.name !== 'A.D.E Home') { input.restoreName(saved.name); }
+			if (typeof saved?.name === 'string' && saved.name.trim()) { input.restoreName(saved.name); }
 		} catch { /* Older sessions did not persist a caption. */ }
 		return input;
 	}
@@ -156,7 +156,7 @@ class OrditoResolver extends Disposable {
 		super();
 		for (const pattern of ['ordito-home:/**', 'ade-home:/**']) {
 			this._register(resolver.registerEditor(pattern, {
-				id: OrditoInput.ID, label: localize('ordito.label', "Ordito"), priority: RegisteredEditorPriority.exclusive
+				id: OrditoInput.ID, label: localize('ordito.label', "Specsplice"), priority: RegisteredEditorPriority.exclusive
 			}, { singlePerResource: true }, {
 				createEditorInput: () => ({ editor: instantiationService.createInstance(OrditoInput), options: { pinned: true } })
 			}));
@@ -166,7 +166,7 @@ class OrditoResolver extends Disposable {
 registerWorkbenchContribution2(OrditoResolver.ID, OrditoResolver, WorkbenchPhase.BlockStartup);
 
 registerAction2(class extends Action2 {
-	constructor() { super({ id: 'ordito.showHome', title: localize2('ordito.showHome', "Ordito: Open Home"), f1: true }); }
+	constructor() { super({ id: 'ordito.showHome', title: localize2('ordito.showHome', "Specsplice: Open Home"), f1: true }); }
 	async run(accessor: ServicesAccessor): Promise<void> {
 		accessor.get(IOrditoProjectService).showHome();
 		const editorService = accessor.get(IEditorService);
@@ -177,7 +177,7 @@ registerAction2(class extends Action2 {
 
 registerAction2(class extends Action2 {
 	constructor() {
-		super({ id: 'ordito.showDiagram', title: localize2('ordito.return', "Ordito: Return to Model"), f1: true,
+		super({ id: 'ordito.showDiagram', title: localize2('ordito.return', "Specsplice: Return to Model"), f1: true,
 			keybinding: { primary: KeyMod.CtrlCmd | KeyMod.Alt | KeyCode.KeyD, weight: KeybindingWeight.WorkbenchContrib } });
 	}
 	async run(accessor: ServicesAccessor): Promise<void> {
@@ -190,13 +190,13 @@ registerAction2(class extends Action2 {
 	}
 });
 registerAction2(class extends Action2 {
-	constructor() { super({ id: 'ordito.showNavigation', title: localize2('ordito.showNavigation', "Ordito: Show Diagram Navigation"), f1: true }); }
+	constructor() { super({ id: 'ordito.showNavigation', title: localize2('ordito.showNavigation', "Specsplice: Show Diagram Navigation"), f1: true }); }
 	async run(accessor: ServicesAccessor): Promise<void> { await accessor.get(IViewsService).openViewContainer(ORDITO_VIEW_CONTAINER_ID, true); }
 });
 CommandsRegistry.registerCommandAlias('ordito.returnToDiagram', 'ordito.showDiagram');
 
 registerAction2(class extends Action2 {
-	constructor() { super({ id: 'ordito.ai.prepareReviewedCode', title: localize2('ordito.featureCode.command', "Ordito: Prepare Reviewed Code from Diagrams"), f1: true }); }
+	constructor() { super({ id: 'ordito.ai.prepareReviewedCode', title: localize2('ordito.featureCode.command', "Specsplice: Prepare Reviewed Code from Diagrams"), f1: true }); }
 	async run(accessor: ServicesAccessor): Promise<void> {
 		const project = accessor.get(IOrditoProjectService);
 		const editorService = accessor.get(IEditorService);
@@ -207,7 +207,7 @@ registerAction2(class extends Action2 {
 });
 
 registerAction2(class extends Action2 {
-	constructor() { super({ id: 'ordito.openModel', title: localize2('ordito.openModel', "Ordito: Open Model"), f1: true }); }
+	constructor() { super({ id: 'ordito.openModel', title: localize2('ordito.openModel', "Specsplice: Open Model"), f1: true }); }
 	async run(accessor: ServicesAccessor): Promise<void> {
 		const project = accessor.get(IOrditoProjectService);
 		const editorService = accessor.get(IEditorService);
@@ -217,11 +217,11 @@ registerAction2(class extends Action2 {
 });
 
 registerAction2(class extends Action2 {
-	constructor() { super({ id: 'ordito.upgradeModelV4', title: localize2('ordito.upgradeModelV4', "Ordito: Upgrade Model to Version 4"), f1: true }); }
+	constructor() { super({ id: 'ordito.upgradeModelV4', title: localize2('ordito.upgradeModelV4', "Specsplice: Upgrade Model to Version 4"), f1: true }); }
 	run(accessor: ServicesAccessor): void { accessor.get(IOrditoProjectService).upgradeToV4(); }
 });
 registerAction2(class extends Action2 {
-	constructor() { super({ id: 'ordito.openModelSource', title: localize2('ordito.openModelSource', "Ordito: Edit Model Specification"), f1: true }); }
+	constructor() { super({ id: 'ordito.openModelSource', title: localize2('ordito.openModelSource', "Specsplice: Edit Model Specification"), f1: true }); }
 	async run(accessor: ServicesAccessor): Promise<void> {
 		const resource = accessor.get(IOrditoProjectService).modelUri;
 		if (resource) { await accessor.get(IEditorService).openEditor({ resource, options: { override: 'default', pinned: true } }); }
@@ -230,7 +230,7 @@ registerAction2(class extends Action2 {
 
 // Compatibility command for the semantic shell introduced in M1.
 registerAction2(class extends Action2 {
-	constructor() { super({ id: 'ordito.workbench.open', title: localize2('ordito.openProjectHome', "Ordito: Open Project Home"), f1: true }); }
+	constructor() { super({ id: 'ordito.workbench.open', title: localize2('ordito.openProjectHome', "Specsplice: Open Project Home"), f1: true }); }
 	async run(accessor: ServicesAccessor): Promise<void> {
 		accessor.get(IOrditoProjectService).showHome();
 		await accessor.get(IEditorService).openEditor({ resource: OrditoInput.RESOURCE, options: { pinned: true, revealIfOpened: true } });
@@ -254,7 +254,7 @@ registerWorkbenchContribution2(OrditoStartup.ID, OrditoStartup, WorkbenchPhase.A
 registerWorkbenchContribution2(OrditoDiagramLayout.ID, OrditoDiagramLayout, WorkbenchPhase.AfterRestored);
 
 registerAction2(class extends Action2 {
-	constructor() { super({ id: 'ordito.toggleWorkbench', title: localize2('ordito.toggleWorkbench', "Ordito: Toggle IDE Tools"), f1: true }); }
+	constructor() { super({ id: 'ordito.toggleWorkbench', title: localize2('ordito.toggleWorkbench', "Specsplice: Toggle IDE Tools"), f1: true }); }
 	async run(accessor: ServicesAccessor): Promise<void> {
 		const configuration = accessor.get(IConfigurationService);
 		await configuration.updateValue('ordito.focusDiagrams', configuration.getValue<boolean>('ordito.focusDiagrams') === false, ConfigurationTarget.WORKSPACE);
@@ -262,7 +262,7 @@ registerAction2(class extends Action2 {
 });
 
 registerAction2(class extends Action2 {
-	constructor() { super({ id: 'ordito.toggleNavigation', title: localize2('ordito.toggleNavigation', "Ordito: Toggle Diagram Navigation"), f1: true }); }
+	constructor() { super({ id: 'ordito.toggleNavigation', title: localize2('ordito.toggleNavigation', "Specsplice: Toggle Diagram Navigation"), f1: true }); }
 	async run(accessor: ServicesAccessor): Promise<void> {
 		const layout = accessor.get(IWorkbenchLayoutService);
 		if (layout.isVisible(Parts.SIDEBAR_PART)) { layout.setPartHidden(true, Parts.SIDEBAR_PART); }
@@ -272,7 +272,7 @@ registerAction2(class extends Action2 {
 
 
 Registry.as<IConfigurationRegistry>(ConfigurationExtensions.Configuration).registerConfiguration({
-	id: 'ordito', title: 'Ordito', type: 'object', properties: {
+	id: 'ordito', title: 'Specsplice', type: 'object', properties: {
 		'ordito.focusDiagrams': { type: 'boolean', default: true, description: localize('ordito.focusDiagrams', "Keep diagram work focused. IDE tools return when you open another editor or choose Show IDE.") },
 		'ordito.codeUpdates.suggestAfterSave': { type: 'boolean', default: true, description: localize('ordito.codeUpdates.suggestAfterSave', "Show an action to update the codebase after saving diagram changes. Update Codebase from Diagrams remains available in the Code tab and Command Palette.") },
 		'ordito.diagramImport.incremental': { type: 'boolean', default: true, description: localize('ordito.incremental.setting', "Explore architecture in a persistent Codex conversation with local tools and independent diagram drafts. Disable to use the legacy import pipeline.") },
@@ -295,7 +295,7 @@ Registry.as<IConfigurationRegistry>(ConfigurationExtensions.Configuration).regis
 			type: 'object',
 			scope: ConfigurationScope.APPLICATION,
 			default: { ...defaultProjectDiagramExplorationBudget },
-			description: localize('ordito.diagram.defaultBudgetSetting', "Limits for new diagram explorations. Use Set Default Exploration Budget in Ordito AI Settings to choose a preset or enter values in KiB and minutes."),
+			description: localize('ordito.diagram.defaultBudgetSetting', "Limits for new diagram explorations. Use Set Default Exploration Budget in Specsplice AI Settings to choose a preset or enter values in KiB and minutes."),
 			additionalProperties: false,
 			required: ['maxToolCalls', 'maxReadBytes', 'maxDurationMs', 'maxModelTurns'],
 			properties: {
