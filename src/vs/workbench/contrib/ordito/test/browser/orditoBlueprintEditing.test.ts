@@ -27,7 +27,7 @@ export class ScriptedDialogs implements Pick<IQuickInputService, 'pick' | 'input
 	assertComplete(): void { assert.strictEqual(this.answers.length, 0); }
 }
 
-suite('Ordito guided blueprint editing', () => {
+suite('Specsplice guided blueprint editing', () => {
 	let model: SemanticModelV4;
 	setup(() => { model = structuredClone(blueprintFixture); });
 	const run = async (model: SemanticModelV4, answers: (string | string[] | undefined)[], mode?: BlueprintEditMode, selectedId = 'component.checkout') => {

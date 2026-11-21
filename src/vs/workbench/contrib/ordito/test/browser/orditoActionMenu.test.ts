@@ -5,7 +5,7 @@ import { ensureNoDisposablesAreLeakedInTestSuite } from '../../../../../base/tes
 import { OrditoActionMenu } from '../../browser/orditoActionMenu.js';
 import { OrditoControls } from '../../browser/orditoControls.js';
 
-suite('Ordito action menu hierarchy', () => {
+suite('Specsplice action menu hierarchy', () => {
 	const store = ensureNoDisposablesAreLeakedInTestSuite();
 	let root: HTMLElement;
 	let controls: OrditoControls;

@@ -13,7 +13,7 @@ import { OrditoEditor } from './orditoEditor.js';
 interface SearchItem extends IQuickPickItem { elementId?: string; viewId?: string }
 
 registerAction2(class extends Action2 {
-	constructor() { super({ id: 'ordito.showImpact', title: localize2('ordito.showImpact', "Ordito: Show Change Impact"), f1: true }); }
+	constructor() { super({ id: 'ordito.showImpact', title: localize2('ordito.showImpact', "Specsplice: Show Change Impact"), f1: true }); }
 	async run(accessor: ServicesAccessor): Promise<void> {
 		const project = accessor.get(IOrditoProjectService);
 		const quickInput = accessor.get(IQuickInputService);
@@ -32,7 +32,7 @@ registerAction2(class extends Action2 {
 });
 
 registerAction2(class extends Action2 {
-	constructor() { super({ id: 'ordito.search', title: localize2('ordito.search', "Ordito: Search System"), f1: true }); }
+	constructor() { super({ id: 'ordito.search', title: localize2('ordito.search', "Specsplice: Search System"), f1: true }); }
 	async run(accessor: ServicesAccessor): Promise<void> {
 		const project = accessor.get(IOrditoProjectService);
 		const quickInput = accessor.get(IQuickInputService);
@@ -70,9 +70,9 @@ registerAction2(class extends Action2 {
 });
 
 for (const [id, title] of [
-	['showSystemMap', localize2('ordito.showSystemMap', "Ordito: Show System Map")],
-	['goBack', localize2('ordito.goBack', "Ordito: Go Back")],
-	['goForward', localize2('ordito.goForward', "Ordito: Go Forward")]
+	['showSystemMap', localize2('ordito.showSystemMap', "Specsplice: Show System Map")],
+	['goBack', localize2('ordito.goBack', "Specsplice: Go Back")],
+	['goForward', localize2('ordito.goForward', "Specsplice: Go Forward")]
 ] as const) {
 	registerAction2(class extends Action2 {
 		constructor() { super({ id: `ordito.${id}`, title, f1: true }); }

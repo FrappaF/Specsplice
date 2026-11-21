@@ -8,7 +8,7 @@ import { editOrditoConnectionDetails, editOrditoRelationForm } from '../../brows
 import { type SemanticModel } from '../../common/modelTypes.js';
 import { applyVisualEdit, type VisualEdit } from '../../common/visualEditing.js';
 
-suite('Ordito grouped relationship forms', () => {
+suite('Specsplice grouped relationship forms', () => {
 	ensureNoDisposablesAreLeakedInTestSuite();
 	let parent: HTMLElement;
 	let model: SemanticModel;

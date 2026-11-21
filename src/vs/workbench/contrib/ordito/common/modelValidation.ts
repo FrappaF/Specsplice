@@ -287,7 +287,7 @@ export function validateSemanticModel(value: unknown): ModelDiagnostic[] {
 export class InvalidSemanticModelError extends Error {
 	readonly diagnostics: ModelDiagnostic[];
 	constructor(diagnostics: ModelDiagnostic[]) {
-		super('Invalid Ordito semantic model');
+		super('Invalid Specsplice semantic model');
 		this.diagnostics = diagnostics;
 	}
 }

@@ -6,7 +6,7 @@ import { renderStructuralReview, type StructuralReviewActions } from '../../brow
 import { createPureProject, type StructuralProjectSession } from '../../common/modelProject.js';
 import { nodeOrdersFixture } from '../common/nodeOrdersFixture.js';
 
-suite('Ordito visual structural review', () => {
+suite('Specsplice visual structural review', () => {
 	const store = ensureNoDisposablesAreLeakedInTestSuite(); let root: HTMLElement;
 	setup(() => { root = dom.append(document.body, dom.$('section.ordito-shell')); root.tabIndex = -1; }); teardown(() => root.remove());
 	function fixture() {

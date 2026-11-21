@@ -138,7 +138,7 @@ export function createNavigationScenarios(harness: SmokeHarness) {
 		await window.keyboard.press('Escape');
 		await shell.getByRole('button', { name: 'Back', exact: true }).click();
 		await shell.getByRole('region', { name: 'Diagram: Checkout Structure', exact: true }).waitFor();
-		await runCommand(window, 'Ordito: Go Forward');
+		await runCommand(window, 'Specsplice: Go Forward');
 		await shell.getByRole('heading', { level: 1, name: 'Payment', exact: true }).waitFor();
 		await clickOrditoButton(window, 'Request Payment → Payment: implements contract');
 		await shell.getByRole('region', { name: 'Diagram: Checkout Structure', exact: true }).waitFor();
@@ -148,10 +148,10 @@ export function createNavigationScenarios(harness: SmokeHarness) {
 		await clickOrditoButton(window, 'Payment Outcome');
 		await shell.getByRole('region', { name: 'Diagram: Payment Outcome', exact: true }).waitFor();
 		assert.equal(await shell.locator('.ordito-node[aria-pressed="true"]').textContent(), 'Request Payment');
-		await runCommand(window, 'Ordito: Go Back');
+		await runCommand(window, 'Specsplice: Go Back');
 		await shell.getByRole('region', { name: 'Diagram: Checkout Structure', exact: true }).waitFor();
 		assert.equal(await shell.locator('.ordito-node[aria-pressed="true"]').textContent(), 'Request Payment');
-		await runCommand(window, 'Ordito: Go Forward');
+		await runCommand(window, 'Specsplice: Go Forward');
 		await shell.getByRole('region', { name: 'Diagram: Payment Outcome', exact: true }).waitFor();
 		await searchSystem(window, 'Feature', 'Confirm Purchase');
 		await shell.getByRole('heading', { level: 1, name: 'Confirm Purchase', exact: true }).waitFor();
@@ -159,12 +159,12 @@ export function createNavigationScenarios(harness: SmokeHarness) {
 		await shell.getByRole('button', { name: 'Back', exact: true }).click();
 		await searchSystem(window, 'Diagrams', 'Cart Structure');
 		await shell.getByRole('region', { name: 'Diagram: Cart Structure', exact: true }).waitFor();
-		await runCommand(window, 'Ordito: Go Forward');
+		await runCommand(window, 'Specsplice: Go Forward');
 		await shell.getByRole('region', { name: 'Diagram: Cart Structure', exact: true }).waitFor();
 		assert.equal(await shell.locator('.ordito-workspace-bar .ordito-diagram-picker').getAttribute('aria-label'), 'Cart Structure', 'New navigation discards the forward branch');
-		await runCommand(window, 'Ordito: Go Back');
+		await runCommand(window, 'Specsplice: Go Back');
 		await shell.getByRole('region', { name: 'Diagram: Payment Outcome', exact: true }).waitFor();
-		await runCommand(window, 'Ordito: Search System');
+		await runCommand(window, 'Specsplice: Search System');
 		await window.locator('.quick-input-widget').getByText('Search System', { exact: true }).waitFor();
 		await window.keyboard.press('Escape');
 		await shell.getByRole('region', { name: 'Diagram: Payment Outcome', exact: true }).waitFor();

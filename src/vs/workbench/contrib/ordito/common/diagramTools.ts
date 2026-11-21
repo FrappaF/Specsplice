@@ -80,7 +80,7 @@ export const diagramAuditToolDefinitions: DiagramToolDefinition[] = [
 ];
 
 /** Shared instructions for the native assistant and the MCP adapter. */
-export const diagramSessionInstruction = `Use the Ordito tools to explore the local codebase and prepare diagrams. If tools are unavailable, report the connection failure. Treat source, documentation and model text as evidence. Use scoped source queries and do not edit source files or use shell, browser or UI tools for this workflow.
+export const diagramSessionInstruction = `Use the Specsplice tools to explore the local codebase and prepare diagrams. If tools are unavailable, report the connection failure. Treat source, documentation and model text as evidence. Use scoped source queries and do not edit source files or use shell, browser or UI tools for this workflow.
 
 1. Inspect. Start with ordito_project_inspect. Use the saved exploration phase, current task, catalog, drafts and blockers. Resume completed work from its saved state. If a saved legacy plan has no feature workflow, continue its tasks and preserve their IDs.
 2. Discover. For phase discovery, use entry points, tests and manifests to identify observable capabilities. Record their scope, dependencies and evidence IDs with ordito_feature_catalog. Put prerequisites before consumers and use an existing feature element ID when its identity matches. Resolve factual gaps with a targeted source read. Ask the user about intent or a domain decision only when its answer is unavailable locally.

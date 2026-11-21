@@ -53,7 +53,7 @@ const config = { version: 1, provider: 'codex', connection: 'cli', executable: '
 const defaultProjectBudget: ExplorationBudget = { maxToolCalls: 800, maxReadBytes: 16 * 1024 * 1024, maxDurationMs: 180 * 60_000, maxModelTurns: 64 };
 const budgetIncrease: ExplorationBudget = { maxToolCalls: 100, maxReadBytes: 2 * 1024 * 1024, maxDurationMs: 30 * 60_000, maxModelTurns: 8 };
 
-suite('Ordito native AI orchestration', () => {
+suite('Specsplice native AI orchestration', () => {
 	const store = ensureNoDisposablesAreLeakedInTestSuite();
 	function fixture(configured = true, executable = 'codex', maxCalls = 2, savedExploration?: { id: string; resource?: string }) {
 		const instantiation = store.add(new TestInstantiationService());
@@ -1673,7 +1673,7 @@ suite('Ordito native AI orchestration', () => {
 			await f.service.buildDiagrams(); await f.service.reviewDiagramProposal('draft-review'); await f.service.applyDiagramReview();
 			await f.service.updateDiagrams();
 			const prompt = native ? f.chatPrompts.at(-1) : f.dialogs.at(-1)!.prompt;
-			assert.ok(prompt); assert.ok(prompt.startsWith('Update the project diagrams from the current codebase using the Ordito tools.'));
+			assert.ok(prompt); assert.ok(prompt.startsWith('Update the project diagrams from the current codebase using the Specsplice tools.'));
 			for (const intent of ['preserve existing diagram and object IDs', 'manual layout', 'single complete project review', 'Do not publish changes']) { assert.ok(prompt.includes(intent), intent); }
 			assert.deepStrictEqual([f.requests.includes('diagramChat'), f.errors], [false, []], 'prefilling never submits a model request');
 			await f.service.returnToDiagrams(); await f.service.chat();

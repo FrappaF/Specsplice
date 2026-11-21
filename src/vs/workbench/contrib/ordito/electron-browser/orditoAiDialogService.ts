@@ -21,7 +21,7 @@ import { type CodeAiProgress } from '../common/codeBridge.js';
 import { type DiagramExplorationBudget } from '../common/diagramExplorationBudget.js';
 import { OrditoDiagramBudgetForm, type OrditoDiagramBudgetFormOptions } from '../browser/orditoDiagramBudgetForm.js';
 
-/** Hosts native chat or the headless CLI inside the same temporary Ordito modal. */
+/** Hosts native chat or the headless CLI inside the same temporary Specsplice modal. */
 class OrditoAiDialogService extends Disposable implements IOrditoAiDialogService {
 	declare readonly _serviceBrand: undefined;
 	private readonly current = this._register(new MutableDisposable<DisposableStore>());

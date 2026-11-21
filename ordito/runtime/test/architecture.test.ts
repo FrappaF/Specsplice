@@ -17,7 +17,7 @@ async function sources(directory) {
 	return files.flat();
 }
 
-test('Ordito production dependencies preserve domain and importer boundaries and have no runtime cycles', async () => {
+test('Specsplice production dependencies preserve domain and importer boundaries and have no runtime cycles', async () => {
 	const roots = ['src/vs/workbench/contrib/ordito', 'ordito/ai', 'ordito/code-import', 'ordito/runtime', 'ordito/messaging'];
 	const files = (await Promise.all(roots.map(sources))).flat();
 	const graph = new Map(), violations = [];

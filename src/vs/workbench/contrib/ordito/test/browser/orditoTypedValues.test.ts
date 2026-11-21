@@ -4,7 +4,7 @@ import { orditoTypedValues, readOrditoScalar } from '../../browser/orditoTypedVa
 import { ScriptedDialogs } from './orditoBlueprintEditing.test.js';
 import { nodeOrdersFixture } from '../common/nodeOrdersFixture.js';
 
-suite('Ordito visual typed values', () => {
+suite('Specsplice visual typed values', () => {
 	ensureNoDisposablesAreLeakedInTestSuite();
 	test('text, empty strings, zero and false need no serialization syntax', async () => {
 		for (const [primitive, answers, expected, current] of [['string', ['ciao'], 'ciao', undefined], ['string', [''], '', undefined], ['integer', ['0'], 0, undefined], ['boolean', ['<focused>'], false, false]] as const) {

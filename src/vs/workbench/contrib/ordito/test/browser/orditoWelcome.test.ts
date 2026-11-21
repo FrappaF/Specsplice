@@ -6,7 +6,7 @@ import { renderOrditoWelcome, renderOrditoProjectHome } from '../../browser/ordi
 import { orditoDocumentStatus } from '../../browser/orditoDocumentStatus.js';
 import { type SemanticModel } from '../../common/modelTypes.js';
 
-suite('Ordito project entrances and truthful status', () => {
+suite('Specsplice project entrances and truthful status', () => {
 	const store = ensureNoDisposablesAreLeakedInTestSuite();
 	let root: HTMLElement;
 	setup(() => { root = dom.append(document.body, dom.$('section.ordito-shell')); });

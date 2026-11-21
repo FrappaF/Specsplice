@@ -182,13 +182,13 @@ export function describeOrditoError(error: unknown, context: OrditoErrorContext 
 		return info(localize('ordito.error.separateOwnership.cause', "This model stores architectural ownership separately from feature membership."), localize('ordito.error.separateOwnership.fix', "Use Edit Blueprint to change the architectural owner or feature membership separately."));
 	}
 	if (/requires? (?:v4|model version 4)|Upgrade the model to version 4|Model version .* is not supported/i.test(message)) {
-		return info(localize('ordito.error.version.cause', "This operation is not supported by the model's current version."), localize('ordito.error.version.fix', "Save a copy before upgrading an older model in Project Settings. For a model created by a newer Ordito version, update the application."));
+		return info(localize('ordito.error.version.cause', "This operation is not supported by the model's current version."), localize('ordito.error.version.fix', "Save a copy before upgrading an older model in Project Settings. For a model created by a newer Specsplice version, update the application."));
 	}
 	if (/(?:folder already contains|folder.*already contains) an A\.D\.E project/i.test(message)) {
-		return info(localize('ordito.error.existing.cause', "The chosen folder already contains an Ordito project."), localize('ordito.error.existing.fix', "Use Open Project to work on it, or choose an empty folder for the new project."));
+		return info(localize('ordito.error.existing.cause', "The chosen folder already contains a Specsplice project."), localize('ordito.error.existing.fix', "Use Open Project to work on it, or choose an empty folder for the new project."));
 	}
 	if (/engine is out of date|Incompatible code bridge protocol/i.test(message)) {
-		return info(localize('ordito.error.engine.cause', "The analysis engine and interface use incompatible versions."), localize('ordito.error.engine.fix', "Update or reinstall the complete application and reopen it. For a development build, run npm run build-fast -- --client-only in the Ordito repository, then fully quit and reopen Ordito."));
+		return info(localize('ordito.error.engine.cause', "The analysis engine and interface use incompatible versions."), localize('ordito.error.engine.fix', "Update or reinstall the complete application and reopen it. For a development build, run npm run build-fast -- --client-only in the Specsplice repository, then fully quit and reopen Specsplice."));
 	}
 	if (/Executable not found|Cannot find or execute|Invalid local CLI provider configuration|CLI program name|original CLI by name/i.test(message)) {
 		return info(localize('ordito.error.cli.cause', "The configured AI CLI executable could not be found or its configuration is invalid."), localize('ordito.error.cli.fix', "Install the official Codex or Claude Code CLI. In AI Settings → Choose Model and CLI, select its program name or absolute path, then sign in and refresh the account."));
@@ -217,7 +217,7 @@ export function describeOrditoError(error: unknown, context: OrditoErrorContext 
 	if (context === 'validation' && message) {
 		return info(message, localize('ordito.error.validation.fix', "Correct the highlighted fields and try saving again."));
 	}
-	return info(localize('ordito.error.unknown.cause', "The operation failed, but Ordito could not determine the cause."), context === 'save'
+	return info(localize('ordito.error.unknown.cause', "The operation failed, but Specsplice could not determine the cause."), context === 'save'
 		? localize('ordito.error.unknownSave.fix', "Keep the project open and try Save Copy in a writable folder. If it fails again, copy Technical Details to report the problem.")
 		: localize('ordito.error.unknown.fix', "Review the current project and retry the operation. If it fails again, copy Technical Details to report the problem."));
 }

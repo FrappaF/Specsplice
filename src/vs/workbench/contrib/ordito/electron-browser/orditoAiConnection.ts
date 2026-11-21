@@ -80,7 +80,7 @@ export class OrditoAiConnection extends Disposable {
 
 	async refreshConnection(): Promise<void> {
 		if (this.configuration.getValue<boolean>('chat.disableAIFeatures') === true) { return; }
-		if (this.host.busy) { this.notifications.info(localize('ordito.operationWait', "Wait for the Active Ordito Operation to Finish.")); return; }
+		if (this.host.busy) { this.notifications.info(localize('ordito.operationWait', "Wait for the Active Specsplice Operation to Finish.")); return; }
 		if (!this._config) { this.setConnectionStatus(localize('ordito.ai.configureConnection', "Connect an Original AI CLI and Choose a Model. Its Existing Login Will Be Checked.")); return; }
 		const provider = this._config?.provider ?? 'codex';
 		await this.checkAccount(provider, this._config?.executable ?? provider);
@@ -265,7 +265,7 @@ export class OrditoAiConnection extends Disposable {
 	}
 
 	async openCli(): Promise<void> {
-		if (this.host.busy) { this.notifications.info(localize('ordito.operationWait', "Wait for the Active Ordito Operation to Finish.")); return; }
+		if (this.host.busy) { this.notifications.info(localize('ordito.operationWait', "Wait for the Active Specsplice Operation to Finish.")); return; }
 		if (!await this.ensureConfigured()) { return; }
 		if (this.configuration.getValue<boolean>('chat.disableAIFeatures') === true || !await this.trust.requestWorkspaceTrust()) { this.host.info(localize('ordito.ai.cliBlocked', "Opening the AI CLI Requires Enabled AI Features and Workspace Trust.")); return; }
 		const staged = this.host.reviewSession && ['staged', 'passed', 'failed'].includes(this.host.reviewSession.status) ? this.host.reviewSession.worktree : undefined;

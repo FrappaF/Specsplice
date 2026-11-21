@@ -7,7 +7,7 @@ import { IEditorService } from '../../../services/editor/common/editorService.js
 import { IWorkbenchLayoutService, Parts } from '../../../services/layout/browser/layoutService.js';
 import { OrditoInput } from './orditoInput.js';
 
-/** Borrow the native layout while Ordito is the only visible editor; restore it for code and other tools. */
+/** Borrow the native layout while Specsplice is the only visible editor; restore it for code and other tools. */
 export class OrditoDiagramLayout extends Disposable {
 	static readonly ID = 'workbench.contrib.orditoDiagramLayout';
 	private readonly tabs = this._register(new MutableDisposable());

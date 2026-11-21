@@ -25,7 +25,7 @@ import { orditoCodeProtocolVersion, CodeBridgeProtocol, CodeContext, type CodePr
 import { checkoutModel } from '../../common/checkoutModel.js';
 import { OrditoCodeService } from '../../electron-browser/orditoCodeService.js';
 
-suite('Ordito native code bridge compatibility', () => {
+suite('Specsplice native code bridge compatibility', () => {
 	const store = ensureNoDisposablesAreLeakedInTestSuite();
 	const compatible: CodeBridgeProtocol = { version: orditoCodeProtocolVersion, operations: ['exploration', 'diagramPrepare', 'diagramStep', 'diagramApprovePlan', 'codeUpdate'] };
 	function fixture(initial: CodeBridgeProtocol | undefined | Error) {

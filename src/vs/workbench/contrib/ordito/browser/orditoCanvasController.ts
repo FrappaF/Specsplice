@@ -36,7 +36,7 @@ function connectionPreviewRoute(source: DiagramBox, target: DiagramBox | undefin
 	return outlineDistance > 1 ? [{ x: center.x + dx / outlineDistance, y: center.y + dy / outlineDistance }, tip] : undefined;
 }
 
-/** Owns camera state and per-render pointer/keyboard listeners for the Ordito editor. */
+/** Owns camera state and per-render pointer/keyboard listeners for the Specsplice editor. */
 export class OrditoCanvasController extends Disposable {
 	readonly interactions = this._register(new DisposableStore());
 

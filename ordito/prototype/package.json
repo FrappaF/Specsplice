@@ -1,6 +1,6 @@
 {
   "name": "ordito",
-  "displayName": "Ordito",
+  "displayName": "Specsplice",
   "description": "Visual design and AI-assisted collaborative development.",
   "version": "0.0.1",
   "private": true,
@@ -8,6 +8,6 @@
   "main": "./src/extension.js",
   "categories": ["Visualization"],
   "activationEvents": ["onCommand:ordito.open"],
-  "contributes": {"commands": [{"command": "ordito.open", "title": "Ordito: Open Visual Model"}]},
+  "contributes": {"commands": [{"command": "ordito.open", "title": "Specsplice: Open Visual Model"}]},
   "scripts": {"check": "node --check src/extension.js && node --check src/model.js && node --check desktop/smoke.cjs", "test": "node --test"}
 }

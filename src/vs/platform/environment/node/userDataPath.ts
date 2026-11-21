@@ -5,7 +5,7 @@
 
 import { existsSync } from 'fs';
 import { homedir } from 'os';
-import { NativeParsedArgs } from '../common/argv.js';
+import type { NativeParsedArgs } from '../common/argv.js';
 // This file used to be a pure JS file and was always
 // importing `path` from node.js even though we ship
 // our own version of the library and prefer to use
@@ -25,7 +25,7 @@ const cwd = process.env['VSCODE_CWD'] || process.cwd();
  * - respect VSCODE_APPDATA environment variable
  * - respect --user-data-dir CLI argument
  */
-export function getUserDataPath(cliArgs: NativeParsedArgs, productName: string, legacyName?: string): string {
+export function getUserDataPath(cliArgs: NativeParsedArgs, productName: string, legacyName?: string | readonly string[]): string {
 	const userDataPath = doGetUserDataPath(cliArgs, productName, legacyName);
 	const pathsToResolve = [userDataPath];
 
@@ -42,7 +42,7 @@ export function getUserDataPath(cliArgs: NativeParsedArgs, productName: string, 
 	return resolve(...pathsToResolve);
 }
 
-function doGetUserDataPath(cliArgs: NativeParsedArgs, productName: string, legacyName: string | undefined): string {
+function doGetUserDataPath(cliArgs: NativeParsedArgs, productName: string, legacyName: string | readonly string[] | undefined): string {
 
 	// 0. Running out of sources has a fixed productName
 	if (process.env['VSCODE_DEV']) {
@@ -56,10 +56,12 @@ function doGetUserDataPath(cliArgs: NativeParsedArgs, productName: string, legac
 		return join(portablePath, 'user-data');
 	}
 
+	const legacyNames = typeof legacyName === 'string' ? [legacyName].filter(Boolean) : legacyName;
+
 	// 2. Support global VSCODE_APPDATA environment variable
 	const appDataPath = process.env['VSCODE_APPDATA'];
 	if (appDataPath) {
-		return preferExistingUserDataPath(join(appDataPath, productName), legacyName && join(appDataPath, legacyName));
+		return preferExistingUserDataPath(join(appDataPath, productName), legacyNames?.map(name => join(appDataPath, name)));
 	}
 
 	// With Electron>=13 --user-data-dir switch will be propagated to
@@ -71,11 +73,14 @@ function doGetUserDataPath(cliArgs: NativeParsedArgs, productName: string, legac
 		return cliPath;
 	}
 
-	return preferExistingUserDataPath(getDefaultUserDataPath(productName), legacyName && getDefaultUserDataPath(legacyName));
+	return preferExistingUserDataPath(getDefaultUserDataPath(productName), legacyNames?.map(getDefaultUserDataPath));
 }
 
-function preferExistingUserDataPath(preferred: string, legacy: string | undefined): string {
-	return legacy && !existsSync(resolve(cwd, preferred)) && existsSync(resolve(cwd, legacy)) ? legacy : preferred;
+function preferExistingUserDataPath(preferred: string, legacy: readonly string[] | undefined): string {
+	if (!legacy?.length || existsSync(resolve(cwd, preferred))) {
+		return preferred;
+	}
+	return legacy.find(path => existsSync(resolve(cwd, path))) ?? preferred;
 }
 
 /**

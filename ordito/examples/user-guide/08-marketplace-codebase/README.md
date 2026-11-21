@@ -24,7 +24,7 @@ curl -sS http://127.0.0.1:3080/events
 
 The checkout confirms a `2500`-cent order. The return responds with the same ID, sets the status to `returned` and reports `2500` cents as the simulated refund. The final response contains `order.confirmed` followed by `order.returned`. Sending the return again produces `409` with `already-returned`. A return is still valid exactly 30 days after the purchase was confirmed. Stop the server with `Ctrl+C`.
 
-## Import into Ordito
+## Import into Specsplice
 
 1. Copy the `08-marketplace-codebase` folder to a new location. From Home, choose **Import Codebase** and select the copy.
 2. Choose **Structure and Available Semantic Analysis**. When **Source Inventory Ready** appears, look for the declarations below and open their source files.

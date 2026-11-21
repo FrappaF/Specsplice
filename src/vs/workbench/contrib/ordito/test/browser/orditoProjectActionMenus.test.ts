@@ -12,7 +12,7 @@ import { OrditoProjectService } from '../../browser/orditoProjectService.js';
 import { OrditoWorkflowContent } from '../../browser/orditoWorkflowContent.js';
 import { blueprintFixture } from '../common/blueprintFixture.js';
 
-suite('Ordito project action menus', () => {
+suite('Specsplice project action menus', () => {
 	const store = ensureNoDisposablesAreLeakedInTestSuite();
 	let root: HTMLElement;
 	setup(() => { root = dom.append(document.body, dom.$('section.ordito-shell')); });

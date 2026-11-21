@@ -10,7 +10,7 @@ import { nodeOrdersFixture } from '../common/nodeOrdersFixture.js';
 import { messagingFixture } from '../common/messagingFixture.js';
 import { describeOrditoDiagram } from '../../browser/orditoAccessibleContent.js';
 
-suite('Ordito task intent and guided properties', () => {
+suite('Specsplice task intent and guided properties', () => {
 	async function edit(model: SemanticModelV4, answers: (string | string[] | undefined)[]) {
 		const before = structuredClone(model), dialogs = new ScriptedDialogs(answers), edits = await editOrditoTask(dialogs, model); dialogs.assertComplete(); assert.deepStrictEqual(model, before);
 		return edits?.reduce((current, edit) => applyVisualEdit(current, edit) as SemanticModelV4, model);

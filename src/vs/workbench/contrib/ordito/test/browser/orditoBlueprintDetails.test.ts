@@ -6,7 +6,7 @@ import { renderBlueprintDetails } from '../../browser/orditoBlueprintDetails.js'
 import { emptyBlueprint, emptyFoundation } from '../../common/modelFoundation.js';
 import { type SemanticModelV4 } from '../../common/modelTypes.js';
 
-suite('Ordito blueprint details renderer', () => {
+suite('Specsplice blueprint details renderer', () => {
 	const disposables = ensureNoDisposablesAreLeakedInTestSuite();
 	let root: HTMLElement;
 	let controls: OrditoControls;

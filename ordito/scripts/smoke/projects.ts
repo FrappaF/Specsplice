@@ -39,12 +39,12 @@ export function createProjectsScenarios(harness: SmokeHarness) {
 		await applyWizardChanges(window);
 		await revealOrditoText(window, 'Input: sensorId (SensorId), Required');
 		await chooseOrditoDiagram(window, 'Acquisizione dati · Flow');
-		await runCommand(window, 'Ordito: Add Existing Element');
+		await runCommand(window, 'Specsplice: Add Existing Element');
 		await pickValue(window, 'Add Existing Element', 'Raccoglitore');
 		await addElement(window, 'Action', 'Valida misura');
 		await connect(window, 'Raccoglitore', 'Valida misura', 'Invocation', 'Valida', 'Valore non negativo');
 		await revealOrditoText(window, 'Input: sensorId (SensorId), Required');
-		await runCommand(window, 'Ordito: Add Diagram');
+		await runCommand(window, 'Specsplice: Add Diagram');
 		await completeDiagramForm(window, { feature: 'Acquisizione dati', kind: 'Sequence Diagram', name: 'Sequenza dati' });
 		for (const label of ['Tecnico → Console: Invia', 'Console → Raccoglitore: Acquisisci', 'Raccoglitore → Campione: Registra']) {
 			await clickOrditoButton(window, 'Add Existing Message');
@@ -61,7 +61,7 @@ export function createProjectsScenarios(harness: SmokeHarness) {
 		await shell.getByRole('button', { name: 'Undo', exact: true }).click();
 		assert.deepEqual(await messages(), before);
 		await shell.getByRole('button', { name: 'Redo', exact: true }).click();
-		await runCommand(window, 'Ordito: Add Diagram');
+		await runCommand(window, 'Specsplice: Add Diagram');
 		await completeDiagramForm(window, { feature: 'Acquisizione dati', kind: 'State Diagram', resource: 'Campione', name: 'Sample Lifecycle' });
 		for (const name of ['Nuovo', 'Archiviato']) {
 			await shell.getByRole('button', { name: 'Add State', exact: true }).click();
@@ -119,7 +119,7 @@ export function createProjectsScenarios(harness: SmokeHarness) {
 		assert.equal(await shell.locator('.ordito-impact, .ordito-canvas').count(), 0);
 		await shell.getByRole('button', { name: 'Add Diagram', exact: true }).click();
 		await completeDiagramForm(window, { feature: 'Nighttime Observations', kind: 'State Diagram', resource: 'Exposure', resourceContext: 'Coordinator', name: 'Exposure States' });
-		await runCommand(window, 'Ordito: Include Resource Lifecycle');
+		await runCommand(window, 'Specsplice: Include Resource Lifecycle');
 		await revealOrditoText(window, '2 of 2 declared states visible · 1 visible transitions');
 		await searchSystem(window, 'Contract', 'Optical Constraints');
 		await clickOrditoButton(window, 'Show Change Impact');

@@ -72,7 +72,7 @@ class DelayedFileService extends FileService {
 	}
 }
 
-suite('Ordito project context', () => {
+suite('Specsplice project context', () => {
 	const disposables = ensureNoDisposablesAreLeakedInTestSuite();
 	let storage: InMemoryStorageService;
 	let files: DelayedFileService;

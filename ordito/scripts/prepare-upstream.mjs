@@ -33,7 +33,7 @@ const report = { base: metadata.commit, target, branch, worktree: destination, c
 writeFileSync(path.join(destination, 'ordito/upstream-trial.json'), JSON.stringify(report, null, '\t') + '\n');
 if (result.status === 0) {
 	writeFileSync(path.join(destination, 'ordito/upstream.json'), JSON.stringify({ ...metadata,
-		commit: target, importedOn: new Date().toISOString().slice(0, 10), method: 'upstream delta applied to Ordito snapshot'
+		commit: target, importedOn: new Date().toISOString().slice(0, 10), method: 'upstream delta applied to Specsplice snapshot'
 	}, null, '  ') + '\n');
 }
 console.log(JSON.stringify(report, null, 2));

@@ -15,7 +15,7 @@ if (!repository || !/^[a-f0-9]{40}$/.test(target ?? '') || !destination) {
 		const git = async args => (await run('git', ['-C', repository, ...args], { maxBuffer: 64 * 1024 * 1024 })).stdout;
 		await git(['cat-file', '-e', `${base}^{commit}`]);
 		await git(['cat-file', '-e', `${target}^{commit}`]);
-		console.log(`Ordito upstream: ${base} -> ${target}`);
+		console.log(`Specsplice upstream: ${base} -> ${target}`);
 		console.log(await git(['diff', '--stat', base, target]));
 		const patch = await git(['diff', '--binary', '--full-index', base, target]);
 		await writeFile(destination, patch, { flag: 'wx' });

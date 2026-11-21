@@ -7,7 +7,7 @@ import { renderOrditoSystemMap } from '../../browser/orditoSystemMap.js';
 import { atlasTargetKey, createSystemAtlasState, SystemAtlas, type AtlasTarget } from '../../common/systemAtlas.js';
 import { createAtlasFixture } from '../common/systemAtlasFixture.js';
 
-suite('Ordito layered system atlas', () => {
+suite('Specsplice layered system atlas', () => {
 	const store = ensureNoDisposablesAreLeakedInTestSuite();
 	let root: HTMLElement;
 	setup(() => { root = dom.append(document.body, dom.$('section.ordito-shell')); root.style.width = '1024px'; });

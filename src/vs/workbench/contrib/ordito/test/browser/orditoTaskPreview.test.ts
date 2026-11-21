@@ -8,7 +8,7 @@ import { describeBlueprint } from '../../browser/orditoBlueprintContent.js';
 import { compileModelTaskContext } from '../../common/modelTaskContext.js';
 import { nodeOrdersFixture } from '../common/nodeOrdersFixture.js';
 
-suite('Ordito structural context renderer', () => {
+suite('Specsplice structural context renderer', () => {
 	const disposables = ensureNoDisposablesAreLeakedInTestSuite();
 	let root: HTMLElement;
 	setup(() => { root = dom.append(document.body, dom.$('section')); });

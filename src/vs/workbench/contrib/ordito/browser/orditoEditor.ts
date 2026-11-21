@@ -100,7 +100,7 @@ export class OrditoEditor extends EditorPane {
 	protected override createEditor(parent: HTMLElement): void {
 		this.root = dom.append(parent, dom.$('.ordito-shell'));
 		this.root.tabIndex = -1;
-		this.root.setAttribute('aria-label', localize('ordito.workbenchLabel', "Ordito Visual Workbench"));
+		this.root.setAttribute('aria-label', localize('ordito.workbenchLabel', "Specsplice Visual Workbench"));
 		orditoFocusedSurface.bindTo(this._register(this.contextKeyService.createScoped(this.root))).set('editor');
 		void this.project.restore().catch(error => this.notifications.error(orditoErrorNotification(error, 'load', this.project.model)));
 		this.render();
@@ -236,7 +236,7 @@ export class OrditoEditor extends EditorPane {
 				this.blueprint.render(content);
 			} else if (this.activeTab === 'code') {
 				if (codeUpdate) {
-					const startReason = this.configurationService.getValue<boolean>('chat.disableAIFeatures') === true ? localize('ordito.ai.disabled', "AI Features Are Disabled in Settings.") : this.ai.busy || this.code.busy ? localize('ordito.operationWait', "Wait for the Active Ordito Operation to Finish.") : undefined;
+					const startReason = this.configurationService.getValue<boolean>('chat.disableAIFeatures') === true ? localize('ordito.ai.disabled', "AI Features Are Disabled in Settings.") : this.ai.busy || this.code.busy ? localize('ordito.operationWait', "Wait for the Active Specsplice Operation to Finish.") : undefined;
 					this.activeReview = renderOrditoCodeUpdate(content, this.controls, codeUpdate, {
 						startReason, refresh: () => this.ai.updateCodebase(), start: () => this.ai.startCodeUpdate(), stop: () => this.ai.stopCodeUpdate(),
 						close: () => { this.ai.closeCodeUpdate(); this.controls.focusTarget('code-update'); },
@@ -370,7 +370,7 @@ export class OrditoEditor extends EditorPane {
 		} else if (!contextOnly && (model.version === 4 || model.version === 5) && this.project.modelUri && isOrditoProjectModelPath(this.project.modelUri.path) && model.semantics.elements.length) {
 			let generationReady = false;
 			try { assertPureProject(model); generationReady = true; } catch { /* Incomplete designs remain editable, without promising code generation. */ }
-			const reason = !this.ai.available || !this.code.available ? localize('ordito.generation.unavailable', "Local code generation and verification are unavailable in this environment.") : !this.project.editable ? localize('ordito.generation.readonly', "Open a writable project to prepare code changes.") : busy ? localize('ordito.operationWait', "Wait for the Active Ordito Operation to Finish.") : localize('ordito.generation.requirements', "Complete the Executable Behavior in Project Settings Before Preparing a Local Code Review.");
+			const reason = !this.ai.available || !this.code.available ? localize('ordito.generation.unavailable', "Local code generation and verification are unavailable in this environment.") : !this.project.editable ? localize('ordito.generation.readonly', "Open a writable project to prepare code changes.") : busy ? localize('ordito.operationWait', "Wait for the Active Specsplice Operation to Finish.") : localize('ordito.generation.requirements', "Complete the Executable Behavior in Project Settings Before Preparing a Local Code Review.");
 			const disabled = busy || !this.ai.available || !this.code.available || !this.project.editable || this.project.hasStructuralErrors || !generationReady;
 			if (disabled && parent.classList.contains('ordito-floating-menu')) {
 				this.paragraph(this.controls.details(parent, localize('ordito.generation.whyUnavailable', "Code Review Unavailable"), 'canvas-code-unavailable'), reason);
@@ -381,7 +381,7 @@ export class OrditoEditor extends EditorPane {
 			}
 		} else if (this.code.context && this.code.context.diagramState !== 'index' && model.version !== 4 && model.version !== 5) {
 			const sync = this.button(parent, localize('ordito.updateCode', "Update Code"), () => this.code.sync('model'));
-			this.explainDisabled(sync, !this.code.available || busy || isSourceEvidenceModel(model), localize('ordito.operationWait', "Wait for the Active Ordito Operation to Finish."), false);
+			this.explainDisabled(sync, !this.code.available || busy || isSourceEvidenceModel(model), localize('ordito.operationWait', "Wait for the Active Specsplice Operation to Finish."), false);
 		}
 		if (this.ai.available && this.configurationService.getValue<boolean>('chat.disableAIFeatures') !== true && this.code.context?.diagramState === 'diagrams') {
 			const exploration = this.ai.diagramExploration, phase = getDiagramExplorationPhase(exploration);

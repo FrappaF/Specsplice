@@ -1,13 +1,13 @@
 ---
 name: Bug report
-about: Report a reproducible problem with Ordito
+about: Report a reproducible problem with Specsplice
 ---
 
-<!-- Search existing Ordito issues before opening a new one. -->
+<!-- Search existing Specsplice issues before opening a new one. -->
 
 ## Environment
 
-- Ordito version or commit
+- Specsplice version or commit
 - Operating system and version
 - AI provider and CLI version, if relevant
 

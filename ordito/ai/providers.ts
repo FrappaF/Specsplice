@@ -28,10 +28,10 @@ export function createCliProvider(runner = runProcess): StructuredProvider {
 					// Diagnose common failures without exposing raw provider output, credentials or source context.
 					const output = result.stderr + '\n' + result.stdout;
 					if (/rate.?limit|quota|usage.limit|\b429\b/i.test(output)) { throw new Error('Provider quota or rate limit reached. Check the account limits in the original CLI and retry later.'); }
-					if (/unauthorized|unauthenticated|not logged in|authentication.*(required|failed)|\b401\b/i.test(output)) { throw new Error('Provider authentication failed. Refresh the CLI account, or sign in with the same executable and CODEX_HOME used by Ordito'); }
+					if (/unauthorized|unauthenticated|not logged in|authentication.*(required|failed)|\b401\b/i.test(output)) { throw new Error('Provider authentication failed. Refresh the CLI account, or sign in with the same executable and CODEX_HOME used by Specsplice'); }
 					if (/model[_-](not[_-]found|not[_-]available|access[_-]denied)|model.{0,100}(not found|not available|does not exist|not supported|isn't supported|access)|unsupported.{0,30}model/i.test(output)) { throw new Error(`The selected model "${config.model}" is unavailable to this CLI account. Open the same CLI, check its model selector and choose an exact model ID supported by the account.`); }
-					if (/unknown feature|unrecognized (option|argument)|unexpected argument|unknown (option|flag)/i.test(output)) { throw new Error('The provider CLI rejected an Ordito command option. Check the version of the configured CLI executable and update it, then retry.'); }
-					if (/invalid[_ -]json[_ -]schema|invalid schema|schema.{0,100}(not supported|unsupported|invalid|required)/i.test(output)) { throw new Error('The provider rejected the structured output schema supplied by Ordito Check that the selected model supports structured output; if it does, report this as an Ordito schema compatibility issue.'); }
+					if (/unknown feature|unrecognized (option|argument)|unexpected argument|unknown (option|flag)/i.test(output)) { throw new Error('The provider CLI rejected a Specsplice command option. Check the version of the configured CLI executable and update it, then retry.'); }
+					if (/invalid[_ -]json[_ -]schema|invalid schema|schema.{0,100}(not supported|unsupported|invalid|required)/i.test(output)) { throw new Error('The provider rejected the structured output schema supplied by Specsplice Check that the selected model supports structured output; if it does, report this as a Specsplice schema compatibility issue.'); }
 					throw new Error(`Provider CLI failed with exit code ${result.code}. Open the original CLI to inspect its version, model access and connection, then retry.`);
 				}
 				try {

@@ -52,7 +52,7 @@ export async function inspectImplementationBaseline(prepared: PreparedImplementa
 	return { root, baseCommit: await git(root, ['rev-parse', 'HEAD'], signal) };
 }
 
-/** Persisted directories are owned by Ordito and cannot be redirected through symlinks. */
+/** Persisted directories are owned by Specsplice and cannot be redirected through symlinks. */
 async function managed(root: string, ...parts: string[]): Promise<string> {
 	let path = root;
 	if (await realpath(root) !== root) { throw new Error('Project root must be canonical'); }

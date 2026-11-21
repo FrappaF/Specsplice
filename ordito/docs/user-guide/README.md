@@ -1,14 +1,14 @@
-# The Complete Ordito User Guide
+# The Complete Specsplice User Guide
 
-**A tour, a project built from scratch, and a diagram reference.** Edition dated 21 November 2026. This guide covers the Ordito `v0.1.0` desktop preview and the English examples distributed with this edition.
+**A tour, a project built from scratch, and a diagram reference.** Edition dated 21 November 2026. This guide uses the current Specsplice name and command labels. The screenshots show the desktop preview released as Ordito `v0.1.0`, where Command Palette entries use the `Ordito:` prefix. [Guide for that preview](https://github.com/FrappaF/Specsplice/blob/v0.1.0/ordito/docs/user-guide/README.md)
 
-Ordito is a desktop integrated development environment (IDE) for designing software with diagrams, defining contracts and behavior, exploring code, and working with artificial intelligence (AI). Diagrams show who does what, which data they use, and what happens if something fails. In this guide you will build and save a model of an online store and test selected rules locally. Each stage identifies what you can expect from the descriptive model, the generated code, and the verification results.
+Specsplice is a desktop integrated development environment (IDE) for designing software with diagrams, defining contracts and behavior, exploring code, and working with artificial intelligence (AI). Diagrams show who does what, which data they use, and what happens if something fails. In this guide you will build and save a model of an online store and test selected rules locally. Each stage identifies what you can expect from the descriptive model, the generated code, and the verification results.
 
 ## How to use this guide
 
-This guide is for software designers and developers who are new to Ordito. To start, you should be comfortable working with files and folders and understand basic concepts such as data, functions, and conditions. The guide introduces each notation as you need it. L16 and the direct code changes in L20 also require basic JavaScript and terminal skills. See A1 for the tools needed to build Ordito from source.
+This guide is for software designers and developers who are new to Specsplice. To start, you should be comfortable working with files and folders and understand basic concepts such as data, functions, and conditions. The guide introduces each notation as you need it. L16 and the direct code changes in L20 also require basic JavaScript and terminal skills. See A1 for the tools needed to build Specsplice from source.
 
-Before T1, check that Ordito starts and that you can write to the folder where you extracted the examples. You will edit and save the model in that copy. If you still need to set up the application, start with A1. The tour and manual modeling require no AI account. To generate and verify code with the local profiles in L12–L15, make sure Node 24.22.1 is available when Ordito starts. The runner uses it to execute the generated files. The guided simulations in L14–L15 run without a broker. L17–L19 list the prerequisites for AI-assisted tasks.
+Before T1, check that Specsplice starts and that you can write to the folder where you extracted the examples. You will edit and save the model in that copy. If you still need to set up the application, start with A1. The tour and manual modeling require no AI account. To generate and verify code with the local profiles in L12–L15, make sure Node 24.22.1 is available when Specsplice starts. The runner uses it to execute the generated files. The guided simulations in L14–L15 run without a broker. L17–L19 list the prerequisites for AI-assisted tasks.
 
 **Part I is a tour of a ready-made project, Order Shop.** **Part II is the Marketplace lab**, where you build your own model. **Part III is a reference** for choosing and working with a notation. The appendices cover installation, IDE tools, and troubleshooting.
 
@@ -28,7 +28,7 @@ Follow L1–L11 in order to create the objects reused in later lessons. You can 
 
 Allow about half an hour for the tour, depending on how familiar you are with the interface. Plan multiple sessions for the lab. Stop at the checkpoints, save your changes, and pick up where you left off. Each lesson opens with the problem and how you will use the result. Its final check helps you decide when to move on. In your own projects, create the views you need for a decision. The lab covers all of them so you can learn when to use each one.
 
-Extract the [example projects](example-projects.zip) to a folder you can write to. Copy each folder in full, including hidden files. The examples store their model in `.ordito`. Ordito can also open projects saved in the earlier `.ade` folder. Keep the original archive so you can start again without losing your working copy. **You can complete the exercises using the interface.** Commands, properties, and forms maintain the shared references in the model JSON for you. If Ordito is not ready to run, complete A1 first.
+Extract the [example projects](example-projects.zip) to a folder you can write to. Copy each folder in full, including hidden files. The examples store their model in `.ordito`. Specsplice can also open projects saved in the earlier `.ade` folder. Keep the original archive so you can start again without losing your working copy. **You can complete the exercises using the interface.** Commands, properties, and forms maintain the shared references in the model JSON for you. If Specsplice is not ready to run, complete A1 first.
 
 | Material | How the guide uses it |
 | --- | --- |
@@ -36,7 +36,7 @@ Extract the [example projects](example-projects.zip) to a folder you can write t
 | `07-marketplace-workshop/start` | Starting folder for the lab, with no prebuilt model |
 | `07-marketplace-workshop/milestones` | Two visual checkpoints to compare with your early work |
 | `07-marketplace-workshop/solution` | Complete reference model with 18 views across 16 notations |
-| `07-marketplace-workshop/modules` | Executable exercises for quantity rules, interactions, states, and messaging. Each subfolder is a standalone Ordito project |
+| `07-marketplace-workshop/modules` | Executable exercises for quantity rules, interactions, states, and messaging. Each subfolder is a standalone Specsplice project |
 | `07-marketplace-workshop/code` | Small JavaScript module to run and import |
 | `07-marketplace-workshop/ai-code` | Source and tests for generating the checkout and returns diagrams in L17 |
 | `07-marketplace-workshop/modules/ai-generation` | Model and independent cases for generating the first source files in L18 |
@@ -116,7 +116,7 @@ Select each arrow in the flow and read its condition. Then look at the transitio
 
 You have seen “Order” in two features. Now find it and rename it in a copy of the project. The resource changes across its views, which each keep their own title. Checking the impact of that edit prepares you to make a change in the next step.
 
-Click **Search System** in the sidebar. If the sidebar is closed, reopen it with **Diagrams**. Search for “Order,” check that it has the **Resource** type, note the associated views, and click the result. Ordito centers and selects the resource in a view. Click it on the canvas to open **Properties**. Search includes unsaved changes and can open details for identities that have no view. Use **Back** and **Forward** to revisit previous locations.
+Click **Search System** in the sidebar. If the sidebar is closed, reopen it with **Diagrams**. Search for “Order,” check that it has the **Resource** type, note the associated views, and click the result. Specsplice centers and selects the resource in a view. Click it on the canvas to open **Properties**. Search includes unsaved changes and can open details for identities that have no view. Use **Back** and **Forward** to revisit previous locations.
 
 Use **Search System** when you know the name. To explore what belongs to an actor or feature, click **System Map** in the header or sidebar. Clicking an item adds it to the active filters. Use the arrow to open a level and **×** to remove a filter. You can still access internal and shared elements of features connected to the actor. A9 explains navigation, filters, and relationships.
 
@@ -128,7 +128,7 @@ In your copy, select **Order** and click **Rename** next to the properties headi
 
 ### T5. Make your first reversible change
 
-Add an order notification to practice editing the model. Represent it as a component with its own responsibility, then connect it to “Confirm Order” so the request is made when an order is confirmed. Save, undo, redo, and reopen the project to see how Ordito keeps track of your edits before you start Marketplace.
+Add an order notification to practice editing the model. Represent it as a component with its own responsibility, then connect it to “Confirm Order” so the request is made when an order is confirmed. Save, undo, redo, and reopen the project to see how Specsplice keeps track of your edits before you start Marketplace.
 
 Work in your copy of Order Shop and open **Checkout Structure**.
 
@@ -155,12 +155,12 @@ Prepare a working folder to build **Marketplace**, a small online store for the 
 
 The customer “Customer” buys products and requests returns, which the support team “Support” handles. “External Payments” authorizes payments, “External Carrier” handles delivery, and “Product Catalog” provides context for the data. The lab produces a consistent model and local checks for selected behaviors. There is no running store.
 
-Keep your work, checkpoints, and modules in separate folders. Ordito opens one project root at a time and saves the model in that folder. Starting with an empty folder lets you see what each step adds.
+Keep your work, checkpoints, and modules in separate folders. Specsplice opens one project root at a time and saves the model in that folder. Starting with an empty folder lets you see what each step adds.
 
 1. Extract `example-projects.zip` and keep the original archive.
 2. Find `07-marketplace-workshop`. Open the subfolder indicated by each lesson. The top-level lab folder contains several projects.
 3. To build the project, use `start`, which contains only instructions, or create an empty folder named `my-marketplace` in your file manager. Leave the model from the solution in its own folder.
-4. Start Ordito. If you are looking at a diagram, click **Home** in the **Diagrams** sidebar or choose **Home** from the project menu.
+4. Start Specsplice. If you are looking at a diagram, click **Home** in the **Diagrams** sidebar or choose **Home** from the project menu.
 
 The store has the following rules. Each order line has a quantity from 1 to 10, as an integer. Prices are in cents to avoid implicit rounding. An order has at least one line and is confirmed after payment authorization. A return applies to an existing order and is allowed within 30 days. A coupon is optional in the use case example. Taxes, live payments, security, and business rules for a real shop require further specification.
 
@@ -177,7 +177,7 @@ The store has the following rules. Each order line has a quantity from 1 to 10, 
 | L18 | A copy of `modules/ai-generation` | Generate and verify a first implementation |
 | L19–L20 | The compatible project specified in the lesson and a copy of `modules/quantity` for L20 | Try Sync, reverse, and runtime selection |
 
-The project root is the folder you select in **Open Project** or **Create Project**. Keep your store project in its own folder, separate from the Ordito clone. **Open Project** opens an existing model. **Create Project** starts a new one. **Import Codebase** analyzes a folder of source files.
+The project root is the folder you select in **Open Project** or **Create Project**. Keep your store project in its own folder, separate from the Specsplice clone. **Open Project** opens an existing model. **Create Project** starts a new one. **Import Codebase** analyzes a folder of source files.
 
 Save at the end of each lesson so you can continue later. To compare your work, use **Open Project** on a copy of the checkpoint and then reopen your own folder. Leave the solution in its own project so you can compare it without overwriting your model. Executable modules have their own project roots, where they isolate the behaviors being tested.
 
@@ -191,8 +191,8 @@ Create the project in the folder you prepared, then create the three features. T
 
 1. From Home, click **Create Project**.
 2. Enter `Marketplace` in **Name** and click **Save Changes**.
-3. Select the folder you prepared in L1 and click **Open**. On macOS, you can also create `my-marketplace` with **New Folder**. Ordito opens the Marketplace project home.
-4. Click **Create First Feature**, enter `Checkout`, and click **Save Changes**. Ordito opens **Checkout · Structure** and also creates **Checkout · Flow**.
+3. Select the folder you prepared in L1 and click **Open**. On macOS, you can also create `my-marketplace` with **New Folder**. Specsplice opens the Marketplace project home.
+4. Click **Create First Feature**, enter `Checkout`, and click **Save Changes**. Specsplice opens **Checkout · Structure** and also creates **Checkout · Flow**.
 5. Click the view name in the header, choose **Add Feature**, enter `Product Catalog`, and click **Save Changes**.
 6. Repeat for `Returns and Refunds`.
 7. Open **Checkout · Structure** from the view picker. If the view is visible in **Diagrams**, you can click it directly.
@@ -221,7 +221,7 @@ You will mark “External Payments” as external in L3. For now, create it with
 Connect the elements to show how the customer enters the shop and how checkout, payment authorization, and recording follow. Start with “Customer” and “Web shop” to learn the full form. Then repeat the process for the other relationships.
 
 1. Click **Customer** on the canvas and click **Connect**.
-2. If **Relationship Type** appears, choose **Communication**. When only one type is compatible, Ordito highlights the destinations immediately.
+2. If **Relationship Type** appears, choose **Communication**. When only one type is compatible, Specsplice highlights the destinations immediately.
 3. Click **Web shop** among the highlighted destinations.
 4. Enter `browses` in **Relationship Name**, leave **Condition (Optional)** blank, and click **Save Changes**.
 
@@ -361,7 +361,7 @@ Return to the overview. With **Add Element**, create **Outcome Log** and **Inven
 
 This view focuses on the four components inside the API. From **C4 View Subject and Context**, click **New C4 View** and select **L3 · Components**. Set the subject to “Marketplace API” and the name to `04 C4 API Components`. Leave the **Context** column blank. Select **Visible** for “Checkout,” “Outcome Log,” “Returns Handling,” and “Inventory.” “Marketplace API” is already visible. Click **Apply to Model**, then **Open Diagram**.
 
-Add the contract that you will use in L11 to formalize what “Checkout” offers. In the C4 view, click **Add Element**, enter **Checkout Contract**, choose **Contract** in **Element Type**, and click **Create**. Ordito places it under “Marketplace API,” the subject of this view.
+Add the contract that you will use in L11 to formalize what “Checkout” offers. In the C4 view, click **Add Element**, enter **Checkout Contract**, choose **Contract** in **Element Type**, and click **Create**. Specsplice places it under “Marketplace API,” the subject of this view.
 
 Add **Communication** from “Checkout” to “Outcome Log” named “records outcome,” **Implementation** from “Checkout” to “Checkout Contract” named “exposes contract,” and **Dependency** from “Checkout” to “Inventory” named “requests availability.” Reuse the existing “looks up purchase” relationship from “Returns Handling” to “Checkout.” The C4 view offers compatible architectural relationships. The L7 sequence will show calls.
 
@@ -499,7 +499,7 @@ With responsibilities and data in place, describe what happens during checkout. 
 
 #### Describe actions and alternatives in an activity diagram
 
-Reuse the flow that Ordito created with the checkout feature. Validate the cart before requesting payment. Model unavailable stock and declined payment separately so you can see the two reasons an order may be rejected.
+Reuse the flow that Specsplice created with the checkout feature. Validate the cart before requesting payment. Model unavailable stock and declined payment separately so you can see the two reasons an order may be rejected.
 
 Open **Checkout · Flow** in the diagram picker. Open **Diagram** and click **Rename** next to the title. Enter `08 Checkout Flow`.
 
@@ -559,7 +559,7 @@ A return reads a recorded order and creates a separate request. Reuse “Custome
 
 #### Reuse the feature’s structure diagram
 
-Use the structure diagram that Ordito created with the feature to show the new and shared responsibilities. Open **Returns and Refunds · Structure** and use **Diagram > Rename** next to the title to name it `Returns - Shared Responsibilities`. Use **Add Existing Element** to add “Customer” as an **Actor** and “Order” as a **Resource**. For each row below, click **Add Element**, fill in **Name**, choose **Element Type**, and click **Create**.
+Use the structure diagram that Specsplice created with the feature to show the new and shared responsibilities. Open **Returns and Refunds · Structure** and use **Diagram > Rename** next to the title to name it `Returns - Shared Responsibilities`. Use **Add Existing Element** to add “Customer” as an **Actor** and “Order” as a **Resource**. For each row below, click **Add Element**, fill in **Name**, choose **Element Type**, and click **Create**.
 
 | Name | Element Type |
 | --- | --- |
@@ -772,7 +772,7 @@ The final rule accepts integer quantities from 1 through 10. First, verify the t
 
 #### Start from the quantity template
 
-Use a standalone module to verify one rule independently of the rest of Marketplace. Open the supplied `07-marketplace-workshop/modules/quantity` folder to start immediately, or create an empty project and run **Ordito: Add Pure Quantity Feature** from the command palette to reproduce the setup. The command creates the feature, types, `validateQuantity` operation, predicate, and initial cases. Save the model. The **Domain** node shows the context of the rule.
+Use a standalone module to verify one rule independently of the rest of Marketplace. Open the supplied `07-marketplace-workshop/modules/quantity` folder to start immediately, or create an empty project and run **Specsplice: Add Pure Quantity Feature** from the command palette to reproduce the setup. The command creates the feature, types, `validateQuantity` operation, predicate, and initial cases. Save the model. The **Domain** node shows the context of the rule.
 
 The template requires **quantity greater than zero** and uses a safe integer type. With this rule, `two` produces a type error, while 0 is a valid integer that fails the condition.
 
@@ -810,19 +810,19 @@ Available results include **Satisfied**, **Not Satisfied**, **Indeterminate**, *
 Review the proposed behavior and files before writing them to the project. Verification checks the behavior against the declared expectations. Applying the proposal writes the approved files, and undoing it lets you restore the previous files while keeping the model.
 
 1. Save the model and open **Code > Review and Verification > Prepare Model to Code Review**.
-2. Review the planned behavior and files. Ordito prepares a local proposal. The template profile uses deterministic generation and makes zero AI calls.
-3. Select **Run Real Verification**. Confirm local execution if Ordito prompts you.
+2. Review the planned behavior and files. Specsplice prepares a local proposal. The template profile uses deterministic generation and makes zero AI calls.
+3. Select **Run Real Verification**. Confirm local execution if Specsplice prompts you.
 4. Check the current status. With the eight initial cases and the two you added, the verified exercise shows **10 Derived Cases** and **10 Independent Cases**.
 5. With the current review verified, read the list of files and select **Apply to Project**. Wait for **Applied Locally**.
-6. Inspect the files through **Files** or in the terminal. If needed, reopen the review through **Code > Review Changes**. Select **Undo Local Changes** and check for **Local Changes Undone**. Confirm application or undo if Ordito opens a dialog.
+6. Inspect the files through **Files** or in the terminal. If needed, reopen the review through **Code > Review Changes**. Select **Undo Local Changes** and check for **Local Changes Undone**. Confirm application or undo if Specsplice opens a dialog.
 
-In **Restricted Mode**, Ordito may ask you to trust the folder before preparing the review. Verify that the path points to your copy of the lab module, then select **Trust Folder & Continue**.
+In **Restricted Mode**, Specsplice may ask you to trust the folder before preparing the review. Verify that the path points to your copy of the lab module, then select **Trust Folder & Continue**.
 
 ![The review shows the proposal, successful verification, and local application](images/08-verification.png)
 
-The initial template proposal creates a module, its test, `package.json`, and `.gitignore`. Ordito assigns the module name. Keep the generated name and contents for this exercise. Verification covers the formal rule and the expectations supplied to the runner. Testing a complete storefront requires an end-to-end test.
+The initial template proposal creates a module, its test, `package.json`, and `.gitignore`. Specsplice assigns the module name. Keep the generated name and contents for this exercise. Verification covers the formal rule and the expectations supplied to the runner. Testing a complete storefront requires an end-to-end test.
 
-If you change the model, criteria, or relevant sources after review, prepare a new one through **Code > Review Changes > Prepare New Review**. Application requires a passing verification for the current revision. Ordito blocks undo if it would overwrite later manual edits. Compare the files and preserve your work before trying again.
+If you change the model, criteria, or relevant sources after review, prepare a new one through **Code > Review Changes > Prepare New Review**. Application requires a passing verification for the current revision. Specsplice blocks undo if it would overwrite later manual edits. Compare the files and preserve your work before trying again.
 
 #### Add an inclusive upper bound of ten
 
@@ -832,7 +832,7 @@ Use a copy of the quantity module so you can compare it with the original. Updat
 2. In **Add Value > Add Typed Literal > Quantity**, enter `10`, the inclusive maximum for Marketplace.
 3. In **Combine Values > Add Comparison**, choose `quantity`, then the literal `10` and **≤**. This includes 10.
 4. In **Combine Values > Add Boolean Logic > All True**, select `quantity > 0` first, then the condition for quantity less than or equal to 10. **All True** requires both conditions. The upper bound on its own would still allow zero and negative values.
-5. In **Choose Result and Save**, select the result that begins with **and(** and includes both conditions. Select **Next**, check **Review Your Changes**, and select **Apply Changes**. Choose **Save** in the Ordito toolbar to save the model.
+5. In **Choose Result and Save**, select the result that begins with **and(** and includes both conditions. Select **Next**, check **Review Your Changes**, and select **Apply Changes**. Choose **Save** in the Specsplice toolbar to save the model.
 6. Add the independent case **Limit 10** with input 10 and expected result **Satisfied**. Add **Over Limit 11** with input 11 and expected result **Not Satisfied**.
 7. Open **Structural Blueprint > Data and Operations > Shared Operations**. Choose **validateQuantity** in **Configuration**, then open **Access and Acceptance**. Change **Then** in the existing criterion to “Only values from 1 to 10 satisfy the precondition”. Keep **Given** and **When**. Select **Apply to Model** and **Save**. The edit preserves the criterion and its associated cases. Go back to **Independent Business Expectations** and use **Edit Expected Result** to set the expected result for input **9007199254740991** to **Not Satisfied**. The other initial expectations still apply.
 8. Prepare a new review and rerun verification. After completing all of L12, this version gives you **12 independent cases** and **12 derived cases**. If **Code** shows **Review Changes**, open it and choose **Prepare New Review**. Read the combined rule and the results, then apply the proposal if you want to keep it. The new business rule explains why the maximum-safe-integer case now has a different expected result.
@@ -964,7 +964,7 @@ Before starting AI exploration, limit the inventory to the relevant sources and 
 
 1. In **Include Source Paths**, enter `src/**, test/**, package.json, REQUIREMENTS.md` and press Enter.
 2. In **Exclude Source Paths**, enter `.vscode/**` and press Enter. The `.gitignore` and `.orditoignore` rules still apply.
-3. In **Source Inventory Preview**, review the included, excluded, and analyzed files. Click **Apply Source Inventory**. Ordito saves a new analysis snapshot. Use its evidence in subsequent searches.
+3. In **Source Inventory Preview**, review the included, excluded, and analyzed files. Click **Apply Source Inventory**. Specsplice saves a new analysis snapshot. Use its evidence in subsequent searches.
 
 Model and index versions support recovery and comparison. Restoring a historical index changes the index only. If evidence is stale, refresh the analysis or open the current file without using the old source range.
 
@@ -986,22 +986,22 @@ Start with a codebase that supports two recognizable capabilities and use the di
 
 If you see **The Selected Diagram Model Is Not Available in Codex Chat** for a model that your authenticated Codex CLI can access, use **Refresh Account and Models**. If the chat catalog still omits it, reopen **Connect Claude Code or Codex > Codex > Choose Model and CLI** and enter the absolute path to the CLI in **Original CLI Executable**. Check the ID in **Choose Diagram Model** and resume from the import tab with **Continue Generation** or **Explore Architecture**.
 
-Use **AI Requests > Configure AI Request Budget** to set the number of CLI calls for structured operations. To increase the exploration budget after opening the session, use **Diagram Generation > Add Exploration Budget**. Activity details show Ordito tool calls, retrieved data, and elapsed time separately from any provider-reported measurements. **Advanced · Model Benchmarks** runs a benchmark with its own limits.
+Use **AI Requests > Configure AI Request Budget** to set the number of CLI calls for structured operations. To increase the exploration budget after opening the session, use **Diagram Generation > Add Exploration Budget**. Activity details show Specsplice tool calls, retrieved data, and elapsed time separately from any provider-reported measurements. **Advanced · Model Benchmarks** runs a benchmark with its own limits.
 
 #### Follow progress and test resuming
 
-Ordito identifies the features first, then plans and verifies views one feature at a time. It saves validated drafts so later features can inspect them and reuse existing element and relationship IDs. The main view shows the current phase and, when available, the feature or diagram. Open **Activity Details** to inspect the session, then close it to return to the progress view.
+Specsplice identifies the features first, then plans and verifies views one feature at a time. It saves validated drafts so later features can inspect them and reuse existing element and relationship IDs. The main view shows the current phase and, when available, the feature or diagram. Open **Activity Details** to inspect the session, then close it to return to the progress view.
 
-![Purchase generation progress with Activity Details closed, rendered from the Ordito component in Chromium](images/34-ai-diagram-progress.png)
+![Purchase generation progress with Activity Details closed, rendered from the Ordito preview component in Chromium](images/34-ai-diagram-progress.png)
 
-Once a draft is complete, try **Stop Generation**. Note the feature in progress and choose **Continue Generation**. The validated draft should remain available, and work should resume from the first incomplete step. If the session needs a decision, read **Clarification Needed** and use **Answer and Continue**. If the budget runs out, Ordito indicates when you need to increase it.
+Once a draft is complete, try **Stop Generation**. Note the feature in progress and choose **Continue Generation**. The validated draft should remain available, and work should resume from the first incomplete step. If the session needs a decision, read **Clarification Needed** and use **Answer and Continue**. If the budget runs out, Specsplice indicates when you need to increase it.
 
 #### Review and apply the proposed views
 
 1. When generation finishes, open **Review All Changes**. Find the **Checkout** and **Returns** views and read any exclusions. Open **Change Details, Sources and Diagnostics** to inspect the changes and their source evidence. The names, view counts, and notations depend on the evidence and the proposal.
 2. Check that **Checkout** writes **Order** after simulated approval and that **Returns** reads the same order. Follow references to `src/checkout.mjs`, `src/returns.mjs`, `src/orders.mjs`, and the tests. Check the relevant code branch and test to see when each source-level connection takes effect.
 3. Check the conditions and limits. Returns distinguish between a missing order and an expired return window. The sample uses an in-memory store and takes the approval outcome as input. Record gaps such as missing evidence about payments, databases, or deployment. Model descriptive state views manually in this workflow.
-4. When the proposal reflects the code, choose **Apply All Changes** and confirm. Ordito applies the drafts together to the local model. Open the views from the diagram picker and check the result. If the model or evidence changes, refresh the review before applying.
+4. When the proposal reflects the code, choose **Apply All Changes** and confirm. Specsplice applies the drafts together to the local model. Open the views from the diagram picker and check the result. If the model or evidence changes, refresh the review before applying.
 
 In applied views, use **Add Element** to create an element and **Add Existing Element** to reuse one. In a generated sequence or activity diagram, edit the shared scenario with **Add Message**, **Add Step**, or **Diagram > Contents > Edit Scenario**. You can change participants, steps, conditions, branches, and ordering constraints. Linked views reflect the edits and retain the same IDs. Save the model before starting **Update Codebase from Diagrams**. An update from source can refresh the evidence and flag conflicts with manual scenario edits.
 
@@ -1012,20 +1012,20 @@ To repeat the import on a standalone project similar to Marketplace, copy `08-ma
 
 ### L18. Generate code from diagrams
 
-This standalone exercise starts with a checkout and returns model in a folder that has no source files or Git repository. Choose a stack, prepare one feature at a time, and verify that the code behaves as specified by the diagrams and test cases. You need Node.js 24.22.1 and an AI account with a model configured as in L17. Make Node available on the `PATH` or set `ORDITO_NODE_EXECUTABLE` before starting Ordito. You can use this folder even if you skipped L17.
+This standalone exercise starts with a checkout and returns model in a folder that has no source files or Git repository. Choose a stack, prepare one feature at a time, and verify that the code behaves as specified by the diagrams and test cases. You need Node.js 24.22.1 and an AI account with a model configured as in L17. Make Node available on the `PATH` or set `ORDITO_NODE_EXECUTABLE` before starting Specsplice. You can use this folder even if you skipped L17.
 
 #### Build the first implementation
 
-1. Copy `07-marketplace-workshop/modules/ai-generation`, including `.ordito`. In Ordito, choose **Open Project** and select the copy. You should see **Marketplace · Checkout and Returns**. Open **Checkout · Structure**, **Returns · Structure**, and **Marketplace · Dependencies**. Both features use the same **Order** resource, and **Returns** depends on its contract.
+1. Copy `07-marketplace-workshop/modules/ai-generation`, including `.ordito`. In Specsplice, choose **Open Project** and select the copy. You should see **Marketplace · Checkout and Returns**. Open **Checkout · Structure**, **Returns · Structure**, and **Marketplace · Dependencies**. Both features use the same **Order** resource, and **Returns** depends on its contract.
 2. Open **Code > Prepare Code from Diagrams**. In the **Choose Stack** step of **Generate Code from Diagrams**, choose **JavaScript · Node.js 24.22.1 · No Framework**. The exercise profile uses local functions and JSON data and needs no dependencies.
 3. In **Select Features**, choose **Checkout** and **Returns**. You can leave **Implementation Notes** blank. In **Independent Verification Cases**, leave the field blank and choose **Next** to use the seven cases included in the copy. In your own projects, provide cases you have written to compare their expected outcomes with the generated code.
-4. In **Review Code Generation**, check the profile, features, and destination. Confirm with **Prepare Code Changes**. Ordito stages files and advances once the current feature is complete. If generation stops, use **Resume Generation**. If a domain decision blocks progress, answer the clarification and resume.
+4. In **Review Code Generation**, check the profile, features, and destination. Confirm with **Prepare Code Changes**. Specsplice stages files and advances once the current feature is complete. If generation stops, use **Resume Generation**. If a domain decision blocks progress, answer the clarification and resume.
 5. Open **Review AI Code Changes**. The review shows the local destination and stack beneath the verification status. Each feature lists its diagrams, acceptance criteria, and changed files. Use **Open Diff** beside a file to read the proposed changes. **Checkout** produces an order with an ID and a total in cents. **Returns** receives a record in the same format and checks how many days have elapsed.
 6. Use **Run Verification** to run the independent cases included in `.ordito`. Check **Verification Cases** for both features and expand **Verification Output** if a run provides additional details. When verification passes, click **Apply to Project** to write the files to the copy. If you changed the model, criteria, or affected files during review, prepare or verify the proposal again when prompted. After applying, run `npm test` in the copy to check the same cases, or use **Undo Local Changes** to restore the project files.
 
-You can also start this workflow from the command palette with **Ordito: Prepare Reviewed Code from Diagrams**. If a session is already in progress, the command opens its status or saved review. If an edit makes the review stale, choose **Prepare New Code Changes** from the Code page to work from the current model.
+You can also start this workflow from the command palette with **Specsplice: Prepare Reviewed Code from Diagrams**. If a session is already in progress, the command opens its status or saved review. If an edit makes the review stale, choose **Prepare New Code Changes** from the Code page to work from the current model.
 
-![Code review with the selected profile and Apply to Project available after verification, rendered from the Ordito component in Chromium](images/35-ai-code-review.png)
+![Code review with the selected profile and Apply to Project available after verification, rendered from the Ordito preview component in Chromium](images/35-ai-code-review.png)
 
 | Independent case | Expected result in the review |
 | --- | --- |
@@ -1034,7 +1034,7 @@ You can also start this workflow from the command palette with **Ordito: Prepare
 | Return of `order-1` after 30 or 31 days | `accepted` with 2,500 cents, or `outside-window` from day 31 |
 | Return with a missing order | `unknown-order` |
 
-**L18 checkpoint.** Check the seven independent cases and the destination before applying. Verify afterward that Ordito created modules for both features and that you can trace each one to the reviewed contracts. These tests describe the local behavior of this sample.
+**L18 checkpoint.** Check the seven independent cases and the destination before applying. Verify afterward that Specsplice created modules for both features and that you can trace each one to the reviewed contracts. These tests describe the local behavior of this sample.
 
 #### Update an existing codebase
 
@@ -1042,23 +1042,23 @@ With compatible Node.js ESM modules, you can prepare another proposal after upda
 
 To practice an update from diagrams, use a copy of `code` from L16. Prepare a view that includes quantity validation using the generation workflow from L17. In the view, select the element that represents `validateQuantity` and open **Manage > Edit Description**. Specify that the function returns `true` for safe integers from 1 to 10, `false` for other safe integers, and throws `TypeError` for decimals or strings. Click **Save Changes**, then **Save**.
 
-If **Update Codebase from Diagrams** appears after you save, choose it. You can also start the workflow from **Code** or search for `>Ordito: Update Codebase from Diagrams` in **Open Quick Access**. Review the saved changes the provider will receive, then start the update. Read the result, compare the files in your copy, and run `npm test` and `npm start` again. Check 0, 1, 10, 11, and a non-integer in the tests. If a diagram still shows the old rule, use **Update Diagrams from Codebase** and review the updated proposal as in L17.
+If **Update Codebase from Diagrams** appears after you save, choose it. You can also start the workflow from **Code** or search for `>Specsplice: Update Codebase from Diagrams` in **Open Quick Access**. Review the saved changes the provider will receive, then start the update. Read the result, compare the files in your copy, and run `npm test` and `npm start` again. Check 0, 1, 10, 11, and a non-integer in the tests. If a diagram still shows the old rule, use **Update Diagrams from Codebase** and review the updated proposal as in L17.
 
 #### Implement a feature in a worktree
 
 A worktree lets you inspect and verify proposed files before applying them to the main folder. This workflow requires a compatible legacy model, a linked Git codebase with at least one commit and a clean working tree, a feature with recognized acceptance criteria, and a configured provider. To verify executable behavior in v4 and v5 projects, use **Prepare Model to Code Review** from L12.
 
-If you have the Ordito sources from A1, make an independent copy of the original sample codebase and name it `legacy-code`. Copy the example file `ordito/examples/checkout.ordito.json` from the Ordito sources into that folder without editing it. From the home screen, choose **Start a Project > Examples and Model Files > Open Model** and open the copied file. The model includes **Confirm Purchase**, a feature with defined criteria.
+If you have the Specsplice sources from A1, make an independent copy of the original sample codebase and name it `legacy-code`. Copy the example file `ordito/examples/checkout.ordito.json` from the Specsplice sources into that folder without editing it. From the home screen, choose **Start a Project > Examples and Model Files > Open Model** and open the copied file. The model includes **Confirm Purchase**, a feature with defined criteria.
 
 From the project menu, choose **Show IDE**. If the copy has no Git repository, open **Source Control** and choose **Initialize Repository**. Select **Stage All Changes**, enter a commit message such as “Add sample project baseline,” and click **Commit**. Configure your Git identity first if prompted. In **Source Control**, verify that the commit exists and the working tree is clean. The sample codebase already excludes the `.ordito` working folder from Git.
 
-After the initial commit, prepare a model and code snapshot. Click **Open Quick Access**, search for `>Ordito: Update Diagrams from Codebase`, and select it. If prompted, check the path to your copy and choose **Trust Folder & Continue**. Once the inventory is ready, cancel **Generate Diagrams**. If the earlier message composer appears, close it before sending a message. Ordito retains the initial snapshot. If you created the baseline before initializing Git and see **Source manifest changed**, use Sync in L19 to realign it.
+After the initial commit, prepare a model and code snapshot. Click **Open Quick Access**, search for `>Specsplice: Update Diagrams from Codebase`, and select it. If prompted, check the path to your copy and choose **Trust Folder & Continue**. Once the inventory is ready, cancel **Generate Diagrams**. If the earlier message composer appears, close it before sending a message. Specsplice retains the initial snapshot. If you created the baseline before initializing Git and see **Source manifest changed**, use Sync in L19 to realign it.
 
-In the compatible project, click **Open Quick Access**, search for `>Ordito: Implement Feature`, and select **Confirm Purchase** for this example. Enter the change in **Requested Behavior** and press Enter. Choose the files to share, `src/orders.mjs` and `test/orders.test.mjs` in this example, and click **OK**. Read **Review Implementation Context**, then choose **Send Context to Codex** or the corresponding control for your provider. Review the plan and questions. With the **Plan and Implementation** budget, answer any clarifications and click **Generate in Worktree**.
+In the compatible project, click **Open Quick Access**, search for `>Specsplice: Implement Feature`, and select **Confirm Purchase** for this example. Enter the change in **Requested Behavior** and press Enter. Choose the files to share, `src/orders.mjs` and `test/orders.test.mjs` in this example, and click **OK**. Read **Review Implementation Context**, then choose **Send Context to Codex** or the corresponding control for your provider. Review the plan and questions. With the **Plan and Implementation** budget, answer any clarifications and click **Generate in Worktree**.
 
-Ordito prepares the changes in a separate worktree. Read the diff tabs and **Implementation Review.md**, then return to the model tab and open **Code > Implementation Worktree**. Click **Run Tests** and confirm **Run Tests**. After verification, return to the model tab, click **Apply Verified Changes** in the same pane, and confirm **Apply Changes**. Check the diff for the main folder in **Source Control**.
+Specsplice prepares the changes in a separate worktree. Read the diff tabs and **Implementation Review.md**, then return to the model tab and open **Code > Implementation Worktree**. Click **Run Tests** and confirm **Run Tests**. After verification, return to the model tab, click **Apply Verified Changes** in the same pane, and confirm **Apply Changes**. Check the diff for the main folder in **Source Control**.
 
-If the pane is unavailable, search in **Open Quick Access** for `>Ordito: Verify Implementation` to run verification and `>Ordito: Apply Verified Implementation` after the tests pass. Both commands show the same confirmation as the pane.
+If the pane is unavailable, search in **Open Quick Access** for `>Specsplice: Verify Implementation` to run verification and `>Specsplice: Apply Verified Implementation` after the tests pass. Both commands show the same confirmation as the pane.
 
 Availability depends on recognized feature criteria and a supported format. Shared operation criteria and legacy feature criteria have separate requirements. For a guided local exercise, follow the executable workflow in L12. An imported copy of the original code module still needs the worktree prerequisites above.
 
@@ -1085,7 +1085,7 @@ When the same contract changes on both sides, compare all three versions and cho
 
 Run the project's tests and build after applying Sync. **Undo Last Sync** restores the model and source files when the saved versions are still valid. Use **Recover Sync** to recover an interrupted operation. Restoring a historical model or index snapshot changes only the model or index.
 
-The current text-based Sync edits existing files. Structural profiles handle file creation, moves, and deletion where supported. Ordito can reuse a cached proposal without another call when the same context is still valid.
+The current text-based Sync edits existing files. Structural profiles handle file creation, moves, and deletion where supported. Specsplice can reuse a cached proposal without another call when the same context is still valid.
 
 **L19 checkpoint.** In a compatible project with a baseline, make an actual change, refresh the analysis, compare the new limit with the model, and review the proposal. Keep the previous decision until the conflict is resolved. Use **Sync Project** to reconcile project artifacts and Git's sync command to exchange commits with a remote.
 
@@ -1102,20 +1102,20 @@ Direct code edits can conflict with an agreed rule. Reverse mapping proposes a c
 
 1. If Explorer is closed, open **Project Settings > Developer Tools > Files** from the project menu. Expand `src` and open the `predicate-…mjs` file generated by the L12 review.
 2. Find the literal used as the limit in the `<=` comparison. In the example, it is `const v3=10;`. Scroll horizontally if necessary. Change only `10` to `9`, keep the metadata comment intact, and choose **File > Save**.
-3. Return to the Ordito tab. From the project menu, open **Project Settings > Executable Behavior > Code and Context > Reverse Model Behavior from Code**.
+3. Return to the Specsplice tab. From the project menu, open **Project Settings > Executable Behavior > Code and Context > Reverse Model Behavior from Code**.
 4. In **Code to Model**, check for `quantity ≤ 9` and click **Run Real Verification**. Confirm if prompted. Wait for **Real Verification Failed · Application Blocked** and expand **Verification Output**. In the 24-case variant, 23 pass and **Limit 10** fails. **Apply to Project** stays disabled.
 5. Keep the original expected result. Return to the file, restore the literal `10`, and save.
-6. Run **Reverse Model Behavior from Code** again. When the file and model agree, Ordito shows **Model Behavior Is Aligned · No Proposal · No AI Calls**. Open **Project Settings > Developer Tools > Terminal** in your copy of `quantity`, check the working folder, and select Node 24.22.1. Run `node --test test/*.test.mjs` to check the **12 independent tests** generated in the project. The Ordito review also runs 12 derived cases.
+6. Run **Reverse Model Behavior from Code** again. When the file and model agree, Specsplice shows **Model Behavior Is Aligned · No Proposal · No AI Calls**. Open **Project Settings > Developer Tools > Terminal** in your copy of `quantity`, check the working folder, and select Node 24.22.1. Run `node --test test/*.test.mjs` to check the **12 independent tests** generated in the project. The Specsplice review also runs 12 derived cases.
 
 To accept a different limit in a real project, record the business decision, update the criterion and expected outcomes, and run verification again.
 
-Reverse mapping covers supported subsets of predicates, interactions, states, and messaging. A change outside the supported grammar can yield a partial mapping and block Apply. Ordito preserves existing architecture decision records, annotations, and contracts during reversal.
+Reverse mapping covers supported subsets of predicates, interactions, states, and messaging. A change outside the supported grammar can yield a partial mapping and block Apply. Specsplice preserves existing architecture decision records, annotations, and contracts during reversal.
 
 If you need to reorganize generated files, use the managed source move actions to preserve supported references. These actions allow supported nested paths and update the corresponding links. Review collisions and identities before confirming. Keep a single authoritative copy of each managed artifact.
 
 #### Choose Node or Bun
 
-Consider a runtime change once you have verified behavior to preserve. In **Project Settings > Model and Architecture**, use **Choose Runtime and Review Stack Plan**. The current profiles are Node ESM and Bun ESM with versions specified by Ordito. This lab uses Node 24.22.1. The Bun profile needs Bun 1.3.2 available when Ordito starts.
+Consider a runtime change once you have verified behavior to preserve. In **Project Settings > Model and Architecture**, use **Choose Runtime and Review Stack Plan**. The current profiles are Node ESM and Bun ESM with versions specified by Specsplice. This lab uses Node 24.22.1. The Bun profile needs Bun 1.3.2 available when Specsplice starts.
 
 The plan covers implementation, dependencies, storage, data, tests, deployment, and rollback. Run the same independent cases to verify that changing the runtime preserves the business behavior. Resolve incompatible architecture decision constraints. Install Bun and handle any live database or broker migration separately.
 
@@ -1125,7 +1125,7 @@ Open **Project Settings > Model and Architecture > Tasks and Clarifications**. C
 
 In **Code > Automatic Preparation**, click **Start or Stop Continuous Preparation** and enter a budget such as `1`. If prompted, click **Enable Preparation**. The job prepares reviews once semantic changes settle. Layout changes, zoom, and selection leave the attempt count unchanged. Check the job count and status. To suspend preparation, choose **Start or Stop Continuous Preparation** again and verify **Paused**. Switching projects also stops the current job.
 
-You review, verify, and publish these proposals manually. If the budget runs out or Ordito restarts, explicitly choose when to resume preparation.
+You review, verify, and publish these proposals manually. If the budget runs out or Specsplice restarts, explicitly choose when to resume preparation.
 
 **L20 checkpoint.** Identify which edits change the model and which change only the layout. Confirm the configured profile matches the available runtime, then review a prepared proposal before applying it. Check the availability of Bun, your provider, or an external connection when a workflow requires one.
 
@@ -1174,13 +1174,13 @@ Clarify the question and the audience before you add a view. Start with the tabl
 | What goal does an actor achieve? | Use Case | D12 |
 | What data enters, changes, and goes into storage? | Data Flow | D15 |
 
-C4 describes architecture at several levels of detail. UML (Unified Modeling Language) provides notations including class and use case diagrams. ERD stands for Entity–Relationship Diagram. The chapters below describe the notation subsets Ordito supports.
+C4 describes architecture at several levels of detail. UML (Unified Modeling Language) provides notations including class and use case diagrams. ERD stands for Entity–Relationship Diagram. The chapters below describe the notation subsets Specsplice supports.
 
 #### Create a view in the editor
 
-1. Open the project root where you want to save the view. Click the diagram name and choose **Add Diagram**. In Marketplace, select the feature requested by the form. Use **Checkout** for general views and **Returns and Refunds** for the dedicated returns views. Ordito places each diagram under the capability it describes. For a C4 view with a subject, use step 3.
+1. Open the project root where you want to save the view. Click the diagram name and choose **Add Diagram**. In Marketplace, select the feature requested by the form. Use **Checkout** for general views and **Returns and Refunds** for the dedicated returns views. Specsplice places each diagram under the capability it describes. For a C4 view with a subject, use step 3.
 2. In **Create Diagram**, fill in **Name** and select a notation under **Diagram Type**. Use **Choose Feature** when the view needs a feature, then click **Create**.
-3. For **C4**, follow L3. Open **Structural Blueprint > Structure > C4 View Subject and Context**, click **New C4 View**, and set the name, level, subject, context, and visibility. Click **Apply to Model** to create the view and **Open Diagram** to open it. L1 is Context, L2 is Container, and L3 is Component. Ordito keeps the subject visible. L4 Contract scopes a Class view to a contract.
+3. For **C4**, follow L3. Open **Structural Blueprint > Structure > C4 View Subject and Context**, click **New C4 View**, and set the name, level, subject, context, and visibility. Click **Apply to Model** to create the view and **Open Diagram** to open it. L1 is Context, L2 is Container, and L3 is Component. Specsplice keeps the subject visible. L4 Contract scopes a Class view to a contract.
 4. For **State Diagram**, also select **Resource Whose State Is Represented** in the creation form. The states describe the lifecycle of that resource. For other diagram types, use **Add Element** for new objects and **Add Existing Element** to reuse objects already defined.
 5. To include an existing relationship, add both endpoints and use **Diagram > Contents > Add Existing Relationship**. For a sequence use **Add Existing Message**, and for a state diagram use **Add Existing Transition**. To create a new relationship, specify the endpoints, type, and name in **Create Relationship**. Fill in **Condition (Optional)** where applicable and click **Save Changes**. In a sequence, include messages in the declared order.
 6. Complete the properties, boundaries, and details. Save and reopen the diagram to check that your changes persist. Use **Read Diagram** or the accessible view to read details the canvas summarizes, such as conditions, members, and protocols.
@@ -1191,7 +1191,7 @@ If a C4 view shows **Draft Needs Correction**, open **Structural Blueprint > Str
 
 #### Shared element vocabulary
 
-Read the type on the element card, since colors and shapes are visual aids. Ordito's diagrams use a subset of the original notation conventions. Each picker shows types compatible with the view. Use this table to understand the full vocabulary and select the types that fit the view.
+Read the type on the element card, since colors and shapes are visual aids. Specsplice's diagrams use a subset of the original notation conventions. Each picker shows types compatible with the view. Use this table to understand the full vocabulary and select the types that fit the view.
 
 | Element | Meaning and scope |
 | --- | --- |
@@ -1321,7 +1321,7 @@ Declare ownership in the Blueprint to assign internal parts to **Marketplace** a
 
 Marketplace declares HTTPS from **Customer** to **Web shop**, HTTPS / JSON from the web app to the API, SQL from the API to the store, and publishing to the broker. The arrow name describes the intent. The protocol describes the planned means of communication. For a structural dependency, leave protocols and ports unspecified unless you know them.
 
-In the Blueprint, assign the four containers to **Marketplace** using **Architectural or Lifecycle Owner** and complete their roles as in L4. Create an L2 C4 view with **Marketplace** as subject and **Customer** as context. Make **Customer** and the four containers visible. Ordito shows the subject automatically. Click **Apply to Model** and **Open Diagram**, then connect the elements to declare their integrations. See D4 for API components and D10 for deployment.
+In the Blueprint, assign the four containers to **Marketplace** using **Architectural or Lifecycle Owner** and complete their roles as in L4. Create an L2 C4 view with **Marketplace** as subject and **Customer** as context. Make **Customer** and the four containers visible. Specsplice shows the subject automatically. Click **Apply to Model** and **Open Diagram**, then connect the elements to declare their integrations. See D4 for API components and D10 for deployment.
 
 **Check.** Each container has a responsibility and an owner. Application and host are distinct model elements, and each data store has a single identity. Installation, provisioning, communication, and migration require separate execution.
 
@@ -1465,7 +1465,7 @@ An Activity diagram describes how inputs lead to possible outcomes, including fa
 
 #### When to use it
 
-Activity / Flowchart is one notation in Ordito. Use it to discuss a procedure across roles, find missing outcomes, and establish what comes before what. You can design the flow before choosing its classes and services.
+Activity / Flowchart is one notation in Specsplice. Use it to discuss a procedure across roles, find missing outcomes, and establish what comes before what. You can design the flow before choosing its classes and services.
 
 Open **08 Checkout Flow** to follow validation, availability checks, payment, confirmation or rejection, and the end of the flow. The tour's shorter refund flow applies the same principle. Each alternative needs a clear meaning.
 
@@ -1576,7 +1576,7 @@ Open **11 Classes and Repositories**. `CheckoutService` depends on `Order` and `
 | Method | Operation exposed by the type. Declare its name and type or signature, and select the Method role. |
 | Technology and environment | Declared context for the representation. Use the project source to see the implementation. |
 
-Use **Edit Attributes and Technology** to add or remove members. To correct a member, select it in the list and choose **Edit Member**. Choose the Attribute or Method role as appropriate. Methods can share a name when their signatures differ. Ordito rejects duplicate signatures. In the lab, enter `confirm`, `submit`, and `save` as names. The canvas adds the parentheses.
+Use **Edit Attributes and Technology** to add or remove members. To correct a member, select it in the list and choose **Edit Member**. Choose the Attribute or Method role as appropriate. Methods can share a name when their signatures differ. Specsplice rejects duplicate signatures. In the lab, enter `confirm`, `submit`, and `save` as names. The canvas adds the parentheses.
 
 #### Relationships
 
@@ -1615,7 +1615,7 @@ Open **12 Use Cases**. **Customer** can confirm a purchase and request a return,
 
 Add the two existing actors and the four use cases. Associate **Customer** with **Confirm Purchase** and **Request Return**, and associate **Support** with **Request Return**. Draw **Include** from **Confirm Purchase** to **Authorize Payment**, since authorization is required. Draw **Extend** from **Apply Coupon** to **Confirm Purchase** and use **coupon provided** as its condition. The direction identifies which behavior extends the base use case.
 
-Ordito centers names in ovals that resize to fit the text. After an edit, use **Diagram > Arrange** and **Fit Diagram** to arrange the view. **Include** and **Extend** show required and optional behavior. Activity and Sequence describe the order of steps. Contracts and Given/When/Then cases specify verifiable requirements.
+Specsplice centers names in ovals that resize to fit the text. After an edit, use **Diagram > Arrange** and **Fit Diagram** to arrange the view. **Include** and **Extend** show required and optional behavior. Activity and Sequence describe the order of steps. Contracts and Given/When/Then cases specify verifiable requirements.
 
 **Check.** Every use case represents a goal with an actor or a clear functional relationship. Keep internal implementation steps in the views where they belong. Describe exceptions in the use case or a related flow.
 
@@ -1641,7 +1641,7 @@ Open **13 Components and Interfaces**. **Checkout** exposes **Checkout Contract*
 | Application / Container | Application context when it helps place components. |
 | Ports and operations in the Blueprint | Required and provided interfaces and their actual bindings. Declare these alongside any relationships shown on the canvas. |
 
-Use Ordito's notation symbols on the canvas. In the Blueprint, complete the inputs, results, errors, effects, permissions, and criteria for the relevant operations (L11). Consumers need these details as well as the interface name.
+Use Specsplice's notation symbols on the canvas. In the Blueprint, complete the inputs, results, errors, effects, permissions, and criteria for the relevant operations (L11). Consumers need these details as well as the interface name.
 
 #### Relationships and checks
 
@@ -1749,19 +1749,19 @@ Create the two **Network Node** elements to identify network boundaries and add 
 
 Use these sections to set up your environment, inspect source files, run a check, or recover from an error. The IDE tools help you check things that a diagram alone cannot establish. Set them up as you need them.
 
-### A1. Install and start Ordito
+### A1. Install and start Specsplice
 
-Follow this section before T1 if you need to build and start Ordito. You can set up an AI account or configure workspace trust later, when an exercise calls for it.
+Follow this section before T1 if you need to build and start Specsplice. You can set up an AI account or configure workspace trust later, when an exercise calls for it.
 
-If Ordito is already running, go to T1. To start from source, install Git, Python 3, native build tools, and the Node version pinned in `.nvmrc`. Using the pinned version keeps dependencies and builds compatible. This revision uses **24.22.1**. The Bun executable profile requires Bun.
+If the desktop app is already running, go to T1. To try the published preview, choose the archive for your platform and follow its first-launch instructions. To start a current build from source, install Git, Python 3, native build tools, and the Node version pinned in `.nvmrc`. This edition uses **24.22.1**. The Bun executable profile requires Bun. [Desktop preview releases](https://github.com/FrappaF/Specsplice/releases)
 
 #### macOS and Linux
 
-Build the Ordito revision that contains the lab updates and AI workflows covered by this guide. Use the clone for Ordito itself and separate copies of the Marketplace and Order Shop projects. Close the development instance before updating dependencies or rebuilding. With `nvm` installed, run `nvm install` to install the Node version in `.nvmrc` and `nvm use` to select it in your shell.
+Build the Specsplice revision that contains the lab updates and AI workflows covered by this guide. Use the clone for Specsplice itself and separate copies of the Marketplace and Order Shop projects. Close the development instance before updating dependencies or rebuilding. With `nvm` installed, run `nvm install` to install the Node version in `.nvmrc` and `nvm use` to select it in your shell.
 
 ```sh
-git clone https://github.com/FrappaF/Ordito.git
-cd Ordito
+git clone https://github.com/FrappaF/Specsplice.git
+cd Specsplice
 nvm install
 nvm use
 npm run ordito:setup
@@ -1770,9 +1770,9 @@ npm run ordito:setup
 
 `ordito:setup` prepares dependencies, the client, local engines, extensions, and Electron. The first launch needs a network connection to download artifacts. For subsequent launches, run `nvm use` and `./ordito/scripts/dev.sh`. You can pass a project folder path to the launch command.
 
-Install the build tools and desktop libraries before setup so Ordito can build its native dependencies. On macOS, check your tools with `xcode-select -p`, `xcrun --find clang`, and `python3 --version`. If the Command Line Tools are missing, run `xcode-select --install` and complete the installation. Debian and Ubuntu require `build-essential`, `pkg-config`, `libx11-dev`, `libxkbfile-dev`, `libkrb5-dev`, `libsecret-1-dev`, `libgtk-3-dev`, `libgbm-dev`, `libnss3`, `libasound2-dev`, and `xvfb`. Headless tests also require `xauth`. Package names can vary by distribution. The online development guide also covers the Windows prerequisites and launching with `scripts\code.bat`. [Development guide](https://github.com/FrappaF/Ordito/blob/main/ade/docs/fork-development.md#from-a-clean-clone)
+Install the build tools and desktop libraries before setup so Specsplice can build its native dependencies. On macOS, check your tools with `xcode-select -p`, `xcrun --find clang`, and `python3 --version`. If the Command Line Tools are missing, run `xcode-select --install` and complete the installation. Debian and Ubuntu require `build-essential`, `pkg-config`, `libx11-dev`, `libxkbfile-dev`, `libkrb5-dev`, `libsecret-1-dev`, `libgtk-3-dev`, `libgbm-dev`, `libnss3`, `libasound2-dev`, and `xvfb`. Headless tests also require `xauth`. Package names can vary by distribution. The online development guide also covers the Windows prerequisites and launching with `scripts\code.bat`. [Development guide](https://github.com/FrappaF/Specsplice/blob/main/ordito/docs/fork-development.md#from-a-clean-clone)
 
-When you update the clone to a newer revision, select its pinned Node version and run `npm run ordito:setup` again to rebuild changed sources. Check the revision listed at the start of this guide when comparing its instructions with a newer interface. Type checks and repository test suites are for developing Ordito itself. You can use the example projects after setup.
+When you update the clone to a newer revision, select its pinned Node version and run `npm run ordito:setup` again to rebuild changed sources. Check the revision listed at the start of this guide when comparing its instructions with a newer interface. Type checks and repository test suites are for developing Specsplice itself. You can use the example projects after setup.
 
 #### Accounts and workspace trust
 
@@ -1817,17 +1817,17 @@ JavaScript and TypeScript use the TypeScript language service. HTML, CSS, and JS
 
 In the Marketplace code module, run `npm test` to check the expected behavior and `npm start` to see what the demo returns. L16 explains each command. First check that you are in the `code` folder. Use separate or split terminals for concurrent tasks, rename the sessions, and choose the appropriate shell profile. Search terminal output to review what happened and stop a process when needed. Shell integration, when available, shows commands and their status.
 
-Use a task to run a build or test sequence that the project already defines. Choose **Tasks: Run Task** from the Command Palette to start a recognized script or task. Tasks can have dependencies, run in the background, and report errors through problem matchers. Start tasks explicitly when you intend to execute them. Standard Ordito imports perform source analysis.
+Use a task to run a build or test sequence that the project already defines. Choose **Tasks: Run Task** from the Command Palette to start a recognized script or task. Tasks can have dependencies, run in the background, and report errors through problem matchers. Start tasks explicitly when you intend to execute them. Standard Specsplice imports perform source analysis.
 
 ### A3. Git, debugging, and code tests
 
-Use Git to record and share a version, the debugger to investigate an unexpected result, and tests to compare behavior with expected outcomes. These tools complement Ordito reviews and simulations. Record their results in the L21 handoff.
+Use Git to record and share a version, the debugger to investigate an unexpected result, and tests to compare behavior with expected outcomes. These tools complement Specsplice reviews and simulations. Record their results in the L21 handoff.
 
 #### Git
 
-Open **Source Control** and inspect the diff to see what would go into your commit. Stage files or selected hunks that belong to the same change. Write a commit message that describes the change. **Push** publishes commits to the remote when you have an account with permission. Use **Pull** and Git Sync to exchange commits with the remote. Use Ordito Sync for reconciling the model with the code.
+Open **Source Control** and inspect the diff to see what would go into your commit. Stage files or selected hunks that belong to the same change. Write a commit message that describes the change. **Push** publishes commits to the remote when you have an account with permission. Use **Pull** and Git Sync to exchange commits with the remote. Use Specsplice Sync for reconciling the model with the code.
 
-Create or switch branches to separate an experiment from shared work. Use stash to set aside uncommitted changes temporarily. Use history, tags, worktrees, and revision comparisons to locate and compare a starting point. Read the diff before discarding files, restoring a revision, or resolving a conflict so you know which changes you will keep. Git history retains commits. Ordito Undo follows the reviewed application of changes and its recovery checks.
+Create or switch branches to separate an experiment from shared work. Use stash to set aside uncommitted changes temporarily. Use history, tags, worktrees, and revision comparisons to locate and compare a starting point. Read the diff before discarding files, restoring a revision, or resolving a conflict so you know which changes you will keep. Git history retains commits. Specsplice Undo follows the reviewed application of changes and its recovery checks.
 
 Full pull request workflows require a provider or additional extensions.
 
@@ -1835,13 +1835,13 @@ Full pull request workflows require a provider or additional extensions.
 
 Open **Run and Debug**. For the JavaScript project, choose a Node configuration or a JavaScript Debug Terminal if available. Set a breakpoint in `calculateTotal`, start `src/demo.mjs`, and use step and continue to inspect `quantity` and `total` as the calculation runs.
 
-The debug adapter determines which breakpoint types are available, including conditional breakpoints and logpoints. The code debugger provides the call stack, variables, watches, and console. Use Ordito's simulations to inspect supported diagram behavior. The IDE debugger works against the running code.
+The debug adapter determines which breakpoint types are available, including conditional breakpoints and logpoints. The code debugger provides the call stack, variables, watches, and console. Use Specsplice's simulations to inspect supported diagram behavior. The IDE debugger works against the running code.
 
-#### Code tests and Ordito verification
+#### Code tests and Specsplice verification
 
 Use **Testing** to find and run test cases, then open the source and output for a failure. Test discovery and execution require a provider, as do stack traces and coverage. For the Node example, you can also run `npm test` in the terminal.
 
-Project tests check code behavior. An Ordito independent case supplies an expected result authored separately from the generator. A messaging simulation exercises local deliveries and policies. Profile verification checks a proposal against its defined cases. Choose the check that answers your question. Use a messaging case to check a declared delivery and the module's tests to check the L16 total. Record the checks you ran and any cases you left untested.
+Project tests check code behavior. An Specsplice independent case supplies an expected result authored separately from the generator. A messaging simulation exercises local deliveries and policies. Profile verification checks a proposal against its defined cases. Choose the check that answers your question. Use a messaging case to check a declared delivery and the module's tests to check the L16 total. Record the checks you ran and any cases you left untested.
 
 ### A4. Documents, browser, customization, and integrations
 
@@ -1849,7 +1849,7 @@ Use these tools when your work calls for documents, a web interface, or an integ
 
 #### Documents and content
 
-Open a Markdown file and use **Markdown: Open Preview** or the side-by-side preview to compare the source with the rendered headings, links, and images. Mermaid diagrams and formulas are available in supported contexts. Use Mermaid to illustrate documentation and the Ordito model to maintain project identities.
+Open a Markdown file and use **Markdown: Open Preview** or the side-by-side preview to compare the source with the rendered headings, links, and images. Mermaid diagrams and formulas are available in supported contexts. Use Mermaid to illustrate documentation and the Specsplice model to maintain project identities.
 
 Use notebooks to keep text, code, and results in cells within one document. To run the cells, install a suitable kernel. IPYNB and renderer support lets you view notebooks. Images, audio, video, webviews, and custom editors depend on the available formats and extensions.
 
@@ -1869,7 +1869,7 @@ Use **Problems**, **Output**, and service logs to track down an issue. Identify 
 
 Use general chat for requests that span multiple parts of the project and inline chat to work on the open source. Attach files and selections to give the assistant relevant context. The available provider determines the model and modes. Review proposed edits against your intent before accepting or rejecting them. The diagram workflow has its own temporary conversation.
 
-MCP, the Model Context Protocol, connects external tools and data to integrations that support it. Configure a server when its capabilities are relevant to your work. Use the MCP commands to add it, choose user or workspace configuration, inspect status and output, and manage trust and tools. Check which capabilities the configured integration exposes. Some upstream services require additional configuration in Ordito.
+MCP, the Model Context Protocol, connects external tools and data to integrations that support it. Configure a server when its capabilities are relevant to your work. Use the MCP commands to add it, choose user or workspace configuration, inspect status and output, and manage trust and tools. Check which capabilities the configured integration exposes. Some upstream services require additional configuration in Specsplice.
 
 ### A5. Accessibility and keyboard navigation
 
@@ -1879,7 +1879,7 @@ On the canvas, press Tab to focus an element and Enter to select it and inspect 
 
 Use **Diagram > Read** and **Accessible View** to inspect elements, relationships, conditions, and contracts without relying on color or layout. If a review is active, the reader presents that review. Contextual help lists the current shortcuts. On macOS, the default shortcuts include Option+F1 for help and Option+F2 for reading.
 
-Press Escape to close the reader and return to your previous context. If you prefer fewer hints, search for Ordito verbosity in the Settings UI. Light, dark, and high-contrast themes and reduced motion preferences let you adjust the presentation.
+Press Escape to close the reader and return to your previous context. If you prefer fewer hints, search for Specsplice verbosity in the Settings UI. Light, dark, and high-contrast themes and reduced motion preferences let you adjust the presentation.
 
 Keyboard navigation and automated checks cover the implemented interactions. VoiceOver and NVDA coverage varies by platform. If a control fails to announce its name or state, include the object, action, operating system, and assistive technology in your report.
 
@@ -1889,7 +1889,7 @@ When a step gives an unexpected result, use the symptom to identify which prereq
 
 | Symptom | What to check |
 | --- | --- |
-| I cannot see my project | In **Open Project**, select the folder containing your copy of the example to load its model. Use the Ordito clone to build the application and individual source files to inspect code. |
+| I cannot see my project | In **Open Project**, select the folder containing your copy of the example to load its model. Use the Specsplice clone to build the application and individual source files to inspect code. |
 | The canvas looks empty | Use **Fit Diagram** to bring off-screen elements into view, then use **System Map** to search across the whole system. Check for the element before creating another. See A9. |
 | I want to use an existing element | **Add Existing Element** reuses the model identity. **Add Element** creates a new definition. |
 | I removed a node and can still find it | The node was removed from the view. Consult **Details** or **Impact** to see which other references deleting it from the system would affect. |
@@ -1911,12 +1911,12 @@ When a step gives an unexpected result, use the symptom to identify which prereq
 | My account is connected and requests still fail | Check the executable, exact model, quota, and provider configuration individually. Each has its own requirements. |
 | I ran out of budget | Increase the budget for the specific operation. Structured AI and exploration have separate budgets. |
 | I closed chat and cannot see the conversation history | The dialog is temporary. Resume from the persisted plan or drafts to recover completed work, or start a new conversation. |
-| **Sync** is unavailable | Check the model format and adapter. Ordito uses them to recognize supported mappings between model and code. The legacy workflow requires a compatible model and adapter in addition to any v5 exploration. |
-| Bun is missing | Install the version required by the profile and make it available at startup. Ordito runs verification with the selected runtime. |
+| **Sync** is unavailable | Check the model format and adapter. Specsplice uses them to recognize supported mappings between model and code. The legacy workflow requires a compatible model and adapter in addition to any v5 exploration. |
+| Bun is missing | Install the version required by the profile and make it available at startup. Specsplice runs verification with the selected runtime. |
 | I cannot see tests or a debugger | Check for the provider or extension that supplies those actions. For the Node example, run `npm test` in the terminal. |
 | I cannot save | Read the error and check the destination, permissions, conflicts, and document state. If appropriate, save a copy to keep your work while you resolve the problem. |
 
-When reporting an issue, include steps to reproduce it, the expected and observed results, the Ordito version, the operating system, the diagram involved, and a relevant screenshot. A small synthetic project helps isolate the problem. Use **Output** or the log commands in the Command Palette to include the message from the service that failed.
+When reporting an issue, include steps to reproduce it, the expected and observed results, the Specsplice version, the operating system, the diagram involved, and a relevant screenshot. A small synthetic project helps isolate the problem. Use **Output** or the log commands in the Command Palette to include the message from the service that failed.
 
 ### A7. Capabilities, prerequisites, and guide coverage
 
@@ -1931,7 +1931,7 @@ Use the first table to identify what a workflow can establish before choosing a 
 | Worktree | Review changes separately and run Node tests in the supported workflow. | A worktree separates files and revisions. Operating system isolation requires separate sandboxing. |
 | Executable profiles | Formalize predicates, interactions, flat state machines, and messaging. | Execution is limited to the profile's defined constructs. Frameworks, arbitrary bodies, and distributed transactions require separate implementations. |
 | Simulation | Exercise declared data, events, and responses. | The simulation uses local inputs. Monitor running services and brokers separately. |
-| Reverse and Sync | Review transformations within supported subsets. | Supported mappings bound what Ordito can recover from changes to the source. |
+| Reverse and Sync | Review transformations within supported subsets. | Supported mappings bound what Specsplice can recover from changes to the source. |
 | Data and runtime | Represent mappings and schemas and create a Node or Bun plan. | Live database migrations and services remain separate operations. |
 | Apply | Write reviewed changes locally. | Commit, push, and deployment are separate actions. |
 
@@ -1990,9 +1990,9 @@ Use this glossary to describe what you have designed, reviewed, applied, or veri
 
 This edition covers the **Structural Blueprint** editor, relationship reuse with **Add Existing Relationship**, and the layered **System Map**. The screenshots show where to find the controls. T2 gives the expected results for the four perspectives on a purchase.
 
-The examples are synthetic and come from the Ordito repository's demo models and the Order Shop lab. They are distributed under the project's MIT license. The package contains example data only, with no accounts, credentials, AI histories, or personal Git repositories.
+The examples are synthetic and come from the Specsplice repository's demo models and the Order Shop lab. They are distributed under the project's MIT license. The package contains example data only, with no accounts, credentials, AI histories, or personal Git repositories.
 
-The following references describe the notations. Consult the forms and scope documented in this guide for the constructs Ordito supports. [C4 System Context](https://c4model.com/diagrams/system-context) · [C4 Container](https://c4model.com/diagrams/container) · [C4 Component](https://c4model.com/diagrams/component) · [OMG UML 2.5.1 specification](https://www.omg.org/spec/UML/2.5.1)
+The following references describe the notations. Consult the forms and scope documented in this guide for the constructs Specsplice supports. [C4 System Context](https://c4model.com/diagrams/system-context) · [C4 Container](https://c4model.com/diagrams/container) · [C4 Component](https://c4model.com/diagrams/component) · [OMG UML 2.5.1 specification](https://www.omg.org/spec/UML/2.5.1)
 
 ### A9. System Map layers and cumulative filters
 
@@ -2004,9 +2004,9 @@ System Map follows the groups declared in the model and includes elements with n
 
 Open the same map from the sidebar as you navigate the project, from the button above a diagram, or directly from the Command Palette.
 
-- In the Ordito sidebar, **Home**, **System Map**, and **Search System** appear in a vertical list at the top. The map remains available when the project is collapsed. Use **New > Structural Blueprint** for structural editing.
+- In the Specsplice sidebar, **Home**, **System Map**, and **Search System** appear in a vertical list at the top. The map remains available when the project is collapsed. Use **New > Structural Blueprint** for structural editing.
 - Above a diagram, choose **System Map** next to **Diagrams**.
-- In the Command Palette, run **Ordito: Show System Map**. Open the palette with `Cmd+Shift+P` on macOS or `Ctrl+Shift+P` on Windows and Linux.
+- In the Command Palette, run **Specsplice: Show System Map**. Open the palette with `Cmd+Shift+P` on macOS or `Ctrl+Shift+P` on Windows and Linux.
 
 ![System Map with the Customer filter visible in the filter bar](images/17-system-map-overview.png)
 

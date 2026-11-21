@@ -133,7 +133,7 @@ export class OrditoAiImplementation extends Disposable {
 
 	async collaborate(operation: 'plan' | 'interpret'): Promise<void> {
 		if ((this.project.model.version === 4 || this.project.model.version === 5)) { this.host.info(localize('ordito.ai.v4Profile', "Choose a Compatible Generation Profile Before Implementing This Specification. You Can Continue Editing and Saving the Draft.")); return; }
-		if (this.host.busy || this.operations.busy) { this.notifications.info(localize('ordito.ai.busy', "An Ordito operation is already running. Wait for it to finish or cancel it before starting another.")); return; }
+		if (this.host.busy || this.operations.busy) { this.notifications.info(localize('ordito.ai.busy', "A Specsplice operation is already running. Wait for it to finish or cancel it before starting another.")); return; }
 		if (!this.code.context) { this.host.info(localize('ordito.ai.importRequired', "Import a Git Codebase with a Commit and Add a Feature Before Implementing. Use Import Codebase or Sync Project.")); return; }
 		if (!await this.connection.ensureConfigured()) { return; }
 		await this.host.run(async token => {
@@ -260,7 +260,7 @@ export class OrditoAiImplementation extends Disposable {
 	async resume(): Promise<void> {
 		await this.host.run(async token => {
 			const saved = this.storage.get('ordito.ai.session', StorageScope.WORKSPACE);
-			if (!saved) { this.host.info(localize('ordito.ai.noSession', "No Ordito implementation session is saved for this workspace.")); return; }
+			if (!saved) { this.host.info(localize('ordito.ai.noSession', "No Specsplice implementation session is saved for this workspace.")); return; }
 			const request: { root: string; id: string } = JSON.parse(saved);
 			this._session = await this.host.request<CollaborationSession>({ ...request, operation: 'session' }, token);
 			this.host.activityStatus = undefined;

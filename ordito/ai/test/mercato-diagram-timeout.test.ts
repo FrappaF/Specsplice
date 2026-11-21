@@ -48,7 +48,7 @@ async function fakeProvider(Client: typeof McpClient, StdioClientTransport: type
 			return result;
 		};
 		if (phase === 'audit') {
-			assert.match(input, /^You are the independent Ordito diagram auditor\./);
+			assert.match(input, /^You are the independent Specsplice diagram auditor\./);
 			assert.ok(!input.includes(requestMarker));
 			const tools = (await client.listTools()).tools.map(tool => tool.name);
 			assert.ok(tools.includes('ordito_audit_inventory') && tools.includes('ordito_audit_submit'));

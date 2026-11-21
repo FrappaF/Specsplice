@@ -4,7 +4,7 @@ import { ScriptedDialogs } from './orditoBlueprintEditing.test.js';
 import { buildOrditoExpression, editOrditoPredicate } from '../../browser/orditoPredicateEditing.js';
 import { applyVisualEdit } from '../../common/visualEditing.js';
 
-suite('Ordito pure predicate editing', () => {
+suite('Specsplice pure predicate editing', () => {
 	test('canceling a detached reset preserves the original authored graph', async () => {
 		const model = structuredClone(nodeOrdersFixture); const before = structuredClone(model);
 		const dialogs = new ScriptedDialogs(['submitOrder', 'predicate.positive', 'Precondition · Inputs Only', 'Clear Detached Expression', undefined]);

@@ -5,7 +5,7 @@ import { editOrditoBehavior } from '../../browser/orditoBehaviorEditing.js';
 import { OrditoEditingWizard } from '../../browser/orditoEditingWizard.js';
 import { blueprintFixture } from '../common/blueprintFixture.js';
 
-suite('Ordito shared editing wizard', () => {
+suite('Specsplice shared editing wizard', () => {
 	const store = ensureNoDisposablesAreLeakedInTestSuite();
 	let parent: HTMLElement;
 	let wizard: OrditoEditingWizard;

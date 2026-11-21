@@ -146,7 +146,7 @@ const configuration: IConfigurationNode = {
 	scope: ConfigurationScope.RESOURCE,
 	properties: {
 		[AccessibilityVerbositySettingId.Ordito]: {
-			description: localize('verbosity.ordito.description', "Provide information about accessibility help and the text version of Ordito diagrams when the visual workbench is focused."),
+			description: localize('verbosity.ordito.description', "Provide information about accessibility help and the text version of Specsplice diagrams when the visual workbench is focused."),
 			...baseVerbosityProperty
 		},
 		[AccessibilityVerbositySettingId.Terminal]: {

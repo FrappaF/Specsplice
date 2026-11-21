@@ -6,7 +6,7 @@ import { isWindows } from '../../../../../base/common/platform.js';
 import { ensureNoDisposablesAreLeakedInTestSuite } from '../../../../../base/test/common/utils.js';
 import { resolveCliExecutable } from '../../node/orditoCliExecutable.js';
 
-suite('Ordito CLI executable lookup', () => {
+suite('Specsplice CLI executable lookup', () => {
 	ensureNoDisposablesAreLeakedInTestSuite();
 	let directory: string;
 	let executable: string;

@@ -1,4 +1,4 @@
-name: Validate Ordito domain and prototype
+name: Validate Specsplice domain and prototype
 on:
   push:
     branches: [main]

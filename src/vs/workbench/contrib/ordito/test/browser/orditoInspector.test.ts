@@ -12,7 +12,7 @@ import { type SemanticModel } from '../../common/modelTypes.js';
 import { type VisualEdit } from '../../common/visualEditing.js';
 import { interactionFixture } from '../common/interactionFixture.js';
 
-suite('Ordito inspector information hierarchy', () => {
+suite('Specsplice inspector information hierarchy', () => {
 	const store = ensureNoDisposablesAreLeakedInTestSuite();
 	let root: HTMLElement;
 	let detail: HTMLElement;

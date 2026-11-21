@@ -14,7 +14,7 @@ import { OrditoProjectService } from '../../browser/orditoProjectService.js';
 import { OrditoWorkflowContent } from '../../browser/orditoWorkflowContent.js';
 import { emptyFoundation } from '../../common/modelFoundation.js';
 
-suite('Ordito readable workflow and map', () => {
+suite('Specsplice readable workflow and map', () => {
 	const store = ensureNoDisposablesAreLeakedInTestSuite();
 	let root: HTMLElement;
 	setup(() => { root = dom.append(document.body, dom.$('section.ordito-shell')); });

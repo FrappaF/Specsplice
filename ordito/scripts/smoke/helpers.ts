@@ -17,7 +17,7 @@ async function revealOrditoAncestors(target: Locator) {
 				return Array.from(tabs).findIndex(tab => labels.includes(tab.id) && tab.getAttribute('aria-controls') === panel.id);
 			});
 			if (index === undefined) { continue; }
-			if (index < 0) { throw new Error('No accessible tab controls the hidden Ordito panel.'); }
+			if (index < 0) { throw new Error('No accessible tab controls the hidden Specsplice panel.'); }
 			const list = ancestor.locator('xpath=../preceding-sibling::*[@role="tablist"][1]');
 			await list.getByRole('tab', { includeHidden: true }).nth(index).click();
 		} else if (!await ancestor.evaluate(element => element instanceof HTMLDetailsElement && element.open)) {
@@ -43,7 +43,7 @@ export async function clickOrditoButton(window: Page, name: string) {
 	if (name === 'Return to Model') {
 		const back = window.locator('.ordito-workspace-bar').getByRole('button', { name: 'Back to Diagram', exact: true });
 		if (await back.isVisible()) { await back.click(); }
-		else { await runCommand(window, 'Ordito: Return to Model'); }
+		else { await runCommand(window, 'Specsplice: Return to Model'); }
 		return;
 	}
 	await (await revealOrditoButton(window, name)).click();
@@ -64,7 +64,7 @@ export async function revealOrditoText(window: Page, text: string) {
 
 export async function chooseOrditoDiagram(window: Page, name: string) {
 	await closeCanvasActions(window);
-	await runCommand(window, 'Ordito: Return to Model');
+	await runCommand(window, 'Specsplice: Return to Model');
 	const picker = window.locator('.ordito-workspace-bar .ordito-diagram-picker');
 	if (await picker.count()) {
 		if (await picker.getAttribute('aria-haspopup') !== 'listbox') { await picker.click(); }
@@ -87,7 +87,7 @@ export async function openDiagramNavigation(window: Page) {
 	const diagrams = window.locator('.ordito-workspace-bar').getByRole('button', { name: 'Diagrams', exact: true });
 	if (!await window.locator('.monaco-workbench .part.sidebar').isVisible() && await diagrams.count()) { await diagrams.click(); }
 	else {
-		await runCommand(window, 'Ordito: Show Diagram Navigation');
+		await runCommand(window, 'Specsplice: Show Diagram Navigation');
 	}
 	await sidebar.waitFor();
 	await window.waitForFunction(() => !!document.querySelector('.ordito-sidebar')?.contains(document.activeElement));
@@ -125,8 +125,8 @@ export async function openAiSettings(window: Page) {
 }
 
 export async function openModelFile(window: Page, file: string) {
-	await runCommand(window, 'Ordito: Open Model');
-	await window.locator('.quick-input-widget').getByText('Open Ordito Model', { exact: true }).waitFor();
+	await runCommand(window, 'Specsplice: Open Model');
+	await window.locator('.quick-input-widget').getByText('Open Specsplice Model', { exact: true }).waitFor();
 
 	const input = window.locator('.quick-input-widget input:visible');
 	await input.waitFor();
@@ -278,7 +278,7 @@ export async function runCommand(window: Page, name: string) {
 }
 
 export async function searchSystem(window: Page, kind: string, name: string) {
-	await runCommand(window, 'Ordito: Search System');
+	await runCommand(window, 'Specsplice: Search System');
 	const widget = window.locator('.quick-input-widget');
 	await widget.getByText('Search System', { exact: true }).waitFor();
 	await widget.locator('input:visible').fill(name);

@@ -62,21 +62,35 @@ suite('User data path', () => {
 		}
 	});
 
-	test('getUserDataPath - uses an existing profile after a product rename', () => {
+	test('getUserDataPath - prefers the current profile and then each previous name in order', () => {
 		const environment = { appData: process.env['VSCODE_APPDATA'], dev: process.env['VSCODE_DEV'], portable: process.env['VSCODE_PORTABLE'] };
-		const appData = mkdtempSync(join(tmpdir(), 'ordito-user-data-'));
+		const appData = mkdtempSync(join(tmpdir(), 'specsplice-user-data-'));
 		try {
 			process.env['VSCODE_APPDATA'] = appData;
 			delete process.env['VSCODE_DEV'];
 			delete process.env['VSCODE_PORTABLE'];
-			const legacy = join(appData, 'Previous Product');
-			const current = join(appData, 'Ordito');
+			const current = join(appData, 'Specsplice');
+			const previous = join(appData, 'Ordito');
+			const oldest = join(appData, 'A.D.E');
+			const legacyNames = ['Ordito', 'A.D.E'];
 			const args = parseArgs(process.argv, OPTIONS);
-			assert.strictEqual(getUserDataPath(args, 'Ordito', 'Previous Product'), current);
-			mkdirSync(legacy);
-			assert.strictEqual(getUserDataPath(args, 'Ordito', 'Previous Product'), legacy);
+			assert.strictEqual(getUserDataPath(args, 'Specsplice', legacyNames), current);
+			mkdirSync(oldest);
+			assert.strictEqual(getUserDataPath(args, 'Specsplice', legacyNames), oldest);
+			assert.strictEqual(getUserDataPath(args, 'Specsplice', 'A.D.E'), oldest);
+			mkdirSync(previous);
+			assert.strictEqual(getUserDataPath(args, 'Specsplice', legacyNames), previous);
 			mkdirSync(current);
-			assert.strictEqual(getUserDataPath(args, 'Ordito', 'Previous Product'), current);
+			assert.strictEqual(getUserDataPath(args, 'Specsplice', legacyNames), current);
+
+			const explicit = join(appData, 'explicit-profile');
+			args['user-data-dir'] = explicit;
+			assert.strictEqual(getUserDataPath(args, 'Specsplice', legacyNames), current);
+			process.env['VSCODE_PORTABLE'] = join(appData, 'portable');
+			assert.strictEqual(getUserDataPath(args, 'Specsplice', legacyNames), join(appData, 'portable', 'user-data'));
+			delete process.env['VSCODE_PORTABLE'];
+			delete process.env['VSCODE_APPDATA'];
+			assert.strictEqual(getUserDataPath(args, 'Specsplice', legacyNames), explicit);
 		} finally {
 			for (const [key, value] of Object.entries({ VSCODE_APPDATA: environment.appData, VSCODE_DEV: environment.dev, VSCODE_PORTABLE: environment.portable })) {
 				if (value === undefined) {

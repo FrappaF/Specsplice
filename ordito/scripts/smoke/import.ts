@@ -50,7 +50,7 @@ writeSync(1,JSON.stringify({type:'turn.completed',usage:{input_tokens:500,output
 		await entered; args[1] = sourceRoot;
 		await shell.getByRole('heading', { name: 'Explore Your Codebase', exact: true }).waitFor({ timeout: 90000 });
 		assert.equal(await shell.locator('.ordito-node, .ordito-atlas-node').count(), 0);
-		await runCommand(window, 'Ordito: Show Diagram Navigation');
+		await runCommand(window, 'Specsplice: Show Diagram Navigation');
 		const sidebar = window.locator('.ordito-sidebar');
 		await shell.getByText('Source Evidence Ready · Create Capability and Flow Diagrams with AI', { exact: true }).waitFor();
 		assert.equal(await sidebar.getByRole('button', { name: /\.(?:rb|erb|yml)$/ }).count(), 0);
@@ -184,7 +184,7 @@ writeSync(1,JSON.stringify({type:'turn.completed',usage:{input_tokens:100,output
 		const codePage = shell.locator('.ordito-code-page');
 		await codePage.getByRole('button', { name: 'Code Evidence', exact: true }).waitFor();
 		assert.equal(await codePage.getByRole('button', { name: 'Update Code', exact: true }).count(), 0, 'The unreviewed source index does not expose legacy model-to-code synchronization');
-		await runCommand(window, 'Ordito: Return to Model');
+		await runCommand(window, 'Specsplice: Return to Model');
 		await shell.getByRole('button', { name: 'Inspect Code Evidence', exact: true }).click();
 		await widget.getByRole('option', { name: /checkout.*Extracted declaration/i }).waitFor();
 		await widget.getByRole('option', { name: /checkout.*Extracted declaration/i }).click();
@@ -195,7 +195,7 @@ writeSync(1,JSON.stringify({type:'turn.completed',usage:{input_tokens:100,output
 		console.log('PASS: default import exposes Architecture Exploration; continuing the explicitly selected legacy CLI protocol.');
 		const configurationDeadline = Date.now() + 10000;
 		while (!await shell.getByText('Source Evidence Ready · Create Capability and Flow Diagrams with AI', { exact: true }).isVisible() && Date.now() < configurationDeadline) {
-			await runCommand(window, 'Ordito: Return to Model');
+			await runCommand(window, 'Specsplice: Return to Model');
 			await new Promise(resolve => setTimeout(resolve, 100));
 		}
 		const snapshot = async () => {
@@ -206,7 +206,7 @@ writeSync(1,JSON.stringify({type:'turn.completed',usage:{input_tokens:100,output
 		await shell.getByText('Source Evidence Ready · Create Capability and Flow Diagrams with AI', { exact: true }).waitFor({ timeout: 90000 });
 		args[1] = sourceRoot; // Restart in the workspace entered by Import Codebase, without a second asynchronous folder switch.
 		if (!workflowOnly) {
-			await runCommand(window, 'Ordito: Connect Claude Code or Codex');
+			await runCommand(window, 'Specsplice: Connect Claude Code or Codex');
 			await pickValue(window, 'Choose AI CLI', 'Codex');
 			await pickValue(window, 'Codex', 'Choose Model and CLI');
 			await widget.getByText(/^(Model ID from Your CLI|Choose a Model Available to Your Account)$/).waitFor();
@@ -248,7 +248,7 @@ writeSync(1,JSON.stringify({type:'turn.completed',usage:{input_tokens:100,output
 			await (await codeAction(window, 'Update Code', false)).waitFor({ timeout: 90000 });
 			assert.ok((await readFile(path.join(sourceRoot, 'checkout.ts'), 'utf8')).includes('function reviewedPurchase('));
 			await (await codeAction(window, 'Chat with Codex')).click();
-			const assistant = window.getByRole('dialog', { name: 'Ordito Assistant', exact: true });
+			const assistant = window.getByRole('dialog', { name: 'Specsplice Assistant', exact: true });
 			await assistant.waitFor();
 			await window.screenshot({ path: path.join(evidence, 'ux-codex-chat.png') });
 			await assistant.getByRole('textbox', { name: 'Message the Assistant', exact: true }).fill('change-code');
@@ -306,7 +306,7 @@ writeSync(1,JSON.stringify({type:'turn.completed',usage:{input_tokens:100,output
 		const previous = initial.state.files.flatMap((file: IndexedFile) => file.declarations).find((item: CodeDeclaration) => item.name === 'checkout');
 		await writeFile(path.join(sourceRoot, 'checkout.ts'), 'import {charge as pay} from "./gateway"; export function purchase(amount: number, tag: string): boolean { return pay(amount); }');
 		await rm(path.join(sourceRoot, 'obsolete.py'));
-		await runCommand(window, 'Ordito: Sync Project');
+		await runCommand(window, 'Specsplice: Sync Project');
 		await pickValue(window, 'Sync Preview', 'Confirm a Symbol Rename');
 		await pickValue(window, 'Choose the Previous Declaration', 'checkout');
 		await pickValue(window, 'Choose the Renamed Declaration', 'purchase');
@@ -326,18 +326,18 @@ writeSync(1,JSON.stringify({type:'turn.completed',usage:{input_tokens:100,output
 		assert.ok(updated.state.analysis.reused.includes('gateway.ts'));
 		assert.ok(!updated.state.files.some((file: IndexedFile) => file.file === 'obsolete.py'));
 		await (await codeAction(window, 'Update Code', false)).waitFor();
-		await runCommand(window, 'Ordito: Inspect Code Evidence');
+		await runCommand(window, 'Specsplice: Inspect Code Evidence');
 		await widget.locator('input:visible').fill('purchase');
 		await window.keyboard.press('Enter');
 		await window.locator('.monaco-editor .view-lines').filter({ hasText: 'purchase' }).first().waitFor();
-		await runCommand(window, 'Ordito: Return to Model');
+		await runCommand(window, 'Specsplice: Return to Model');
 		await window.screenshot({ path: path.join(evidence, 'm4-code-sync.png') });
 		await chooseOrditoDiagram(window, 'Purchase Flow');
 		await shell.locator('.ordito-canvas').getByRole('button', { name: 'purchase', exact: true }).click();
 		await clickOrditoButton(window, 'Rename Element');
 		await enterValue(window, 'Name', 'reviewedPurchase');
 		await shell.getByRole('button', { name: 'Save', exact: true }).click();
-		await runCommand(window, 'Ordito: Sync Project');
+		await runCommand(window, 'Specsplice: Sync Project');
 		await pickValue(window, 'Sync Preview', 'Review Sync Context');
 		await widget.getByText('Review Source Files for Bidirectional Sync', { exact: true }).waitFor();
 		await window.keyboard.press('Enter');
@@ -346,7 +346,7 @@ writeSync(1,JSON.stringify({type:'turn.completed',usage:{input_tokens:100,output
 		await shell.getByText('reviewedPurchase', { exact: true }).first().waitFor();
 		assert.ok((await readFile(path.join(sourceRoot, 'checkout.ts'), 'utf8')).includes('function reviewedPurchase('));
 		await window.screenshot({ path: path.join(evidence, 'm6-model-to-code.png') });
-		await runCommand(window, 'Ordito: Undo Last Sync');
+		await runCommand(window, 'Specsplice: Undo Last Sync');
 		await pickValue(window, 'Undo Last Sync', 'Undo Model and Source Changes');
 		await (await codeAction(window, 'Update Code', false)).waitFor();
 		assert.equal((await snapshot()).folder, updated.folder);
@@ -360,7 +360,7 @@ writeSync(1,JSON.stringify({type:'turn.completed',usage:{input_tokens:100,output
 		await projectMenu.getByRole('button', { name: 'Open Project', exact: true }).click();
 		await chooseFolder(window, sourceRoot);
 		await (await codeAction(window, 'Update Code', false)).waitFor();
-		await runCommand(window, 'Ordito: Restore Code Model Snapshot');
+		await runCommand(window, 'Specsplice: Restore Code Model Snapshot');
 		await window.locator('.quick-input-widget').getByText(initial.folder, { exact: true }).click();
 		await shell.locator('.ordito-canvas').getByRole('button', { name: 'checkout', exact: true }).waitFor();
 		assert.equal((await snapshot()).folder, initial.folder);

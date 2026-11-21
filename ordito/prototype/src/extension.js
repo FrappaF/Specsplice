@@ -8,8 +8,8 @@ function activate(context) {
     const document = await vscode.workspace.openTextDocument(selected[0]);
     let html;
     try { html = renderModel(JSON.parse(document.getText())); }
-    catch (error) { vscode.window.showErrorMessage(`Ordito: ${error.message}`); return; }
-    const panel = vscode.window.createWebviewPanel('ordito', 'Ordito', vscode.ViewColumn.Beside, {enableScripts: false, localResourceRoots: []});
+    catch (error) { vscode.window.showErrorMessage(`Specsplice: ${error.message}`); return; }
+    const panel = vscode.window.createWebviewPanel('ordito', 'Specsplice', vscode.ViewColumn.Beside, {enableScripts: false, localResourceRoots: []});
     panel.webview.html = html;
     const listener = vscode.workspace.onDidChangeTextDocument(event => {
       if (event.document.uri.toString() !== document.uri.toString()) return;

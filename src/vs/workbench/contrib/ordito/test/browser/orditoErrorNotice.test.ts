@@ -5,7 +5,7 @@ import { OrditoControls } from '../../browser/orditoControls.js';
 import { renderOrditoErrorNotice } from '../../browser/orditoErrorNotice.js';
 import { describeOrditoError } from '../../browser/orditoErrors.js';
 
-suite('Ordito shared error notice', () => {
+suite('Specsplice shared error notice', () => {
 	const store = ensureNoDisposablesAreLeakedInTestSuite();
 	let parent: HTMLElement;
 	setup(() => { parent = document.body.appendChild(document.createElement('div')); });

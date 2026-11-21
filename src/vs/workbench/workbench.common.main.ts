@@ -484,7 +484,7 @@ import './contrib/editTelemetry/browser/editTelemetry.contribution.js';
 // Opener
 import './contrib/opener/browser/opener.contribution.js';
 
-// Ordito project shell and semantic model boundary
+// Specsplice project shell and semantic model boundary
 import './contrib/ordito/browser/ordito.contribution.js';
 
 //#endregion

@@ -17,7 +17,7 @@ import { type IConfigurationChangeEvent } from '../../../../../platform/configur
 import { blueprintFixture } from '../common/blueprintFixture.js';
 import { emptyFoundation } from '../../common/modelFoundation.js';
 
-suite('Ordito sidebar project shortcuts', () => {
+suite('Specsplice sidebar project shortcuts', () => {
 	const store = ensureNoDisposablesAreLeakedInTestSuite();
 	let root: HTMLElement;
 	setup(() => { root = dom.append(document.body, dom.$('section')); });

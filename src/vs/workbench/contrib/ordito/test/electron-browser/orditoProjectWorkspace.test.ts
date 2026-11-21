@@ -15,7 +15,7 @@ import { ITerminalService, ITerminalGroupService } from '../../../terminal/brows
 import { IOrditoProjectService } from '../../browser/orditoProjectService.js';
 import { OrditoProjectWorkspace } from '../../browser/orditoProjectWorkspace.js';
 
-suite('Ordito project workspace tools', () => {
+suite('Specsplice project workspace tools', () => {
 	const store = ensureNoDisposablesAreLeakedInTestSuite();
 	function fixture(initialFolders: URI[] = []) {
 		const instantiation = store.add(new TestInstantiationService());
@@ -51,6 +51,6 @@ suite('Ordito project workspace tools', () => {
 		const f = fixture(); await f.service.terminal();
 		assert.deepStrictEqual(f.terminalSteps, ['created', 'active', 'panel-shown', 'focused']);
 		const next = URI.file('/projects/next'); f.changeRoot(next); await f.service.terminal();
-		assert.deepStrictEqual(f.terminals, [{ config: { name: 'Ordito Project', cwd: f.root } }, { config: { name: 'Ordito Project', cwd: next } }]);
+		assert.deepStrictEqual(f.terminals, [{ config: { name: 'Specsplice Project', cwd: f.root } }, { config: { name: 'Specsplice Project', cwd: next } }]);
 	});
 });

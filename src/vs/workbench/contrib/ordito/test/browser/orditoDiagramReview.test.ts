@@ -22,7 +22,7 @@ import { canonicalJson, semanticContent } from '../../common/modelSerialization.
 import type { CodeContext, CodeDiagramExploration } from '../../common/codeBridge.js';
 import { diagramCheckpointTimeoutSetting, diagramExplorationBudgetSetting } from '../../common/diagramExplorationSettings.js';
 
-suite('Ordito imported diagram review', () => {
+suite('Specsplice imported diagram review', () => {
 	const store = ensureNoDisposablesAreLeakedInTestSuite();
 	let root: HTMLElement;
 	setup(() => { root = dom.append(document.body, dom.$('section.ordito-shell')); });

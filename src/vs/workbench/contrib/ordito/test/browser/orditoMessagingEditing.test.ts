@@ -9,7 +9,7 @@ import { applyVisualEdit } from '../../common/visualEditing.js';
 import { compileModelMessaging, simulateMessaging, validateModelMessaging } from '../../common/modelMessaging.js';
 import { type SemanticModelV4 } from '../../common/modelTypes.js';
 
-suite('Ordito messaging native editing', () => {
+suite('Specsplice messaging native editing', () => {
 	test('nested cancel preserves contracts, policies and source model', async () => { const model = structuredClone(messagingFixture), before = structuredClone(model), dialogs = new ScriptedDialogs(['checkout.messaging', 'Declare or Edit Subscription', 'workers', undefined]); assert.strictEqual(await editOrditoMessaging(dialogs, model), undefined); dialogs.assertComplete(); assert.deepStrictEqual(model, before); });
 	test('confirming the focused existing policy preserves its file ledger when only ack wait changes', async () => {
 		const model = structuredClone(messagingFixture), dialogs = new ScriptedDialogs(['checkout.messaging', 'Declare or Edit Subscription', 'workers', 'workers', 'At Least Once · Explicit Ack · Serial Delivery', '1000', '3', '100', '200', 'checkout.dlq.workers', '<focused>', 'Validate and Save Messaging']);

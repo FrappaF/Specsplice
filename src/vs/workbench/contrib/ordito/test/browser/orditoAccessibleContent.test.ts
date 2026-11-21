@@ -6,7 +6,7 @@ import { diagnosticMessage, isOrditoDiagramBlockingDiagnostic } from '../../brow
 import { checkoutModel } from '../../common/checkoutModel.js';
 import { validateSemanticModel } from '../../common/modelValidation.js';
 
-suite('Ordito accessible content', () => {
+suite('Specsplice accessible content', () => {
 	ensureNoDisposablesAreLeakedInTestSuite();
 	function state(overrides: Partial<OrditoReadingState> = {}): OrditoReadingState {
 		return { model: checkoutModel, activeView: checkoutModel.views[1], selectedId: 'declined', section: 'diagram',

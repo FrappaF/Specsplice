@@ -1,6 +1,6 @@
-# Ordito architecture
+# Specsplice architecture
 
-Ordito is a Code OSS fork with a native workbench contribution. Start with the [development guide](fork-development.md) to set up a working environment.
+Specsplice is a Code OSS fork with a native workbench contribution. Start with the [development guide](fork-development.md) to set up a working environment.
 
 ## Boundaries and dependencies
 
@@ -8,7 +8,7 @@ The domain lives in `src/vs/workbench/contrib/ordito/common/`. It is pure TypeSc
 
 ```mermaid
 flowchart TD
-    UI[Native Ordito contribution] --> Bridge[codeBridge JSON contract]
+    UI[Native Specsplice contribution] --> Bridge[codeBridge JSON contract]
     Bridge --> Engine[ordito/runtime/nativeHost]
     Engine --> AI[ordito/ai]
     Engine --> Import[ordito/code-import]
@@ -28,7 +28,7 @@ The JSON contract in `common/codeBridge.ts` separates the renderer from the Node
 
 ## Semantic domain
 
-The model supports legacy formats v2 and v3 and the v4 and v5 contracts. It represents semantic identities, visual projections, source evidence and verification separately. New projects store metadata in `.ordito/`. If a project has metadata only in `.ade/`, Ordito opens and saves it in place. Existing import snapshots with `model.ade.json` remain readable. Use `.orditoignore` to limit source import. Ordito reads `.adeignore` if the project has no `.orditoignore`. Architectural ownership comes from model declarations. Evidence from code syntax describes the source, while verification records describe executed behavior.
+The model supports legacy formats v2 and v3 and the v4 and v5 contracts. It represents semantic identities, visual projections, source evidence and verification separately. New projects store metadata in `.ordito/`. If a project has metadata only in `.ade/`, Specsplice opens and saves it in place. Existing import snapshots with `model.ade.json` remain readable. Use `.orditoignore` to limit source import. Specsplice reads `.adeignore` if the project has no `.orditoignore`. Architectural ownership comes from model declarations. Evidence from code syntax describes the source, while verification records describe executed behavior.
 
 | Module in `common/` | Responsibility |
 | --- | --- |

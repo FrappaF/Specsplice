@@ -188,7 +188,7 @@ test('the active imported snapshot can drive updates and hidden or stale models 
 	await f.execute('Apply', { id: job.id, reviewId: ready.reviewId });
 	assert.equal(await readFile(join(f.root, source), 'utf8'), updated + '\n');
 	await assert.rejects(f.execute('Inspect', { modelFile: '.ordito/imports/11111111-1111-1111-1111-111111111111/model.ordito.json' }), /active imported/);
-	await assert.rejects(f.execute('Inspect', { modelFile: '.ordito/feature-code-cases.json' }), /saved Ordito model/);
+	await assert.rejects(f.execute('Inspect', { modelFile: '.ordito/feature-code-cases.json' }), /saved Specsplice model/);
 });
 
 test('recovery completes committed publication after archive-link cleanup was interrupted', async t => {

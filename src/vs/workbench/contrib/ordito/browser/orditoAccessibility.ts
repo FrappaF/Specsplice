@@ -16,7 +16,7 @@ import { OrditoEditor } from './orditoEditor.js';
 import { IOrditoProjectService } from './orditoProjectService.js';
 import { ORDITO_VIEW_ID, OrditoView } from './orditoView.js';
 
-/** Both native entry points share current project state and stay scoped to Ordito focus. */
+/** Both native entry points share current project state and stay scoped to Specsplice focus. */
 abstract class OrditoAccessibleImplementation implements IAccessibleViewImplementation {
 	readonly priority = 110;
 	readonly when = ContextKeyExpr.or(orditoFocusedSurface.isEqualTo('editor'), orditoFocusedSurface.isEqualTo('navigation'));
@@ -67,11 +67,11 @@ export function registerOrditoAccessibleStartup(implementation: IAccessibleViewI
 	}, implementation.when);
 }
 
-// Native registry dispatch is installed in the Eventually phase. Ordito's explicit reading
+// Native registry dispatch is installed in the Eventually phase. Specsplice's explicit reading
 // control must also work immediately after startup, using the same provider and service.
 registerAction2(class extends Action2 {
 	constructor() {
-		super({ id: 'ordito.readContext', title: localize2('ordito.readContext', "Ordito: Read Current Context"), f1: true,
+		super({ id: 'ordito.readContext', title: localize2('ordito.readContext', "Specsplice: Read Current Context"), f1: true,
 			precondition: ContextKeyExpr.or(orditoFocusedSurface.isEqualTo('editor'), orditoFocusedSurface.isEqualTo('navigation')) });
 	}
 	run(accessor: ServicesAccessor): void {

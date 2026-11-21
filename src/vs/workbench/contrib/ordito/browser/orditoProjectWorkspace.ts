@@ -47,14 +47,14 @@ export class OrditoProjectWorkspace {
 	}
 	async terminal(): Promise<void> {
 		const root = this.project.projectRoot;
-		if (!root) { this.notifications.info(localize('ordito.terminal.noProject', "No Ordito project is open. The terminal uses the current workspace directory.")); }
-		await openOrditoTerminal(this.terminals, this.terminalGroups, { name: localize('ordito.terminal.project', "Ordito Project"), cwd: root });
+		if (!root) { this.notifications.info(localize('ordito.terminal.noProject', "No Specsplice project is open. The terminal uses the current workspace directory.")); }
+		await openOrditoTerminal(this.terminals, this.terminalGroups, { name: localize('ordito.terminal.project', "Specsplice Project"), cwd: root });
 	}
 }
 registerSingleton(IOrditoProjectWorkspaceService, OrditoProjectWorkspace, InstantiationType.Delayed);
 for (const [id, title, method] of [
-	['ordito.openFiles', localize2('ordito.files.command', "Ordito: Open Project Files"), 'files'],
-	['ordito.openTerminal', localize2('ordito.terminal.command', "Ordito: New Project Terminal"), 'terminal']
+	['ordito.openFiles', localize2('ordito.files.command', "Specsplice: Open Project Files"), 'files'],
+	['ordito.openTerminal', localize2('ordito.terminal.command', "Specsplice: New Project Terminal"), 'terminal']
 ] as const) {
 	registerAction2(class extends Action2 {
 		constructor() { super({ id, title, f1: true }); }

@@ -6,7 +6,7 @@ import { renderOrditoMessaging } from '../../browser/orditoMessaging.js';
 import { orditoMessagingRows } from '../../browser/orditoMessagingContent.js';
 import { messagingFixture } from '../common/messagingFixture.js';
 
-suite('Ordito messaging renderer', () => {
+suite('Specsplice messaging renderer', () => {
 	const disposables = ensureNoDisposablesAreLeakedInTestSuite(); let root: HTMLElement;
 	setup(() => { root = dom.append(document.body, dom.$('section')); }); teardown(() => root.remove());
 	test('broker aggregation retains channels/policies and keyboard access to consumers', () => { const model = structuredClone(messagingFixture), before = structuredClone(model), selected: string[] = []; renderOrditoMessaging(root, model, 'checkout.messaging', disposables.add(new OrditoControls()), id => selected.push(id)); assert.deepStrictEqual([...root.querySelectorAll<HTMLElement>('[data-messaging-id]')].map(row => row.dataset.messagingId), orditoMessagingRows(model, 'checkout.messaging').map(row => row.id)); const button = root.querySelector<HTMLButtonElement>('[data-messaging-id="billing"] button')!; button.focus(); assert.strictEqual(document.activeElement, button); button.click(); assert.deepStrictEqual(selected, ['billing']); assert.deepStrictEqual(model, before); });

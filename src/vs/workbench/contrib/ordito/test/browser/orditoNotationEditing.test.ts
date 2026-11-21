@@ -3,7 +3,7 @@ import { ensureNoDisposablesAreLeakedInTestSuite } from '../../../../../base/tes
 import { editOrditoElementNotation, editOrditoRelationNotation } from '../../browser/orditoNotationEditing.js';
 import { type SemanticElement, type SemanticRelation } from '../../common/modelTypes.js';
 
-suite('Ordito notation forms', () => {
+suite('Specsplice notation forms', () => {
 	ensureNoDisposablesAreLeakedInTestSuite();
 	let parent: HTMLElement;
 	let element: SemanticElement;

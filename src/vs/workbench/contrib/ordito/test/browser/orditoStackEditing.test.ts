@@ -7,7 +7,7 @@ import { applyVisualEdit } from '../../common/visualEditing.js';
 import { modelProjectProfile } from '../../common/modelProfiles.js';
 import { type SemanticModelV4 } from '../../common/modelTypes.js';
 
-suite('Ordito second runtime editing', () => {
+suite('Specsplice second runtime editing', () => {
 	function fixture() { let id = 0; return createPureProject('Quantity', () => 'native.' + ++id).model; }
 	async function edit(model: SemanticModelV4, answers: (string | undefined)[]) {
 		const before = structuredClone(model), dialogs = new ScriptedDialogs(answers), edits = await editOrditoStack(dialogs, model, { confirm: async confirmation => {

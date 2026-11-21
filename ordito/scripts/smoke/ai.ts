@@ -41,7 +41,7 @@ writeSync(1,JSON.stringify({type:'turn.completed',usage:{input_tokens:10,output_
 		await openModelFile(window, path.join(f.snapshot, 'model.ordito.json'));
 		await openCodeActions(window);
 		await window.locator('.ordito-shell').getByRole('button', { name: 'Update Code', exact: true, disabled: false }).waitFor({ timeout: 90000 });
-		await runCommand(window, 'Ordito: Connect Claude Code or Codex');
+		await runCommand(window, 'Specsplice: Connect Claude Code or Codex');
 		await pickValue(window, 'Choose AI CLI', 'Codex');
 		await pickValue(window, 'Codex', 'Choose Model and CLI');
 		const widget = window.locator('.quick-input-widget');
@@ -54,7 +54,7 @@ writeSync(1,JSON.stringify({type:'turn.completed',usage:{input_tokens:10,output_
 		await enterValue(window, 'Original CLI Executable', executable);
 		await pickValue(window, 'Agent Run Budget · Provider Usage Is Managed by Its CLI', 'Plan and Implementation');
 		if (!aiLive) { assert.equal(Number(await readFile(counter, 'utf8')), 0); }
-		await runCommand(window, 'Ordito: Implement Feature');
+		await runCommand(window, 'Specsplice: Implement Feature');
 		await pickValue(window, 'Implement Feature', 'checkout');
 		await enterValue(window, 'Requested Behavior', `For the supported boolean inputs, checkout(false) must return exactly 'declined' and checkout(true) must retain exactly 'paid'. No behavior for non-boolean inputs is requested.`);
 		await widget.getByText('Review Source Files to Share · Suggested from Model Evidence', { exact: true }).waitFor();
@@ -74,7 +74,7 @@ writeSync(1,JSON.stringify({type:'turn.completed',usage:{input_tokens:10,output_
 		};
 		await checkBehavior(session.worktree);
 		const returnToModel = async () => {
-			await runCommand(window, 'Ordito: Return to Model');
+			await runCommand(window, 'Specsplice: Return to Model');
 			return openCodeActions(window);
 		};
 		let collaboration = await returnToModel();
@@ -99,10 +99,10 @@ writeSync(1,JSON.stringify({type:'turn.completed',usage:{input_tokens:10,output_
 		window = await launch();
 		await openCodeActions(window);
 		await window.locator('.ordito-shell').getByRole('button', { name: 'Update Code', exact: true, disabled: false }).waitFor({ timeout: 90000 });
-		await runCommand(window, 'Ordito: Resume Implementation');
+		await runCommand(window, 'Specsplice: Resume Implementation');
 		await window.locator('.monaco-editor .view-lines').filter({ hasText: 'Applied · Undo Available' }).last().waitFor();
 		collaboration = await returnToModel();
-		await runCommand(window, 'Ordito: Undo Implementation');
+		await runCommand(window, 'Specsplice: Undo Implementation');
 		await window.locator('.monaco-dialog-box').getByRole('button', { name: 'Undo Implementation', exact: true }).click();
 		await window.locator('.monaco-editor .view-lines').filter({ hasText: 'Changes Undone' }).last().waitFor();
 		assert.equal(await readFile(path.join(f.root, 'checkout.mjs'), 'utf8'), original);

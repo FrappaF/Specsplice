@@ -77,7 +77,7 @@ export class OrditoControls extends Disposable {
 
 	/** Tabs retain their selected area while the underlying selection or document is refreshed. */
 	tabs(parent: HTMLElement, id: string, entries: readonly { id: string; label: string }[], initialId = entries[0]?.id): OrditoTabGroup {
-		if (!entries.length) { throw new Error('An Ordito tab group requires at least one tab.'); }
+		if (!entries.length) { throw new Error('A Specsplice tab group requires at least one tab.'); }
 		const instance = generateUuid();
 		const list = dom.append(parent, dom.$('div.ordito-tabs', { role: 'tablist', 'aria-label': localize('ordito.tabs.sections', "Detail Sections") }));
 		const content = dom.append(parent, dom.$('div.ordito-tab-panels'));

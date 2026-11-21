@@ -3,7 +3,7 @@ import { ensureNoDisposablesAreLeakedInTestSuite } from '../../../../../base/tes
 import { OrditoDiagramBudgetForm } from '../../browser/orditoDiagramBudgetForm.js';
 import { projectDiagramBudgetPresets } from '../../common/diagramExplorationBudget.js';
 
-suite('Ordito. diagram budget form', () => {
+suite('Specsplice. diagram budget form', () => {
 	const store = ensureNoDisposablesAreLeakedInTestSuite();
 	let parent: HTMLElement;
 	setup(() => { parent = document.body.appendChild(document.createElement('div')); });

@@ -11,7 +11,7 @@ test('headless conversations are ephemeral, tool-scoped, cancellable and clean u
 	const controller = new AbortController();
 	let responsePath = '';
 	const messages = [{ role: 'user' as const, text: 'Generate the diagrams' }];
-	const result = await runDiagramChat('/project', config, messages, { command: 'node', args: ['/Ordito/orditoDiagramMcp.js', '/project', 'session'] }, controller.signal, async (executable, args, cwd, options) => {
+	const result = await runDiagramChat('/project', config, messages, { command: 'node', args: ['/Specsplice/orditoDiagramMcp.js', '/project', 'session'] }, controller.signal, async (executable, args, cwd, options) => {
 		responsePath = args[args.indexOf('--output-last-message') + 1];
 		assert.deepEqual([executable, cwd, options?.signal, args.includes('--ephemeral'), args.includes('mcp_servers={}'), args.includes('shell_tool'), args.includes('read-only'), args.includes('mcp_servers.ordito.command="node"')], ['codex', '/project', controller.signal, true, true, true, true, true]);
 		assert.match(options!.input!, /Generate the diagrams/);
@@ -28,7 +28,7 @@ test('a failed or unfinished CLI turn never looks successful or exposes raw prov
 	}
 });
 
-test('Claude conversations disable persistence and expose only the Ordito server', async () => {
+test('Claude conversations disable persistence and expose only the Specsplice server', async () => {
 	const result = await runDiagramChat('/project', { ...config, provider: 'claude', executable: 'claude' }, [{ role: 'user', text: 'Explain the architecture' }], { command: 'node', args: ['adapter', '/project'] }, undefined, async (_executable, args) => {
 		assert.deepEqual([args.includes('--no-session-persistence'), args.includes('--strict-mcp-config'), args.includes('mcp__ordito__*'), JSON.parse(args[args.indexOf('--mcp-config') + 1])], [true, true, true, { mcpServers: { ordito: { type: 'stdio', command: 'node', args: ['adapter', '/project'] } } }]);
 		return { code: 0, stdout: '{"subtype":"success","result":"Ready"}', stderr: '' };
